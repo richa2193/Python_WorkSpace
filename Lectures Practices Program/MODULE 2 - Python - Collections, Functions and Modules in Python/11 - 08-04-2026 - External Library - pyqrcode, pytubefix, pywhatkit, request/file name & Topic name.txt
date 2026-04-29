@@ -1,0 +1,74 @@
+external library 
+pyqrcode 
+request 
+pywhatkit
+pytubefix
+
+
+
+file name:
+qrcode_app.py	
+import qrcode 
+url = ""
+qr=arcode.make(url)
+qr.save("tops.png")
+
+pip install pyqrcode pypng
+
+qr = pyqrcode.create(url)
+qr.png("newtops.png")
+
+---------------------------------------------------------------- 
+
+req_lib.py
+
+pip install request
+
+import requests 
+import pandas
+url = "" 
+
+req = reqest.get(url)
+data=req.json()
+print()
+
+for i in data:
+print(i)
+
+ pd = pandas.dataframe(data)
+print(pd)
+
+panda daatframe dictionary ni j banave
+
+-------------------------------------------------------------------------------
+pip install pywhatkit pyautogui
+
+whatsapp_lib.py
+
+import pywhatkit
+
+pywhatkit.sentwhatmsg_insantly("no", "msg")
+
+-------------------------------------------------------------------
+auto_whatsapp.py
+-------------------------------------------------------------------------------
+youtube_app.py
+
+pip install pytubefix
+
+import pytubefix import youtube 
+
+url = ""
+
+youtube(url).streams.first().download()
+
+------------------------------------------------------------------------------
+
+admin password change 
+
+------------------------------ -------------------------------------------------------------
+
+string 
+function 
+modules 
+library 

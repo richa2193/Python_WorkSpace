@@ -1,0 +1,10 @@
+for table 
+while1
+while2
+while3
+while4
+pattern1 - nested loop 
+i - row 
+j - column 
+pattern2 
+pattern3

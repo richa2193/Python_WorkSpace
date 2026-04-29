@@ -1,0 +1,17 @@
+Bank Mang. system
+---------------------------------------------------------
+1) Account opening 
+	- A/C number
+	- A/C holder name
+	- A/C Type
+2) deposite 
+	- min 2000/-
+less 2000 then error 
+3) withdrawl 
+	- wit. amount less than main bal.
+if i withdrawl 1000 then five me statement 4
+4) statement 
+	- A/C number
+	- A/C holder name
+	- A/C Type
+	- final balance 	

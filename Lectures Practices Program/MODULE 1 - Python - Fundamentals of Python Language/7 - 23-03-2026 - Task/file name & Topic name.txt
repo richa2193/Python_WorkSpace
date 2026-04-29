@@ -1,0 +1,9 @@
+Task 
+*************************
+user registration system with validation 
+***************************************
+1. name -  name should be in alpha only
+2. email - should be in only lower case
+3. pass -  should be mix char, and min8 and max 12 char long
+4. confirm pass - passwoed - cpass
+5. mobile no. - length should be in 10 digit only.

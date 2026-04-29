@@ -1,0 +1,14 @@
+function 
+folder - UDF
+udf1.py
+udf2.py
+udf3.py
+ *****************************************************
+
+calc
+menu driven program 
+
+1. addition 
+2. substraction 
+3. multiplication
+4. division 

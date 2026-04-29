@@ -1,0 +1,12 @@
+marksheet - if elif 
+nested if 
+task : two number is from user bane mathi ekay zero check  zero hoy to error  jo pelo bija krta moto hoy to add natar multiplication
+range function 
+
+
+file name 
+1. for 1
+for 2 
+for 3
+for 4 
+for table 

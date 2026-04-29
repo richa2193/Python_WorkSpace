@@ -1,0 +1,16 @@
+type casting thi aaje 
+1. odd and even 
+2. prime number
+3. maximum out of three 
+
+file name 
+1_input function
+2. if
+3. if elif 
+4. if else
+5. marksheet
+6. nested if 
+7. nested if task 
+8. split fun
+9. format
+10. format example 

@@ -1,0 +1,18 @@
+module 2
+&#x20;
+
+collection 
+types of collection
+mutable -  add krya pachi change thy    
+
+interview que.
+List - order - imp 
+Tuple - order
+set - unorder
+dicto - imp
+
+file name - 
+listexample 
+userinput\_list
+
+

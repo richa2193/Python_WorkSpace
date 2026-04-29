@@ -1,0 +1,77 @@
+os_mod.py
+import subprocess 
+subprocess.run("calc")
+notpad
+os.startfile() 
+
+caln_mod.py
+import calender 
+calen.calen(2026)
+pri(x)
+year = int(
+x = cal.cal(year)
+
+datetime_mod.py
+
+inport datetime
+datetime.datetime.now()
+print(x)
+x.day
+x.month
+x.year
+
+keyword_mod.py
+
+import keyword
+x = key.kwlist
+print(x)
+
+demo.py
+import random 
+x=random.random()
+print
+randint(1111,9999)
+
+captcha = []
+x=random.choice(capracha)
+primt(x)
+
+random.shuffle(cap)
+print()
+
+sys_mod.py
+print(palteform.archi())
+machine
+processor
+plateform
+
+external libraries 
+
+pypi.org
+
+pandas_lib.py
+
+pip install pandas 
+
+import pandas
+
+stdata = {
+id: []
+
+pd = pandas.dataframe(stydata)
+print(pd)
+ 
+pandas_read_xls.py
+pd=pandas.read_excel(demo.xlsx)
+print(pd)
+
+pip install instaloader 
+
+import instaloader
+
+instaid = ""
+insta=instaloader.instaloader()
+insta.download_profile(instaid)
+
+
+
