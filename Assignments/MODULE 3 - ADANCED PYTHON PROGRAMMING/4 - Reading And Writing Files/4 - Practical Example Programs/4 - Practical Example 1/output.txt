@@ -1,0 +1,1 @@
+Hello, this string is written using print function.

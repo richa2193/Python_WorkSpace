@@ -1,0 +1,1 @@
+#write a python program to print a formatted string using print() and f-string.
