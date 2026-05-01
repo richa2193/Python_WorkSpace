@@ -1,0 +1,18 @@
+encapsulation 
+
+class name and method name same - 
+class no object bane etle constructor call thy 
+
+__init__ - constructor method 
+
+init_method.py
+
+param_init.py
+
+int que 
+difference between object and instance - temp object 
+
+instance_example.py	
+
+instance - property access thy change no thy 
+

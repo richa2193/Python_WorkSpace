@@ -1,0 +1,10 @@
+student registration system 
+
+==========================
+
+1.) name - must be in alphabets only
+2.) email - proper email format with validation
+3.)password - snmall,cap, digit and 1 special character , min 8 and max 12 char
+4. confirm password - password and confirm password are same 
+mobile number - digit only and length should be in 10
+

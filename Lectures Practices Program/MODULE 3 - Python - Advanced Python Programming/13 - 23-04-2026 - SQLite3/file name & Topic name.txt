@@ -1,0 +1,46 @@
+Database - collection of many 
+
+SQL - 
+SQL commands 
+DDL - create , alter, drop, truncate
+DML - insert, update, delete 
+DQL - select
+DCL - grant, revoke 
+TCL - commit, rollback, savepoint 
++
+database engine
+
+SQLite 3 - local database
+MySQL - server 
+ms sql
+oracle 
+PostgreSQL 
+
+==============================================================================
+
+dpapp.py 
+
+import sqlite3
+
+try:	
+	db = sqlite3.connect("testdb.db")
+	print("database connected.")
+except exceptipon as e:
+	print(e)
+
+
+create_table = ""
+	
+try:
+	db.execute(create_table)
+	print("")
+except exception as e:
+	print()e
+
+insert update delete
+db.commit()
+
+select :
+cr=db.cursor()
+
+ 

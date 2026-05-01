@@ -1,0 +1,12 @@
+ID:101
+name:richa
+city:rajkot
+-------------
+id:101
+name:richa
+city:rajkot
+--------------------------
+id:102
+name:purvi
+city:baroda
+--------------------------

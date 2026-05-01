@@ -1,0 +1,21 @@
+oop 
+-------------------------------------------------------------
+
+polymorphism 
+
+overloading - same method name but different argument 
+method_overloading.py 
+
+
+class studinfo
+
+def getdata(,self, id)
+
+method_overriding.py
+
+class master:
+def login(self,unm,pss)
+if unm=="admin"
+
+access_specifier.py
+

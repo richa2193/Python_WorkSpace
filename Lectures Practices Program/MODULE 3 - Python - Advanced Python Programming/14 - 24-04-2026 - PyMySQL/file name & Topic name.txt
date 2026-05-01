@@ -1,0 +1,22 @@
+Database Using My SQL : 
+
+----------------------------------------------------------------------------------------------------------------------------
+
+hellodb
+dpapp_mysql.py
+
+import pymysql 
+
+try:
+	db = pymysql.connect(host="localhost", user='root', password='', database="hellodb)
+	print("database")
+excep exception as e:
+	print(e)
+
+badhu cursor na onject thi 
+auto_increment 
+x
+
+===============================================================
+
+

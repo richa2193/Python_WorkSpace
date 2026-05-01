@@ -1,0 +1,131 @@
+OOP
+=========================
+
+method overloading - same method name but argument diff 
+
+overriding - same method name same argument class are different 
+
+__ for private specifier 
+
+===================================================================
+
+class_obj_param.py 
+
+studinfo 
+
+def getdata(self, stud, stnm):
+	print("ID:", stid)
+
+st=studinfo()
+st.get()
+
+id=input()
+
+======================================================
+
+inheritance - 
+
+single_inheritance.py
+
+class father:
+	car:int
+
+		def getdata():
+self.car = input 
+
+
+
+============================================
+
+multiple_inhe.py
+
+class ashok:
+	aid:int
+	
+
+-----------------------------------------------------------------------------------------------------
+
+multilevel_inhe.py
+
+--------------------------------------------------------------------------------
+
+Bank Mang. system
+---------------------------------------------------------
+1) Account opening 
+	- A/C number
+
+	- A/C holder name
+	- A/C Type
+2) deposite 
+	- min 2000/-
+less 2000 then error 
+3) withdrawl 
+	- wit. amount less than main bal.
+
+if i withdrawl 1000 then five me statement 4
+4) statement 
+	- A/C number
+	- A/C holder name
+	- A/C Type
+	- final balance 	
+
+==============================================
+
+# ---- Bank Management System using Inheritance (No __init__) ---- #
+
+print("\n ------ Bank Management System ------")
+
+# Base Class
+class Account:
+
+    def account_open(self):
+        self.acc_no = input("Enter Your Account Number : ")
+        self.name = input("Enter Account Holder Name : ")
+        self.acc_type = input("Enter Type of Account : ")
+        self.balance = 0   # initialize here
+        print("\nAccount Created Successfully")
+	na
+
+# Derived Class
+class Transaction(Account):
+
+    def deposite(self):
+        amount = int(input("Enter Deposit Amount : "))
+
+        if amount < 2000:
+            print("Error: Minimum Deposit is 2000.")
+        else:
+            self.balance += amount
+            print("Deposit Successful.\n")
+
+    def withdrawal(self):
+        amount = int(input("Enter Withdrawal Amount : "))
+
+        if amount > self.balance:
+            print("\nWithdrawal amount greater than balance!")
+        else:
+            self.balance -= amount
+            print("Withdrawal Successful.\n")
+
+            if amount == 1000:
+                self.statement()
+
+    def statement(self):
+        print("----- ACCOUNT STATEMENT -----")
+        print("Account Number:", self.acc_no)
+        print("Account Holder Name:", self.name)
+        print("Account Type:", self.acc_type)
+        print("Final Balance:", self.balance)
+        print("----------------------------------------")
+
+
+# Object
+obj = Transaction()
+
+# Important: Call this FIRST
+obj.account_open()
+obj.deposite()
+obj.withdrawal()
+obj.statement()
+
+"C:\Users\Richa\Downloads\Subject_ Re-submission of Assessments.pdf"

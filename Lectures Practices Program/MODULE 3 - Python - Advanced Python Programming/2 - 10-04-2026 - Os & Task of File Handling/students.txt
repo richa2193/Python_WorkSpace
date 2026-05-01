@@ -1,0 +1,30 @@
+Timestemp: 2026-04-10 14:40:55
+Student_id: 7170
+Name: richa
+City:  rajkot
+-----------------------
+Timestemp: 2026-04-10 14:41:04
+Student_id: 9820
+Name: purvi
+City: baroda
+-----------------------
+Timestemp: 2026-04-10 14:42:15
+Student_id: 4175
+Name: Jiyan Vaghela
+City: Ahmedabad
+-----------------------
+Timestemp: 2026-04-10 14:42:29
+Student_id: 5506
+Name: Thavan Vaghela 
+City: surat
+-----------------------
+Timestemp: 10-04-2026 14:46:15
+Student_id: 4686
+Name: kavya vaghela
+City: morbi
+-----------------------
+Timestemp: 10-04-2026 14:46:30
+Student_id: 3325
+Name: himshikha rathod
+City: pune
+-----------------------

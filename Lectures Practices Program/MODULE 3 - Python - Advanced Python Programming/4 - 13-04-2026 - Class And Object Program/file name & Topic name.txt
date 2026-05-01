@@ -1,0 +1,60 @@
+class - object 
+==========================
+oop
+1. class - collection of data members and  
+member function -user define object 
+2. object 
+3. inheritance 
+	- single  
+	- multiple - many to one 
+	- multilevel - 
+4. encapsulation - data binding 
+5. polymorphism - one name multiple form 
+	- method overloading - same method name but different argument 
+	= method overriding - same method name same argument different data types  
+
+6. access specifier / modifier / data hiding 
+	- public (default)
+	- private 
+
+===============================================================
+
+class_create.py
+
+class studinfo 
+	stid=12
+
+def getdata():
+	print("this is ")
+
+st = st()
+print("",st.stid)
+
+-> method ne class ma declare kri tyare ek particular default argument require - rule 
+
+============================================================================
+
+class_obj.py
+
+=====================================
+
+class_obj_input.py
+
+class 
+
+declaration
+STID: int
+stnm: str
+
+Def getdata(self):
+	self.stid=input()
+
+def printdata(self):
+print("id", stid)
+
+st=studinfo()
+st.getdata()
+
+initialization
+stid = 0
+stnm=""

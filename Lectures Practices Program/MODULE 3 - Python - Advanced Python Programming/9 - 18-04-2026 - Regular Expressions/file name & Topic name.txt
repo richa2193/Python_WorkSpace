@@ -1,0 +1,78 @@
+regular expression - validation    
+
+search function 
+
+RE 
+
+re_1.py
+
+match function 
+
+re_2.py 
+
+findall function - return list 
+ 
+re_3.py 
+
+modifiers
+
+ignore case
+re_4.py
+
+dotall 
+re_5.py
+
+verbose - option | 
+
+multiline - ^ - beginning 
+$ - ending  
+re_6.py
+
+
+re_7.py
+w - space and special char ignore 
+W - space and special char 
+b - 
+B - ending mate 
+s - 
+
+
+pattern1.py
+
+
+import re
+
+email = input("Enter your email: ")
+
+pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+
+if re.fullmatch(pattern, email):
+    print("Valid Email")
+else:
+    print("Invalid Email")
+
+
+
+
+
+
+
+
+
+
+
+
+
+import re
+
+def validate_email(email):
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    
+    if re.fullmatch(pattern, email):
+        print("Valid Email")
+    else:
+        print("Invalid Email")
+
+# Input from user
+email = input("Enter your email: ")
+validate_email(email)

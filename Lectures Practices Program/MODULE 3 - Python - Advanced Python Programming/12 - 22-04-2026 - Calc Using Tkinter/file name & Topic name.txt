@@ -1,0 +1,184 @@
+calc 
+
+2 text fields
+4 button - + - * / 
+
+import tkinter as tk
+
+# Create window
+root = tk.Tk()
+root.title("Simple Calculator")
+root.geometry("300x300")
+
+# Functions
+def add():
+    result.set(float(num1.get()) + float(num2.get()))
+
+def sub():
+    result.set(float(num1.get()) - float(num2.get()))
+
+def mul():
+    result.set(float(num1.get()) * float(num2.get()))
+
+def div():
+    if float(num2.get()) != 0:
+        result.set(float(num1.get()) / float(num2.get()))
+    else:
+        result.set("Error")
+
+# Variables
+num1 = tk.StringVar()
+num2 = tk.StringVar()
+result = tk.StringVar()
+
+# Labels & Entries
+tk.Label(root, text="Enter Number 1").pack()
+tk.Entry(root, textvariable=num1).pack()
+
+tk.Label(root, text="Enter Number 2").pack()
+tk.Entry(root, textvariable=num2).pack()
+
+# Buttons
+tk.Button(root, text="+", width=10, command=add).pack(pady=5)
+tk.Button(root, text="-", width=10, command=sub).pack(pady=5)
+tk.Button(root, text="*", width=10, command=mul).pack(pady=5)
+tk.Button(root, text="/", width=10, command=div).pack(pady=5)
+
+# Result
+tk.Label(root, text="Result").pack()
+tk.Entry(root, textvariable=result).pack()
+
+# Run app
+root.mainloop()
+
+----------------------------------------------------------------------------------------
+
+import tkinter as tk
+from tkinter import messagebox
+
+root = tk.Tk()
+root.title("Calculator")
+root.geometry("300x300")
+
+# Function to perform operation
+def calculate(op):
+    try:
+        n1 = float(num1.get())
+        n2 = float(num2.get())
+
+        if op == "+":
+            res = n1 + n2
+        elif op == "-":
+            res = n1 - n2
+        elif op == "*":
+            res = n1 * n2
+        elif op == "/":
+            if n2 == 0:
+                messagebox.showerror("Error", "Cannot divide by zero")
+                return
+            res = n1 / n2
+
+        result.set(res)
+
+    except:
+        messagebox.showerror("Error", "Please enter valid numbers")
+
+# Variables
+num1 = tk.StringVar()
+num2 = tk.StringVar()
+result = tk.StringVar()
+
+# UI
+tk.Label(root, text="Enter Number 1").pack()
+tk.Entry(root, textvariable=num1).pack()
+
+tk.Label(root, text="Enter Number 2").pack()
+tk.Entry(root, textvariable=num2).pack()
+
+# Buttons
+tk.Button(root, text="+", width=5, command=lambda: calculate("+")).pack(pady=3)
+tk.Button(root, text="-", width=5, command=lambda: calculate("-")).pack(pady=3)
+tk.Button(root, text="*", width=5, command=lambda: calculate("*")).pack(pady=3)
+tk.Button(root, text="/", width=5, command=lambda: calculate("/")).pack(pady=3)
+
+# Result
+tk.Label(root, text="Result").pack()
+tk.Entry(root, textvariable=result).pack()
+
+root.mainloop()
+
+************************************************************************************************************
+
+
+import tkinter
+from tkinter import messagebox
+
+tk = tkinter.Tk()
+tk.title("MyApp")
+tk.config(background="lightblue")
+tk.geometry("400x500")
+
+# Labels
+l1 = tkinter.Label(tk, text="Enter Number 1")
+l1.place(x=50, y=50)
+
+l2 = tkinter.Label(tk, text="Enter Number 2")
+l2.place(x=50, y=100)
+
+# Entry fields
+e1 = tkinter.Entry(tk)
+e1.place(x=200, y=50)
+
+e2 = tkinter.Entry(tk)
+e2.place(x=200, y=100)
+
+# Result label
+res_label = tkinter.Label(tk, text="Result = ")
+res_label.place(x=50, y=300)
+
+# Functions
+def add():
+    try:
+        result = float(e1.get()) + float(e2.get())
+        res_label.config(text="Result = " + str(result))
+    except:
+        messagebox.showerror("Error", "Enter valid numbers")
+
+def sub():
+    try:
+        result = float(e1.get()) - float(e2.get())
+        res_label.config(text="Result = " + str(result))
+    except:
+        messagebox.showerror("Error", "Enter valid numbers")
+
+def mul():
+    try:
+        result = float(e1.get()) * float(e2.get())
+        res_label.config(text="Result = " + str(result))
+    except:
+        messagebox.showerror("Error", "Enter valid numbers")
+
+def div():
+    try:
+        if float(e2.get()) == 0:
+            messagebox.showerror("Error", "Cannot divide by zero")
+        else:
+            result = float(e1.get()) / float(e2.get())
+            res_label.config(text="Result = " + str(result))
+    except:
+        messagebox.showerror("Error", "Enter valid numbers")
+
+# Buttons
+b1 = tkinter.Button(tk, text="+", width=5, command=add)
+b1.place(x=50, y=180)
+
+b2 = tkinter.Button(tk, text="-", width=5, command=sub)
+b2.place(x=120, y=180)
+
+b3 = tkinter.Button(tk, text="*", width=5, command=mul)
+b3.place(x=190, y=180)
+
+b4 = tkinter.Button(tk, text="/", width=5, command=div)
+b4.place(x=260, y=180)
+
+tk.mainloop()
