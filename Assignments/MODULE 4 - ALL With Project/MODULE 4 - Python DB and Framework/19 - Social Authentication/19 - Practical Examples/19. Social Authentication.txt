@@ -1,0 +1,506 @@
+=================================================
+DJANGO PROJECT FOR GOOGLE AND FACEBOOK
+LOGIN AUTHENTICATION
+=================================================
+
+Features:
+
+1. Google Login
+2. Facebook Login
+3. Social Authentication
+4. User Dashboard
+
+
+=========================================
+STEP 1 — CREATE DJANGO PROJECT
+=========================================
+
+Command:
+
+django-admin startproject doctorfinder
+
+
+=========================================
+STEP 2 — OPEN PROJECT DIRECTORY
+=========================================
+
+Command:
+
+cd doctorfinder
+
+
+=========================================
+STEP 3 — CREATE APP
+=========================================
+
+Command:
+
+python manage.py startapp doctor
+
+
+=========================================
+STEP 4 — INSTALL REQUIRED PACKAGES
+=========================================
+
+Command:
+
+pip install django-allauth
+
+
+-----------------------------------------
+Explanation:
+-----------------------------------------
+
+django-allauth provides:
+
+- Google Login
+- Facebook Login
+- Social Authentication
+
+
+=========================================
+STEP 5 — REGISTER APPS
+=========================================
+
+Open:
+
+doctorfinder/settings.py
+
+
+Add inside:
+
+INSTALLED_APPS
+
+
+Write:
+
+'doctor',
+
+'django.contrib.sites',
+
+'allauth',
+
+'allauth.account',
+
+'allauth.socialaccount',
+
+'allauth.socialaccount.providers.google',
+
+'allauth.socialaccount.providers.facebook',
+
+
+=========================================
+STEP 6 — ADD SITE ID
+=========================================
+
+Inside:
+
+settings.py
+
+
+Write:
+
+SITE_ID = 1
+
+
+=========================================
+STEP 7 — ADD AUTHENTICATION SETTINGS
+=========================================
+
+Inside:
+
+settings.py
+
+
+Write:
+
+AUTHENTICATION_BACKENDS = [
+
+'django.contrib.auth.backends.ModelBackend',
+
+'allauth.account.auth_backends.AuthenticationBackend',
+
+]
+
+
+=========================================
+STEP 8 — ADD LOGIN REDIRECT
+=========================================
+
+Inside:
+
+settings.py
+
+
+Write:
+
+LOGIN_REDIRECT_URL = '/'
+
+
+LOGOUT_REDIRECT_URL = '/'
+
+
+=========================================
+STEP 9 — CREATE VIEW
+=========================================
+
+Open:
+
+doctor/views.py
+
+
+Write:
+
+from django.shortcuts import render
+
+
+def home(request):
+
+    return render(request,'index.html')
+
+
+=========================================
+STEP 10 — CREATE URL FILE
+=========================================
+
+Create:
+
+doctor/urls.py
+
+
+Write:
+
+from django.urls import path
+from . import views
+
+
+urlpatterns = [
+
+    path('',views.home),
+
+]
+
+
+=========================================
+STEP 11 — CONNECT MAIN URL
+=========================================
+
+Open:
+
+doctorfinder/urls.py
+
+
+Write:
+
+from django.contrib import admin
+from django.urls import path,include
+
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+
+    path('',include('doctor.urls')),
+
+    path('accounts/',
+         include('allauth.urls')),
+
+]
+
+
+-----------------------------------------
+Explanation:
+-----------------------------------------
+
+allauth.urls handles:
+
+- Login
+- Logout
+- Social Login
+
+
+=========================================
+STEP 12 — CREATE TEMPLATE FOLDER
+=========================================
+
+Inside:
+
+doctor
+
+Create folder:
+
+templates
+
+
+Create file:
+
+index.html
+
+
+=========================================
+STEP 13 — WRITE HTML CODE
+=========================================
+
+Open:
+
+templates/index.html
+
+
+Write:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Doctor Finder</title>
+
+</head>
+
+<body>
+
+    <h1>Doctor Finder Login</h1>
+
+
+    <a href="/accounts/google/login/">
+
+        Login With Google
+
+    </a>
+
+
+    <br><br>
+
+
+    <a href="/accounts/facebook/login/">
+
+        Login With Facebook
+
+    </a>
+
+
+    <br><br>
+
+
+    {% if user.is_authenticated %}
+
+        <h2>
+
+            Welcome {{ user.username }}
+
+        </h2>
+
+        <a href="/accounts/logout/">
+
+            Logout
+
+        </a>
+
+    {% endif %}
+
+</body>
+
+</html>
+
+
+=========================================
+STEP 14 — APPLY MIGRATIONS
+=========================================
+
+Command:
+
+python manage.py migrate
+
+
+=========================================
+STEP 15 — CREATE SUPERUSER
+=========================================
+
+Command:
+
+python manage.py createsuperuser
+
+
+=========================================
+STEP 16 — RUN SERVER
+=========================================
+
+Command:
+
+python manage.py runserver
+
+
+=========================================
+STEP 17 — OPEN ADMIN PANEL
+=========================================
+
+Open:
+
+http://127.0.0.1:8000/admin
+
+
+=========================================
+STEP 18 — ADD SOCIAL APPLICATION
+=========================================
+
+Inside Admin Panel:
+
+Open:
+
+Social Applications
+
+
+=========================================
+GOOGLE LOGIN SETUP
+=========================================
+
+STEP 1:
+
+Open:
+
+:contentReference[oaicite:0]{index=0}
+
+
+STEP 2:
+
+Create Project.
+
+
+STEP 3:
+
+Enable:
+
+Google OAuth API
+
+
+STEP 4:
+
+Create OAuth Credentials.
+
+
+STEP 5:
+
+Add Redirect URL:
+
+http://127.0.0.1:8000/accounts/google/login/callback/
+
+
+STEP 6:
+
+Copy:
+
+- Client ID
+- Secret Key
+
+
+STEP 7:
+
+Add inside Django Admin
+→ Social Applications
+
+
+=========================================
+FACEBOOK LOGIN SETUP
+=========================================
+
+STEP 1:
+
+Open:
+
+:contentReference[oaicite:1]{index=1}
+
+
+STEP 2:
+
+Create App.
+
+
+STEP 3:
+
+Enable Facebook Login.
+
+
+STEP 4:
+
+Add Callback URL:
+
+http://127.0.0.1:8000/accounts/facebook/login/callback/
+
+
+STEP 5:
+
+Copy:
+
+- App ID
+- Secret Key
+
+
+STEP 6:
+
+Add inside Django Admin
+→ Social Applications
+
+
+=========================================
+STEP 19 — OPEN WEBSITE
+=========================================
+
+Open:
+
+http://127.0.0.1:8000/
+
+
+Now users can:
+
+- Login with Google
+- Login with Facebook
+
+
+=========================================
+IMPORTANT FILES
+=========================================
+
+settings.py   → Authentication Settings
+
+urls.py       → URL Routing
+
+views.py      → View Logic
+
+index.html    → Login Page
+
+
+=========================================
+IMPORTANT FEATURES
+=========================================
+
+Google OAuth Login
+
+Facebook OAuth Login
+
+Automatic User Creation
+
+Secure Authentication
+
+
+=========================================
+FINAL FLOW
+=========================================
+
+User Clicks Google Login
+          ↓
+
+Google Authentication
+          ↓
+
+Django allauth
+          ↓
+
+User Logged In
+          ↓
+
+Dashboard/Home Page
+
+
+=========================================
+PROJECT COMPLETED
+=========================================
