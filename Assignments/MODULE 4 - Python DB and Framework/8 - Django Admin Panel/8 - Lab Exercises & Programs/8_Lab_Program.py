@@ -1,1 +1,0 @@
-#Set up and customize the Django admin panel to manage a "Doctor Finder" project.

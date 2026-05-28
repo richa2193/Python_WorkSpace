@@ -1,1 +1,0 @@
-#Create a Django project with JavaScript-enabled form validation.

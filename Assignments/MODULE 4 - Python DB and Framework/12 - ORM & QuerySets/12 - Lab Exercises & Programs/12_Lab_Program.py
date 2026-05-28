@@ -1,1 +1,0 @@
-#Perform CRUD operations using Django ORM.
