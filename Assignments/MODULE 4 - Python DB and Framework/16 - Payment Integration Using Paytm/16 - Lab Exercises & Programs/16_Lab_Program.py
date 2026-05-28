@@ -1,1 +1,0 @@
-#Implement Paytm payment gateway in a Django project.

@@ -1,1 +1,0 @@
-#Create a Django project with URL patterns and corresponding views and templates.

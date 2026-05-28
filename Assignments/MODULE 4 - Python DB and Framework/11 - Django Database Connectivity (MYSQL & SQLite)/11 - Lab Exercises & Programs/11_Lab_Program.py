@@ -1,1 +1,0 @@
-#Set up database connectivity for a Django project.
