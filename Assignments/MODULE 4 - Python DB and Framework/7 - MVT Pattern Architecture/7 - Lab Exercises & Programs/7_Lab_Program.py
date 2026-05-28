@@ -1,1 +1,0 @@
-#Build a simple Django app showcasing how the MVT architecture works.

@@ -1,1 +1,0 @@
-#Customize the Django admin panel for better management of records.
