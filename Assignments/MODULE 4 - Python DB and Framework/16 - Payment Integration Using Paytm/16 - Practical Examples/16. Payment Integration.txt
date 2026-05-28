@@ -1,0 +1,469 @@
+=================================================
+DJANGO PROJECT INTEGRATING PAYTM PAYMENT
+IN "DOCTOR FINDER" PROJECT
+=================================================
+
+Features:
+
+1. Doctor Appointment Booking
+2. Paytm Payment Gateway
+3. Payment Status Handling
+4. Payment Success Page
+
+
+=========================================
+STEP 1 — CREATE DJANGO PROJECT
+=========================================
+
+Command:
+
+django-admin startproject doctorfinder
+
+
+=========================================
+STEP 2 — OPEN PROJECT DIRECTORY
+=========================================
+
+Command:
+
+cd doctorfinder
+
+
+=========================================
+STEP 3 — CREATE APP
+=========================================
+
+Command:
+
+python manage.py startapp doctor
+
+
+=========================================
+STEP 4 — REGISTER APP
+=========================================
+
+Open:
+
+doctorfinder/settings.py
+
+
+Add:
+
+'doctor',
+
+
+inside:
+
+INSTALLED_APPS
+
+
+=========================================
+STEP 5 — INSTALL PAYTM CHECKSUM
+=========================================
+
+Command:
+
+pip install pycryptodome
+
+
+=========================================
+STEP 6 — CREATE PAYTM CONFIG FILE
+=========================================
+
+Inside:
+
+doctor
+
+Create file:
+
+paytm.py
+
+
+Write:
+
+MID = "YOUR_MERCHANT_ID"
+
+MERCHANT_KEY = "YOUR_MERCHANT_KEY"
+
+WEBSITE = "WEBSTAGING"
+
+INDUSTRY_TYPE_ID = "Retail"
+
+CHANNEL_ID = "WEB"
+
+PAYTM_URL =
+"https://securegw-stage.paytm.in/order/process"
+
+
+-----------------------------------------
+Explanation:
+-----------------------------------------
+
+MID → Merchant ID
+
+MERCHANT_KEY → Paytm Secret Key
+
+
+Use Paytm Staging Account
+for testing.
+
+
+=========================================
+STEP 7 — CREATE MODEL
+=========================================
+
+Open:
+
+doctor/models.py
+
+
+Write:
+
+from django.db import models
+
+
+class Payment(models.Model):
+
+    name = models.CharField(max_length=100)
+
+    amount = models.IntegerField()
+
+    order_id = models.CharField(max_length=100)
+
+    paid = models.BooleanField(default=False)
+
+
+    def __str__(self):
+
+        return self.name
+
+
+=========================================
+STEP 8 — CREATE MIGRATIONS
+=========================================
+
+Command:
+
+python manage.py makemigrations
+
+
+Command:
+
+python manage.py migrate
+
+
+=========================================
+STEP 9 — CREATE TEMPLATE FOLDER
+=========================================
+
+Inside:
+
+doctor
+
+Create folder:
+
+templates
+
+
+Create files:
+
+1. payment.html
+2. success.html
+
+
+=========================================
+STEP 10 — CREATE PAYMENT VIEW
+=========================================
+
+Open:
+
+doctor/views.py
+
+
+Write:
+
+from django.shortcuts import render
+from .models import Payment
+import random
+
+
+def payment(request):
+
+    if request.method == "POST":
+
+        name = request.POST['name']
+
+        amount = request.POST['amount']
+
+
+        order_id =
+        str(random.randint(100000,999999))
+
+
+        payment = Payment.objects.create(
+
+            name=name,
+
+            amount=amount,
+
+            order_id=order_id
+
+        )
+
+
+        context = {
+
+            'payment':payment
+
+        }
+
+
+        return render(request,
+                      'payment.html',
+                      context)
+
+
+    return render(request,'payment.html')
+
+
+=========================================
+STEP 11 — PAYMENT SUCCESS VIEW
+=========================================
+
+Add in:
+
+views.py
+
+
+def success(request):
+
+    return render(request,'success.html')
+
+
+=========================================
+STEP 12 — CREATE URL FILE
+=========================================
+
+Create:
+
+doctor/urls.py
+
+
+Write:
+
+from django.urls import path
+from . import views
+
+
+urlpatterns = [
+
+    path('',views.payment),
+
+    path('success/',views.success),
+
+]
+
+
+=========================================
+STEP 13 — CONNECT MAIN URL
+=========================================
+
+Open:
+
+doctorfinder/urls.py
+
+
+Write:
+
+from django.contrib import admin
+from django.urls import path,include
+
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+
+    path('',include('doctor.urls')),
+
+]
+
+
+=========================================
+STEP 14 — CREATE PAYMENT PAGE
+=========================================
+
+Open:
+
+templates/payment.html
+
+
+Write:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Paytm Payment</title>
+
+</head>
+
+<body>
+
+    <h1>Doctor Appointment Payment</h1>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input type="text"
+               name="name"
+               placeholder="Patient Name">
+
+        <br><br>
+
+        <input type="number"
+               name="amount"
+               placeholder="Amount">
+
+        <br><br>
+
+        <button type="submit">
+
+            Proceed To Pay
+
+        </button>
+
+    </form>
+
+
+    {% if payment %}
+
+        <hr>
+
+        <h2>Payment Details</h2>
+
+        <p>Name: {{ payment.name }}</p>
+
+        <p>Amount: {{ payment.amount }}</p>
+
+        <p>Order ID: {{ payment.order_id }}</p>
+
+        <br>
+
+        <a href="/success/">
+
+            Simulate Payment Success
+
+        </a>
+
+    {% endif %}
+
+</body>
+
+</html>
+
+
+=========================================
+STEP 15 — CREATE SUCCESS PAGE
+=========================================
+
+Open:
+
+templates/success.html
+
+
+Write:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Payment Success</title>
+
+</head>
+
+<body>
+
+    <h1>Payment Successful</h1>
+
+    <p>Your doctor appointment
+       payment is completed.</p>
+
+</body>
+
+</html>
+
+
+=========================================
+STEP 16 — RUN SERVER
+=========================================
+
+Command:
+
+python manage.py runserver
+
+
+=========================================
+STEP 17 — OPEN WEBSITE
+=========================================
+
+Open:
+
+http://127.0.0.1:8000/
+
+
+=========================================
+PAYMENT FLOW
+=========================================
+
+Patient Details
+      ↓
+
+Generate Order ID
+      ↓
+
+Create Payment Record
+      ↓
+
+Proceed To Payment
+      ↓
+
+Payment Success Page
+
+
+=========================================
+IMPORTANT FILES
+=========================================
+
+models.py   → Payment Table
+
+views.py    → Payment Logic
+
+paytm.py    → Paytm Configuration
+
+payment.html → Payment Form
+
+success.html → Success Page
+
+
+=========================================
+NOTE
+=========================================
+
+This example demonstrates
+basic Paytm integration flow.
+
+For real transactions:
+
+- Use Paytm Business Account
+- Generate checksum
+- Handle callback URL
+- Verify transaction securely
+
+
+=========================================
+PROJECT COMPLETED
+=========================================

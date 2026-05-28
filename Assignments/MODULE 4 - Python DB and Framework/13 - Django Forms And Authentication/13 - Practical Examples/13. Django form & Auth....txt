@@ -1,0 +1,585 @@
+=================================================
+DJANGO PROJECT FOR USER AUTHENTICATION
+AND PROFILE MANAGEMENT
+=================================================
+
+Features:
+
+1. User Sign Up
+2. User Login
+3. Password Reset
+4. Profile Update
+
+
+=========================================
+STEP 1 — CREATE DJANGO PROJECT
+=========================================
+
+Command:
+
+django-admin startproject doctorfinder
+
+
+=========================================
+STEP 2 — OPEN PROJECT DIRECTORY
+=========================================
+
+Command:
+
+cd doctorfinder
+
+
+=========================================
+STEP 3 — CREATE APP
+=========================================
+
+Command:
+
+python manage.py startapp doctor
+
+
+=========================================
+STEP 4 — REGISTER APP
+=========================================
+
+Open:
+
+doctorfinder/settings.py
+
+
+Add:
+
+'doctor',
+
+
+inside:
+
+INSTALLED_APPS
+
+
+=========================================
+STEP 5 — CREATE TEMPLATE FOLDER
+=========================================
+
+Inside:
+
+doctor
+
+Create folder:
+
+templates
+
+
+Create files:
+
+1. signup.html
+2. login.html
+3. profile.html
+4. reset.html
+
+
+=========================================
+STEP 6 — CREATE VIEWS
+=========================================
+
+Open:
+
+doctor/views.py
+
+
+Write:
+
+from django.shortcuts import render,redirect
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,
+login,logout
+from django.contrib.auth.decorators import login_required
+
+
+# SIGNUP
+
+def signup_user(request):
+
+    if request.method == 'POST':
+
+        username = request.POST['username']
+
+        email = request.POST['email']
+
+        password = request.POST['password']
+
+
+        User.objects.create_user(
+
+            username=username,
+
+            email=email,
+
+            password=password
+
+        )
+
+        return redirect('/login/')
+
+
+    return render(request,'signup.html')
+
+
+# LOGIN
+
+def login_user(request):
+
+    if request.method == 'POST':
+
+        username = request.POST['username']
+
+        password = request.POST['password']
+
+
+        user = authenticate(
+
+            username=username,
+
+            password=password
+
+        )
+
+
+        if user is not None:
+
+            login(request,user)
+
+            return redirect('/profile/')
+
+
+    return render(request,'login.html')
+
+
+# PROFILE
+
+@login_required
+
+def profile(request):
+
+    return render(request,'profile.html')
+
+
+# UPDATE PROFILE
+
+@login_required
+
+def update_profile(request):
+
+    if request.method == 'POST':
+
+        request.user.email =
+        request.POST['email']
+
+        request.user.save()
+
+        return redirect('/profile/')
+
+
+    return render(request,'profile.html')
+
+
+# PASSWORD RESET
+
+@login_required
+
+def reset_password(request):
+
+    if request.method == 'POST':
+
+        password = request.POST['password']
+
+        request.user.set_password(password)
+
+        request.user.save()
+
+        return redirect('/login/')
+
+
+    return render(request,'reset.html')
+
+
+# LOGOUT
+
+def logout_user(request):
+
+    logout(request)
+
+    return redirect('/login/')
+
+
+=========================================
+STEP 7 — CREATE URL FILE
+=========================================
+
+Create:
+
+doctor/urls.py
+
+
+Write:
+
+from django.urls import path
+from . import views
+
+
+urlpatterns = [
+
+    path('signup/',views.signup_user),
+
+    path('login/',views.login_user),
+
+    path('profile/',views.profile),
+
+    path('update/',views.update_profile),
+
+    path('reset/',views.reset_password),
+
+    path('logout/',views.logout_user),
+
+]
+
+
+=========================================
+STEP 8 — CONNECT MAIN URL
+=========================================
+
+Open:
+
+doctorfinder/urls.py
+
+
+Write:
+
+from django.contrib import admin
+from django.urls import path,include
+
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+
+    path('',include('doctor.urls')),
+
+]
+
+
+=========================================
+STEP 9 — CREATE SIGNUP PAGE
+=========================================
+
+signup.html
+
+Write:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Signup</title>
+
+</head>
+
+<body>
+
+    <h1>User Signup</h1>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input type="text"
+               name="username"
+               placeholder="Username">
+
+        <br><br>
+
+        <input type="email"
+               name="email"
+               placeholder="Email">
+
+        <br><br>
+
+        <input type="password"
+               name="password"
+               placeholder="Password">
+
+        <br><br>
+
+        <button type="submit">
+
+            Signup
+
+        </button>
+
+    </form>
+
+</body>
+
+</html>
+
+
+=========================================
+STEP 10 — CREATE LOGIN PAGE
+=========================================
+
+login.html
+
+Write:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Login</title>
+
+</head>
+
+<body>
+
+    <h1>User Login</h1>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input type="text"
+               name="username"
+               placeholder="Username">
+
+        <br><br>
+
+        <input type="password"
+               name="password"
+               placeholder="Password">
+
+        <br><br>
+
+        <button type="submit">
+
+            Login
+
+        </button>
+
+    </form>
+
+</body>
+
+</html>
+
+
+=========================================
+STEP 11 — CREATE PROFILE PAGE
+=========================================
+
+profile.html
+
+Write:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Profile</title>
+
+</head>
+
+<body>
+
+    <h1>User Profile</h1>
+
+    <p>Username:
+       {{ request.user.username }}</p>
+
+    <p>Email:
+       {{ request.user.email }}</p>
+
+    <hr>
+
+    <h2>Update Email</h2>
+
+    <form method="POST"
+          action="/update/">
+
+        {% csrf_token %}
+
+        <input type="email"
+               name="email"
+               placeholder="New Email">
+
+        <br><br>
+
+        <button type="submit">
+
+            Update Profile
+
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/reset/">
+
+        Reset Password
+
+    </a>
+
+    <br><br>
+
+    <a href="/logout/">
+
+        Logout
+
+    </a>
+
+</body>
+
+</html>
+
+
+=========================================
+STEP 12 — CREATE RESET PAGE
+=========================================
+
+reset.html
+
+Write:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Password Reset</title>
+
+</head>
+
+<body>
+
+    <h1>Reset Password</h1>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input type="password"
+               name="password"
+               placeholder="New Password">
+
+        <br><br>
+
+        <button type="submit">
+
+            Reset Password
+
+        </button>
+
+    </form>
+
+</body>
+
+</html>
+
+
+=========================================
+STEP 13 — RUN SERVER
+=========================================
+
+Command:
+
+python manage.py runserver
+
+
+=========================================
+STEP 14 — OPEN WEBSITE
+=========================================
+
+Signup Page:
+
+http://127.0.0.1:8000/signup/
+
+
+Login Page:
+
+http://127.0.0.1:8000/login/
+
+
+Profile Page:
+
+http://127.0.0.1:8000/profile/
+
+
+=========================================
+FEATURES WORKING
+=========================================
+
+SIGNUP:
+
+New user registration.
+
+
+LOGIN:
+
+User authentication.
+
+
+PROFILE UPDATE:
+
+Change email.
+
+
+PASSWORD RESET:
+
+Change password.
+
+
+LOGOUT:
+
+Logout current user.
+
+
+=========================================
+DJANGO AUTH FUNCTIONS USED
+=========================================
+
+create_user()
+
+authenticate()
+
+login()
+
+logout()
+
+set_password()
+
+
+=========================================
+FINAL FLOW
+=========================================
+
+Signup
+   ↓
+
+Login
+   ↓
+
+Profile
+   ↓
+
+Update Profile
+   ↓
+
+Reset Password
+
+
+=========================================
+PROJECT COMPLETED
+=========================================

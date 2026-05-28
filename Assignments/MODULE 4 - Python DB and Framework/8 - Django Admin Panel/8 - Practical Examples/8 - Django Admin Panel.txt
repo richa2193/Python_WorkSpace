@@ -1,0 +1,575 @@
+===========================================
+DJANGO ADMIN PANEL PROJECT
+DOCTOR INFORMATION MANAGEMENT
+FULL STEP BY STEP GUIDE
+===========================================
+
+TASK:
+Write a Django project to create an admin panel and add custom fields for managing doctor information.
+
+===========================================
+PROJECT DETAILS
+===========================================
+
+Project Name:
+doctorfinder
+
+App Name:
+doctor
+
+Database:
+SQLite
+
+Frontend:
+HTML + Tailwind CSS
+
+Backend:
+Django
+
+===========================================
+STEP 1 : OPEN PROJECT
+===========================================
+
+Open VS Code.
+
+Menu:
+
+File → Open Folder
+
+Select:
+Project Folder
+
+===========================================
+STEP 2 : OPEN TERMINAL
+===========================================
+
+Menu:
+
+Terminal → New Terminal
+
+===========================================
+STEP 3 : ACTIVATE ENVIRONMENT
+===========================================
+
+Command:
+
+myenv\Scripts\activate
+
+After activation:
+
+(myenv)
+
+===========================================
+STEP 4 : GO INSIDE PROJECT
+===========================================
+
+Command:
+
+cd doctorfinder
+
+===========================================
+STEP 5 : CREATE DOCTOR APP
+===========================================
+
+Command:
+
+python manage.py startapp doctor
+
+===========================================
+STEP 6 : REGISTER APP
+===========================================
+
+Open:
+
+doctorfinder/settings.py
+
+Find:
+
+INSTALLED_APPS = [
+
+Add:
+
+'doctor',
+
+Example:
+
+INSTALLED_APPS = [
+
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'doctor',
+
+]
+
+===========================================
+STEP 7 : CREATE DOCTOR MODEL
+===========================================
+
+Open:
+
+doctor/models.py
+
+Write:
+
+from django.db import models
+
+class Doctor(models.Model):
+
+    name = models.CharField(max_length=100)
+
+    specialization = models.CharField(max_length=100)
+
+    experience = models.IntegerField()
+
+    city = models.CharField(max_length=100)
+
+    email = models.EmailField()
+
+    phone = models.CharField(max_length=15)
+
+    hospital = models.CharField(max_length=100)
+
+    available_time = models.CharField(max_length=100)
+
+    def __str__(self):
+
+        return self.name
+
+===========================================
+WHAT THESE FIELDS DO
+===========================================
+
+name
+→ Doctor Name
+
+specialization
+→ Doctor Specialization
+
+experience
+→ Experience in years
+
+city
+→ Doctor City
+
+email
+→ Doctor Email
+
+phone
+→ Doctor Phone Number
+
+hospital
+→ Hospital Name
+
+available_time
+→ Available Timing
+
+===========================================
+STEP 8 : MAKE MIGRATIONS
+===========================================
+
+Command:
+
+python manage.py makemigrations
+
+===========================================
+STEP 9 : APPLY MIGRATIONS
+===========================================
+
+Command:
+
+python manage.py migrate
+
+===========================================
+STEP 10 : CREATE SUPERUSER
+===========================================
+
+Command:
+
+python manage.py createsuperuser
+
+Enter:
+
+Username
+Email
+Password
+
+===========================================
+STEP 11 : CUSTOMIZE ADMIN PANEL
+===========================================
+
+Open:
+
+doctor/admin.py
+
+Write:
+
+from django.contrib import admin
+from .models import Doctor
+
+
+@admin.register(Doctor)
+class DoctorAdmin(admin.ModelAdmin):
+
+    list_display = (
+
+        'id',
+        'name',
+        'specialization',
+        'experience',
+        'city',
+        'email',
+        'phone',
+        'hospital',
+        'available_time'
+
+    )
+
+    search_fields = (
+
+        'name',
+        'specialization',
+        'city',
+        'hospital'
+
+    )
+
+    list_filter = (
+
+        'specialization',
+        'city'
+
+    )
+
+    ordering = ('name',)
+
+===========================================
+WHAT THIS ADMIN CODE DOES
+===========================================
+
+list_display
+→ Shows fields in admin table
+
+search_fields
+→ Adds search box
+
+list_filter
+→ Adds filter sidebar
+
+ordering
+→ Sorts doctor names
+
+===========================================
+STEP 12 : CREATE VIEW
+===========================================
+
+Open:
+
+doctor/views.py
+
+Write:
+
+from django.shortcuts import render
+from .models import Doctor
+
+def doctor_list(request):
+
+    data = Doctor.objects.all()
+
+    return render(request,'doctor_list.html',{'data':data})
+
+===========================================
+STEP 13 : CREATE URL FILE
+===========================================
+
+Inside doctor folder create:
+
+urls.py
+
+Write:
+
+from django.urls import path
+from .views import doctor_list
+
+urlpatterns = [
+
+    path('', doctor_list),
+
+]
+
+===========================================
+STEP 14 : MAIN URL CONFIGURATION
+===========================================
+
+Open:
+
+doctorfinder/urls.py
+
+Write:
+
+from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+
+    path('doctor/', include('doctor.urls')),
+
+]
+
+===========================================
+STEP 15 : CREATE TEMPLATES FOLDER
+===========================================
+
+Inside doctorfinder folder create:
+
+templates
+
+===========================================
+STEP 16 : CONNECT TEMPLATES
+===========================================
+
+Open:
+
+doctorfinder/settings.py
+
+Find:
+
+'DIRS': [],
+
+Replace with:
+
+'DIRS': [BASE_DIR / 'templates'],
+
+===========================================
+STEP 17 : CREATE HTML TEMPLATE
+===========================================
+
+Inside templates folder create:
+
+doctor_list.html
+
+Write:
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Doctor Information</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Poppins',sans-serif;
+}
+
+</style>
+
+</head>
+
+<body class="bg-gradient-to-br from-slate-100 via-blue-50 to-cyan-100 min-h-screen py-16 px-6">
+
+<h1 class="text-5xl font-bold text-center text-slate-800 mb-14">
+
+Doctor Information
+
+</h1>
+
+<div class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+
+{% for i in data %}
+
+<div class="bg-white/70 backdrop-blur-lg shadow-xl rounded-3xl p-6 border border-white/30 hover:scale-105 transition duration-300">
+
+<div class="text-center">
+
+<div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center text-white text-4xl shadow-lg">
+
+👨‍⚕️
+
+</div>
+
+<h2 class="text-2xl font-bold text-slate-800 mt-5">
+
+{{ i.name }}
+
+</h2>
+
+<p class="text-cyan-600 font-semibold mt-2">
+
+{{ i.specialization }}
+
+</p>
+
+<div class="mt-5 space-y-2 text-slate-600">
+
+<p>
+
+<b>Experience:</b>
+
+{{ i.experience }} Years
+
+</p>
+
+<p>
+
+<b>City:</b>
+
+{{ i.city }}
+
+</p>
+
+<p>
+
+<b>Email:</b>
+
+{{ i.email }}
+
+</p>
+
+<p>
+
+<b>Phone:</b>
+
+{{ i.phone }}
+
+</p>
+
+<p>
+
+<b>Hospital:</b>
+
+{{ i.hospital }}
+
+</p>
+
+<p>
+
+<b>Available:</b>
+
+{{ i.available_time }}
+
+</p>
+
+</div>
+
+<button class="mt-6 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-2 rounded-xl shadow-lg hover:scale-105 transition duration-300">
+
+Book Appointment
+
+</button>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>
+
+===========================================
+STEP 18 : RUN SERVER
+===========================================
+
+Command:
+
+python manage.py runserver
+
+===========================================
+STEP 19 : OPEN ADMIN PANEL
+===========================================
+
+Open:
+
+http://127.0.0.1:8000/admin
+
+Login using superuser.
+
+===========================================
+STEP 20 : ADD DOCTOR DATA
+===========================================
+
+Click:
+
+Doctors → Add Doctor
+
+Add data:
+
+Name:
+Dr. Amit
+
+Specialization:
+Cardiologist
+
+Experience:
+10
+
+City:
+Ahmedabad
+
+Email:
+amit@gmail.com
+
+Phone:
+9876543210
+
+Hospital:
+Apollo Hospital
+
+Available Time:
+10 AM - 5 PM
+
+Save.
+
+===========================================
+STEP 21 : OPEN DOCTOR PAGE
+===========================================
+
+Open:
+
+http://127.0.0.1:8000/doctor/
+
+===========================================
+FINAL OUTPUT
+===========================================
+
+ADMIN PANEL FEATURES:
+
+Add Doctor
+Update Doctor
+Delete Doctor
+Search Doctor
+Filter Doctors
+Manage Doctor Information
+
+DOCTOR PAGE FEATURES:
+
+Doctor Cards
+Name
+Specialization
+Experience
+City
+Email
+Phone
+Hospital
+Available Time
+
+===========================================
+PROJECT COMPLETED
+===========================================
