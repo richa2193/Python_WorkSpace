@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile List</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 min-h-screen p-8">
+
+    <!-- Main Container -->
+    <div class="max-w-5xl mx-auto">
+
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row items-center justify-between mb-10">
+
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-white">
+                    User Profiles
+                </h1>
+
+                <p class="text-gray-300 mt-2">
+                    All registered user profiles
+                </p>
+            </div>
+
+            <a href="/"
+                class="mt-5 md:mt-0 bg-gradient-to-r from-pink-500 to-indigo-500 text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition duration-300 shadow-lg">
+
+                + Create New Profile
+
+            </a>
+
+        </div>
+
+        <!-- Profile Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {% for profile in profiles %}
+
+            <div
+                class="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-6 shadow-2xl hover:scale-105 transition duration-300">
+
+                <!-- Avatar -->
+                <div
+                    class="w-20 h-20 rounded-full bg-gradient-to-r from-pink-500 to-indigo-500 flex items-center justify-center text-white text-3xl font-bold mx-auto mb-5">
+
+                    {{ profile.username|slice:":1"|upper }}
+
+                </div>
+
+                <!-- Username -->
+                <h2 class="text-2xl font-bold text-white text-center">
+
+                    {{ profile.username }}
+
+                </h2>
+
+                <!-- Age -->
+                <p class="text-gray-300 text-center mt-3 text-lg">
+
+                    Age: {{ profile.age }}
+
+                </p>
+
+                <!-- Public Status -->
+                <div class="flex justify-center mt-5">
+
+                    {% if profile.is_public %}
+
+                    <span
+                        class="bg-green-500/20 text-green-300 px-4 py-2 rounded-full text-sm font-semibold border border-green-400">
+
+                        Public Profile
+
+                    </span>
+
+                    {% else %}
+
+                    <span
+                        class="bg-red-500/20 text-red-300 px-4 py-2 rounded-full text-sm font-semibold border border-red-400">
+
+                        Private Profile
+
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <!-- No Profiles -->
+            <div
+                class="col-span-full bg-white/10 backdrop-blur-lg rounded-3xl p-10 text-center border border-white/20">
+
+                <h2 class="text-3xl font-bold text-white mb-4">
+                    No Profiles Found
+                </h2>
+
+                <p class="text-gray-300 mb-6">
+                    Create your first user profile now.
+                </p>
+
+                <a href="/"
+                    class="bg-gradient-to-r from-indigo-500 to-pink-500 text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition duration-300">
+
+                    Create Profile
+
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

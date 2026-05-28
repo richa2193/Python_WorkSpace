@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Profile List</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gray-100 min-h-screen p-10">
+
+<div class="max-w-6xl mx-auto">
+
+    <div class="flex justify-between items-center mb-10">
+
+        <h1 class="text-4xl font-bold text-indigo-700">
+            All Profiles
+        </h1>
+
+        <div class="space-x-3">
+
+            <a href="/create/"
+            class="bg-indigo-600 text-white px-5 py-3 rounded-xl hover:bg-indigo-700 duration-300">
+
+                Add Profile
+
+            </a>
+
+            <a href="/export/"
+            class="bg-green-600 text-white px-5 py-3 rounded-xl hover:bg-green-700 duration-300">
+
+                Export CSV
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        {% for p in profiles %}
+
+        <div class="bg-white rounded-3xl shadow-xl p-6">
+
+            <h2 class="text-2xl font-bold text-indigo-700 mb-3">
+                {{ p.fullname }}
+            </h2>
+
+            <p class="mb-2">
+                <span class="font-semibold">Email:</span>
+                {{ p.email }}
+            </p>
+
+            <p class="mb-2">
+                <span class="font-semibold">Age:</span>
+                {{ p.age }}
+            </p>
+
+            <p>
+                <span class="font-semibold">Bio:</span>
+                {{ p.bio }}
+            </p>
+
+        </div>
+
+        {% empty %}
+
+        <div class="text-2xl text-red-500 font-bold">
+            No Profiles Found
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

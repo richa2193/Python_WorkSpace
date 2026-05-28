@@ -1,0 +1,919 @@
+========================================================
+DJANGO MINI PROJECT
+SOCIAL PROFILE WEB APP
+(FULL PROJECT NOTES)
+========================================================
+
+PROJECT FEATURES
+
+✓ Django ModelForm
+✓ MySQL Database Integration
+✓ Create Profile
+✓ List Profiles Dashboard
+✓ CSV Export Feature
+✓ Django ORM
+✓ Tailwind CSS Design
+✓ URL Routing
+✓ Context Manager
+✓ Beautiful Responsive UI
+
+========================================================
+STEP 1: CREATE MAIN PROJECT FOLDER
+========================================================
+
+Create one folder manually.
+
+Example:
+
+SocialProfileProject
+
+Open folder in CMD.
+
+METHOD:
+
+1. Open folder
+2. Click address bar
+3. Type:
+
+cmd
+
+4. Press Enter
+
+
+========================================================
+STEP 2: CREATE VIRTUAL ENVIRONMENT
+========================================================
+
+Run:
+
+python -m venv env
+
+
+========================================================
+STEP 3: ACTIVATE ENVIRONMENT
+========================================================
+
+Windows:
+
+env\Scripts\activate
+
+After activation:
+
+(env)
+
+will appear before terminal path.
+
+
+========================================================
+STEP 4: INSTALL DJANGO
+========================================================
+
+Install Django:
+
+pip install django
+
+
+========================================================
+STEP 5: INSTALL MYSQL DRIVER
+========================================================
+
+Install mysqlclient:
+
+pip install mysqlclient
+
+IF ERROR:
+
+pip install pymysql
+
+
+========================================================
+STEP 6: CREATE DJANGO PROJECT
+========================================================
+
+Run:
+
+django-admin startproject socialprofile
+
+
+========================================================
+STEP 7: MOVE INSIDE PROJECT
+========================================================
+
+Run:
+
+cd socialprofile
+
+
+========================================================
+STEP 8: CREATE APP
+========================================================
+
+Run:
+
+python manage.py startapp profiles
+
+
+========================================================
+STEP 9: REGISTER APP
+========================================================
+
+Open:
+
+socialprofile/settings.py
+
+Find:
+
+INSTALLED_APPS = [
+
+Add:
+
+'profiles',
+
+Example:
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'profiles',
+]
+
+
+========================================================
+STEP 10: CREATE MYSQL DATABASE
+========================================================
+
+Open MySQL or phpMyAdmin.
+
+Run:
+
+CREATE DATABASE socialdb;
+
+
+========================================================
+STEP 11: CONNECT MYSQL DATABASE
+========================================================
+
+Open:
+
+socialprofile/settings.py
+
+Replace DATABASES section with:
+
+DATABASES = {
+
+    'default': {
+
+        'ENGINE': 'django.db.backends.mysql',
+
+        'NAME': 'socialdb',
+
+        'USER': 'root',
+
+        'PASSWORD': '',
+
+        'HOST': 'localhost',
+
+        'PORT': '3306',
+
+    }
+
+}
+
+
+========================================================
+STEP 12: IF USING PYMYSQL
+========================================================
+
+Open:
+
+socialprofile/__init__.py
+
+Write:
+
+import pymysql
+
+pymysql.install_as_MySQLdb()
+
+
+========================================================
+STEP 13: CREATE MODEL
+========================================================
+
+Open:
+
+profiles/models.py
+
+Write:
+
+from django.db import models
+
+class Profile(models.Model):
+
+    full_name = models.CharField(max_length=100)
+
+    email = models.EmailField(unique=True)
+
+    age = models.IntegerField()
+
+    bio = models.TextField()
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+
+        return self.full_name
+
+
+========================================================
+MODEL EXPLANATION
+========================================================
+
+full_name
+→ Stores user full name
+
+email
+→ Stores unique email
+
+age
+→ Stores user age
+
+bio
+→ Stores user description
+
+created_at
+→ Automatically stores creation date
+
+
+========================================================
+STEP 14: CREATE DATABASE TABLE
+========================================================
+
+Run:
+
+python manage.py makemigrations
+
+Then:
+
+python manage.py migrate
+
+
+========================================================
+STEP 15: CREATE FORM
+========================================================
+
+Create file:
+
+profiles/forms.py
+
+Write:
+
+from django import forms
+
+from .models import Profile
+
+
+class ProfileForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Profile
+
+        fields = [
+            'full_name',
+            'email',
+            'age',
+            'bio'
+        ]
+
+
+    def clean_age(self):
+
+        age = self.cleaned_data.get('age')
+
+        if age < 13:
+
+            raise forms.ValidationError(
+                "User must be above 13 years old."
+            )
+
+        return age
+
+
+========================================================
+FORM EXPLANATION
+========================================================
+
+forms.ModelForm
+→ Creates form automatically
+
+clean_age()
+→ Custom validation
+
+If age < 13
+→ Error message shown
+
+
+========================================================
+STEP 16: CREATE VIEWS
+========================================================
+
+Open:
+
+profiles/views.py
+
+Write:
+
+from django.shortcuts import render, redirect
+
+from .models import Profile
+from .forms import ProfileForm
+
+import csv
+
+from django.http import HttpResponse
+
+
+# CREATE PROFILE
+def create_profile(request):
+
+    if request.method == 'POST':
+
+        form = ProfileForm(request.POST)
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect('profile_list')
+
+    else:
+
+        form = ProfileForm()
+
+    return render(
+        request,
+        'create_profile.html',
+        {'form': form}
+    )
+
+
+# LIST PROFILES
+def profile_list(request):
+
+    profiles = Profile.objects.all()
+
+    return render(
+        request,
+        'profile_list.html',
+        {'profiles': profiles}
+    )
+
+
+# EXPORT CSV
+def export_profiles(request):
+
+    response = HttpResponse(
+        content_type='text/csv'
+    )
+
+    response['Content-Disposition'] = (
+        'attachment; filename="profiles.csv"'
+    )
+
+    writer = csv.writer(response)
+
+    writer.writerow([
+        'Full Name',
+        'Email',
+        'Age',
+        'Bio'
+    ])
+
+    profiles = Profile.objects.all()
+
+    for profile in profiles:
+
+        writer.writerow([
+            profile.full_name,
+            profile.email,
+            profile.age,
+            profile.bio
+        ])
+
+    return response
+
+
+========================================================
+VIEW EXPLANATION
+========================================================
+
+form.is_valid()
+→ Checks validation
+
+form.save()
+→ Saves into database
+
+objects.all()
+→ Fetches all records
+
+csv.writer()
+→ Creates CSV file
+
+writer.writerow()
+→ Writes rows
+
+
+========================================================
+STEP 17: CONTEXT MANAGER EXAMPLE
+========================================================
+
+Teacher asked for Context Manager.
+
+Example:
+
+with open('profiles.csv', 'w', newline='') as file:
+
+    writer = csv.writer(file)
+
+    writer.writerow([
+        'Name',
+        'Email'
+    ])
+
+    writer.writerow([
+        'Richa',
+        'richa@gmail.com'
+    ])
+
+
+========================================================
+WHAT CONTEXT MANAGER DOES
+========================================================
+
+with open(...) as file:
+
+Automatically:
+
+✓ Opens file
+✓ Handles errors
+✓ Closes file safely
+
+
+========================================================
+STEP 18: CREATE URLS
+========================================================
+
+Create file:
+
+profiles/urls.py
+
+Write:
+
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+
+    path(
+        '',
+        views.profile_list,
+        name='profile_list'
+    ),
+
+    path(
+        'create/',
+        views.create_profile,
+        name='create_profile'
+    ),
+
+    path(
+        'export/',
+        views.export_profiles,
+        name='export_profiles'
+    ),
+
+]
+
+
+========================================================
+STEP 19: CONNECT MAIN URLS
+========================================================
+
+Open:
+
+socialprofile/urls.py
+
+Write:
+
+from django.contrib import admin
+
+from django.urls import path, include
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+
+    path('', include('profiles.urls')),
+
+]
+
+
+========================================================
+STEP 20: CREATE TEMPLATE FOLDER
+========================================================
+
+Inside profiles app create:
+
+templates
+
+Create two files:
+
+1. create_profile.html
+2. profile_list.html
+
+
+========================================================
+STEP 21: CREATE BEAUTIFUL FORM PAGE
+========================================================
+
+FILE:
+
+profiles/templates/create_profile.html
+
+WRITE:
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Create Profile</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 min-h-screen flex items-center justify-center p-5">
+
+    <div class="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-lg">
+
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">
+
+            Create Profile
+
+        </h1>
+
+        <form method="POST" class="space-y-5">
+
+            {% csrf_token %}
+
+            <input type="text"
+                name="full_name"
+                placeholder="Full Name"
+                class="w-full border p-4 rounded-xl">
+
+            <input type="email"
+                name="email"
+                placeholder="Email"
+                class="w-full border p-4 rounded-xl">
+
+            <input type="number"
+                name="age"
+                placeholder="Age"
+                class="w-full border p-4 rounded-xl">
+
+            <textarea
+                name="bio"
+                placeholder="Bio"
+                rows="4"
+                class="w-full border p-4 rounded-xl"></textarea>
+
+            <button
+                class="w-full bg-gradient-to-r from-indigo-500 to-pink-500 text-white py-4 rounded-xl font-bold text-lg">
+
+                Save Profile
+
+            </button>
+
+        </form>
+
+        <div class="text-center mt-6">
+
+            <a href="/"
+                class="text-indigo-600 font-bold">
+
+                View Profiles →
+
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+
+========================================================
+STEP 22: CREATE DASHBOARD PAGE
+========================================================
+
+FILE:
+
+profiles/templates/profile_list.html
+
+WRITE:
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-slate-900 min-h-screen p-10">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- HEADER -->
+        <div class="flex justify-between items-center mb-10">
+
+            <h1 class="text-5xl font-bold text-white">
+
+                Social Profiles
+
+            </h1>
+
+            <div class="flex gap-4">
+
+                <a href="/create/"
+                    class="bg-indigo-500 text-white px-6 py-3 rounded-xl font-bold">
+
+                    + Create
+
+                </a>
+
+                <a href="/export/"
+                    class="bg-green-500 text-white px-6 py-3 rounded-xl font-bold">
+
+                    Export CSV
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- PROFILE CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {% for profile in profiles %}
+
+            <div class="bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-3xl shadow-xl">
+
+                <div class="w-20 h-20 rounded-full bg-gradient-to-r from-pink-500 to-indigo-500 text-white flex items-center justify-center text-3xl font-bold mx-auto mb-5">
+
+                    {{ profile.full_name|slice:":1"|upper }}
+
+                </div>
+
+                <h2 class="text-2xl font-bold text-white text-center">
+
+                    {{ profile.full_name }}
+
+                </h2>
+
+                <p class="text-gray-300 text-center mt-2">
+
+                    {{ profile.email }}
+
+                </p>
+
+                <p class="text-gray-400 text-center mt-2">
+
+                    Age: {{ profile.age }}
+
+                </p>
+
+                <p class="text-gray-300 mt-5 text-center">
+
+                    {{ profile.bio }}
+
+                </p>
+
+            </div>
+
+            {% empty %}
+
+            <div class="text-white text-3xl">
+
+                No Profiles Found
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+
+========================================================
+STEP 23: RUN SERVER
+========================================================
+
+Run:
+
+python manage.py runserver
+
+
+========================================================
+WEBSITE URLS
+========================================================
+
+Dashboard:
+
+http://127.0.0.1:8000/
+
+Create Profile:
+
+http://127.0.0.1:8000/create/
+
+Export CSV:
+
+http://127.0.0.1:8000/export/
+
+
+========================================================
+FINAL PROJECT STRUCTURE
+========================================================
+
+SocialProfileProject/
+│
+├── env/
+│
+├── socialprofile/
+│      │
+│      ├── manage.py
+│      │
+│      ├── socialprofile/
+│      │      ├── settings.py
+│      │      ├── urls.py
+│      │      └── __init__.py
+│      │
+│      ├── profiles/
+│             ├── migrations/
+│             ├── templates/
+│             │      ├── create_profile.html
+│             │      └── profile_list.html
+│             ├── models.py
+│             ├── forms.py
+│             ├── views.py
+│             └── urls.py
+
+
+========================================================
+IMPORTANT COMMANDS
+========================================================
+
+CREATE ENV:
+
+python -m venv env
+
+
+ACTIVATE ENV:
+
+env\Scripts\activate
+
+
+INSTALL DJANGO:
+
+pip install django
+
+
+INSTALL MYSQL DRIVER:
+
+pip install mysqlclient
+
+
+CREATE PROJECT:
+
+django-admin startproject socialprofile
+
+
+CREATE APP:
+
+python manage.py startapp profiles
+
+
+RUN SERVER:
+
+python manage.py runserver
+
+
+MAKE MIGRATIONS:
+
+python manage.py makemigrations
+
+
+MIGRATE DATABASE:
+
+python manage.py migrate
+
+
+========================================================
+COMMON ERRORS + SOLUTIONS
+========================================================
+
+1. ModuleNotFoundError
+------------------------------------------------
+
+Activate environment first:
+
+env\Scripts\activate
+
+
+2. mysqlclient Error
+------------------------------------------------
+
+Install:
+
+pip install pymysql
+
+
+3. TemplateDoesNotExist
+------------------------------------------------
+
+Correct Folder:
+
+profiles/templates/
+
+
+4. No module named profiles.urls
+------------------------------------------------
+
+Create:
+
+profiles/urls.py
+
+
+5. include not defined
+------------------------------------------------
+
+Add:
+
+from django.urls import include
+
+
+6. No such table
+------------------------------------------------
+
+Run:
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+
+========================================================
+OUTPUT
+========================================================
+
+Django Form Working
+MySQL Database Connected
+Beautiful Tailwind UI
+Dashboard Working
+CSV Export Working
+URL Routing Working
+Context Manager Used
+Django ORM Working
+Mini Project Completed
+
+========================================================
+END OF PROJECT
+========================================================

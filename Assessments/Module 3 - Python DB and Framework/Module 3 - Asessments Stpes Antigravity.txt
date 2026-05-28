@@ -1,0 +1,152 @@
+1 Backend Prompt 
+
+Create a complete Django backend for a Profile Management System.
+
+Requirements:
+
+* Django latest version
+* App name: profiles
+* SQLite database
+* Create Profile model with:
+
+  * fullname
+  * email
+  * age
+  * bio
+  * profile_image
+  * created_at
+
+Features:
+
+* Create profile
+* Read all profiles
+* Update profile
+* Delete profile
+* Search profiles
+
+Generate:
+
+* models.py
+* views.py
+* urls.py
+* forms.py
+* admin.py
+* settings.py changes
+
+Use:
+
+* Django messages framework
+* ModelForms
+* Class-based views
+* Proper validations
+* Clean code structure
+
+Also:
+
+* Configure media files
+* Add Django admin customization
+* Add comments for understanding
+* Make code production-ready
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2 . UI + Tailwind CSS Prompt
+
+Now create a modern frontend UI using Tailwind CSS for the Django Profile Management System.
+
+Requirements:
+
+* Fully responsive design
+* Beautiful gradient backgrounds
+* Glassmorphism cards
+* Animated buttons
+* Smooth hover effects
+* Dark mode toggle
+* Professional navbar
+* Footer section
+* Dashboard cards
+* Empty state design
+* Mobile-friendly layout
+
+Create pages:
+
+* Home page
+* Create profile page
+* All profiles page
+* Profile details page
+* Update profile page
+* Delete confirmation page
+
+Use:
+
+* Tailwind CSS CDN
+* Template inheritance
+* base.html
+* Reusable navbar/footer components
+
+Design inspiration:
+
+* Modern SaaS dashboard
+* Stripe style UI
+* Clean typography
+* Soft shadows
+* Rounded cards
+* Professional spacing
+
+Add:
+
+* Icons
+* Loading animations
+* Form validation UI
+* Toast notifications
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. Authentication + Deployment Prompt
+
+Now add advanced features to the Django Profile Management project.
+
+Authentication:
+
+* User registration
+* Login/logout
+* Password hashing
+* Profile-based authentication
+* Protected routes
+* Forgot password UI
+
+Advanced Features:
+
+* Search and filter
+* Pagination
+* User profile images
+* Flash messages
+* Dashboard statistics
+* Recent activity section
+
+Animations:
+
+* Smooth page transitions
+* Tailwind animations
+* Hover transforms
+* Card animations
+
+Deployment:
+
+* Prepare project for deployment
+* Add requirements.txt
+* Configure static/media files
+* Production settings
+* GitHub setup steps
+* PythonAnywhere deployment guide
+* Environment variables support
+
+Also:
+
+* Improve folder structure
+* Optimize performance
+* Make UI look premium and modern
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4 

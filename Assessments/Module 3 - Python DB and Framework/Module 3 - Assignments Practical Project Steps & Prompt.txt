@@ -1,0 +1,494 @@
+1.Write a Django project that renders an HTML file displaying “Welcome to Doctor Finder” on the home page.
+2) Write a Django project to display a webpage with custom CSS styling for a doctor profile page.
+3) Write a Django project where JavaScript is used to validate a patient registration form on the client side.
+4) Write a Python program to create a Django project and understand its directory structure.
+5) Write a Python program to create and activate a virtual environment, then install Django in it.
+6) Write a Python program to create a Django project and a new app within the project called doctor.
+7) Write a Django project with models, views, and templates to display doctor information.
+8) Write a Django project to create an admin panel and add custom fields for managing doctor information.
+9) Write a Django project where URL routing is used to navigate between different pages of a “Doctor Finder” site (home, profile, contact).
+10) Write a Django project that uses JavaScript to validate fields like email and phone number in a registration form.
+11) Write a Django project to connect to an SQLite/MySQL database and manage doctor records.
+12) Write a Django project that demonstrates CRUD operations (Create,
+Read, Update, Delete) on doctor profiles using Django ORM.
+13) Write a Django project to handle user sign up, login, password reset, and profile updates.
+14) Write a Django project that uses AJAX to add, edit, or delete doctor profiles without refreshing the page.
+15) Write a Django project that customizes the admin panel to display more detailed doctor information (e.g., specialties, availability).
+16) Write a Django project to allow users to log in using gmail and github.
+17) Write a Django project to display doctor locations using Google Maps API.
+18) Write a Django project to display doctor locations using Google Maps API.
+
+this is all my task and using this all tasks i want to build and web app in antigravity so tell me all prompt for this all and whole project which covered this all tasks and i also want tailwind beautiful CSS. 
+
+
+========================================================
+        DOCTOR FINDER PRO — COMPLETE MASTER FILE
+========================================================
+
+PROJECT NAME:
+Doctor Finder Pro
+
+DESCRIPTION:
+Build ONE powerful full-stack Django project that covers all 18 tasks together instead of making separate mini-projects.
+
+TECH STACK:
+- Python
+- Django
+- SQLite
+- MySQL
+- HTML5
+- Tailwind CSS
+- JavaScript
+- AJAX
+- Django ORM
+- Django Authentication
+- Google Maps API
+- django-allauth
+
+========================================================
+FEATURES INCLUDED
+========================================================
+
+✔ Home Page
+✔ Doctor Profiles
+✔ Patient Registration
+✔ Login/Register
+✔ Gmail Login
+✔ GitHub Login
+✔ CRUD Operations
+✔ AJAX CRUD
+✔ Admin Panel
+✔ Google Maps
+✔ Tailwind CSS
+✔ SQLite/MySQL
+✔ JavaScript Validation
+✔ Password Reset
+✔ Profile Management
+✔ Responsive Design
+✔ Search & Pagination
+✔ Dark Mode
+✔ Doctor Availability
+✔ Image Upload
+
+========================================================
+BEST DEVELOPMENT FLOW
+========================================================
+
+1. Project Architecture
+2. Backend Setup
+3. Authentication
+4. Database Models
+5. CRUD Operations
+6. AJAX Features
+7. Tailwind Frontend
+8. Google Maps
+9. Admin Panel
+10. Deployment Ready
+
+========================================================
+PROMPT 1 — MASTER PROJECT GENERATION
+========================================================
+
+Create a professional full-stack Django web application called “Doctor Finder Pro”.
+
+Tech Stack:
+- Python
+- Django
+- SQLite initially and MySQL support later
+- HTML5
+- Tailwind CSS
+- JavaScript
+- AJAX
+- Django ORM
+- Django Authentication
+- Google Maps API
+- Responsive Design
+
+The project must include:
+
+1. Home page with hero section displaying “Welcome to Doctor Finder”
+2. Beautiful doctor profile cards
+3. Patient registration form with JavaScript validation
+4. Login, Signup, Logout
+5. Password reset functionality
+6. User profile update page
+7. Doctor CRUD operations using Django ORM
+8. AJAX-based add/edit/delete without page refresh
+9. Admin panel customization
+10. Doctor specialties and availability fields
+11. SQLite database support
+12. MySQL configuration support
+13. Gmail and GitHub social login
+14. Google Maps integration for doctor locations
+15. Contact page
+16. URL routing between pages
+17. Tailwind CSS modern responsive UI
+18. Reusable templates and components
+19. Separate apps:
+   - accounts
+   - doctors
+   - patients
+20. Professional folder structure
+21. Use Django messages framework
+22. Use class-based views where possible
+23. Use environment variables for secrets
+24. Add loading animations and transitions
+25. Add search functionality for doctors
+26. Add pagination
+27. Add image upload for doctor profile
+28. Add dark mode toggle
+29. Add responsive navbar and footer
+30. Generate complete project step-by-step with code explanations
+
+Design Style:
+- Modern medical dashboard
+- Blue and white color theme
+- Rounded cards
+- Glassmorphism effects
+- Smooth animations
+- Mobile-first responsive layout
+
+Generate backend first.
+
+========================================================
+PROMPT 2 — CREATE VIRTUAL ENVIRONMENT & DJANGO
+========================================================
+
+Generate all terminal commands required to:
+
+1. Create virtual environment
+2. Activate virtual environment
+3. Install Django
+4. Install django-allauth
+5. Install Pillow
+6. Install crispy forms
+7. Install Tailwind dependencies
+8. Create Django project
+9. Create apps:
+   - accounts
+   - doctors
+   - patients
+10. Run migrations
+11. Create superuser
+
+Explain every command clearly.
+
+========================================================
+PROMPT 3 — BEAUTIFUL TAILWIND UI
+========================================================
+
+Now generate a beautiful Tailwind CSS frontend for Doctor Finder Pro.
+
+Requirements:
+- Modern navbar
+- Hero section
+- Doctor cards
+- Animated buttons
+- Gradient backgrounds
+- Responsive design
+- Dark mode toggle
+- Footer
+- Login/Register pages
+- Doctor detail page
+- Dashboard page
+
+Use:
+- Tailwind CSS
+- Font Awesome icons
+- Smooth hover animations
+- Mobile responsive layouts
+- Professional healthcare UI
+
+Generate:
+- base.html
+- navbar.html
+- footer.html
+- home.html
+- login.html
+- register.html
+- doctor_list.html
+- doctor_detail.html
+
+Use clean component structure.
+
+========================================================
+PROMPT 4 — MODELS & DATABASE
+========================================================
+
+Generate Django models for Doctor Finder Pro.
+
+Models required:
+
+1. Doctor
+- name
+- specialty
+- qualification
+- experience
+- phone
+- email
+- address
+- city
+- profile_image
+- availability
+- latitude
+- longitude
+- created_at
+
+2. Patient
+- user
+- phone
+- address
+- age
+- gender
+
+3. Appointment
+- patient
+- doctor
+- appointment_date
+- symptoms
+- status
+
+Generate:
+- models.py
+- admin.py
+- migrations
+- model relationships
+- image upload settings
+- MySQL configuration
+- SQLite configuration
+
+Use Django ORM best practices.
+
+========================================================
+PROMPT 5 — AUTHENTICATION SYSTEM
+========================================================
+
+Generate complete authentication system using Django.
+
+Features:
+- Signup
+- Login
+- Logout
+- Forgot password
+- Password reset email
+- User profile update
+- Remember me checkbox
+- Form validation
+- Django messages
+
+Also integrate:
+- Gmail login
+- GitHub login
+
+Use:
+- django-allauth
+- Bootstrap/Tailwind forms
+- Secure authentication practices
+
+Generate:
+- urls.py
+- views.py
+- forms.py
+- templates
+- settings.py configuration
+
+========================================================
+PROMPT 6 — AJAX CRUD OPERATIONS
+========================================================
+
+Generate AJAX CRUD operations for Doctor Finder Pro.
+
+Requirements:
+- Add doctor without page refresh
+- Edit doctor without page refresh
+- Delete doctor with confirmation modal
+- Live search
+- Pagination
+- Toast notifications
+
+Use:
+- Django
+- JavaScript Fetch API
+- AJAX
+- Tailwind CSS modals
+
+Generate:
+- views.py
+- urls.py
+- templates
+- JavaScript files
+- JSON responses
+
+========================================================
+PROMPT 7 — JAVASCRIPT VALIDATION
+========================================================
+
+Generate JavaScript validation for patient registration form.
+
+Validate:
+- Name
+- Email
+- Phone number
+- Password
+- Confirm password
+- Empty fields
+
+Features:
+- Real-time validation
+- Error messages
+- Success indicators
+- Regex validation
+- Prevent form submission if invalid
+
+Use clean modern UI with Tailwind CSS.
+
+========================================================
+PROMPT 8 — GOOGLE MAPS
+========================================================
+
+Integrate Google Maps API into Doctor Finder Pro.
+
+Requirements:
+- Show doctor location on map
+- Add markers dynamically
+- Doctor detail page map
+- Search nearby doctors
+- Latitude and longitude support
+
+Generate:
+- API integration
+- JavaScript map logic
+- Django backend support
+- Templates
+- Environment variable setup
+
+========================================================
+PROMPT 9 — ADMIN PANEL CUSTOMIZATION
+========================================================
+
+Customize Django admin panel for Doctor Finder Pro.
+
+Requirements:
+- Custom admin dashboard
+- Doctor filters
+- Search fields
+- Image preview
+- Specialty filters
+- Availability status
+- Admin branding
+- Better table display
+
+Generate:
+- admin.py
+- custom admin styling
+- list_display
+- search_fields
+- list_filter
+- readonly fields
+
+========================================================
+PROMPT 10 — URL ROUTING
+========================================================
+
+Generate complete URL routing for Doctor Finder Pro.
+
+Pages:
+- Home
+- About
+- Contact
+- Doctor List
+- Doctor Details
+- Login
+- Register
+- Dashboard
+- Profile Update
+
+Use:
+- app level urls.py
+- project level urls.py
+- named URLs
+- Django best practices
+
+========================================================
+PROMPT 11 — DEPLOYMENT READY
+========================================================
+
+Prepare Doctor Finder Pro for deployment.
+
+Requirements:
+- Production settings
+- Environment variables
+- Static files
+- Media files
+- Security settings
+- MySQL production config
+- Gunicorn setup
+- requirements.txt
+- .env setup
+
+Also explain deployment on:
+- PythonAnywhere
+- Render
+- Railway
+
+========================================================
+TASKS COVERED
+========================================================
+
+1. Welcome Page                                  
+2. Custom CSS Doctor Profile                     
+3. JavaScript Validation                         
+4. Django Project Structure                      
+5. Virtual Environment                           
+6. Create Project & App                          
+7. Models, Views & Templates                     
+8. Admin Panel                                  
+9. URL Routing                                   
+10. Email & Phone Validation                     
+11. SQLite/MySQL Database                        
+12. CRUD Using Django ORM                        
+13. Signup/Login/Profile                         
+14. AJAX CRUD                                    
+15. Advanced Admin Customization                 
+16. Gmail & GitHub Login                         
+17. Google Maps API                              
+18. Doctor Location Mapping                      
+
+========================================================
+EXTRA FEATURES
+========================================================
+
+AI CHATBOT:
+Add AI medical assistant chatbot UI to Doctor Finder Pro.
+
+ONLINE APPOINTMENT:
+Add online appointment booking system with calendar.
+
+EMAIL NOTIFICATIONS:
+Send automatic email notifications after appointment booking.
+
+DOCTOR RATINGS:
+Add doctor reviews and ratings system.
+
+REST API:
+Convert Doctor Finder Pro into REST API using Django REST Framework.
+
+========================================================
+BEST PRACTICES
+========================================================
+
+Generate backend first
+Generate database second
+Generate authentication third
+Generate CRUD operations fourth
+Generate frontend fifth
+Generate animations sixth
+Generate deployment configuration last
+
+IMPORTANT:
+Do NOT generate everything at once after the first master prompt.
+Otherwise AI may skip files or create broken project structure.
+
+========================================================
+END OF MASTER FILE
+========================================================

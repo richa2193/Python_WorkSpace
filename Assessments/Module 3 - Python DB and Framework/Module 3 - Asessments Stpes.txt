@@ -1,0 +1,577 @@
+===========================================
+DJANGO USER PROFILE PROJECT (FULL NOTES)
+===========================================
+
+TOPICS COVERED:
+
+1. UserProfile Model
+2. ModelForm with Validation
+3. Django Views for Database Saving
+4. Django Template Language (DTL)
+5. Display Profiles
+6. Complete Project Structure
+7. Error-Free Step-by-Step Setup
+
+===========================================
+STEP 1: CREATE DJANGO PROJECT
+===========================================
+
+Open CMD / Terminal
+
+Run:
+
+django-admin startproject userprofileproject
+
+Move inside project folder:
+
+cd userprofileproject
+
+Create App:
+
+python manage.py startapp profiles
+
+
+===========================================
+STEP 2: REGISTER APP
+===========================================
+
+Open:
+
+userprofileproject/settings.py
+
+Find:
+
+INSTALLED_APPS = [
+
+Add:
+
+'profiles',
+
+Example:
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'profiles',
+]
+
+
+===========================================
+STEP 3: CREATE MODEL
+===========================================
+
+Open:
+
+profiles/models.py
+
+Write:
+
+from django.db import models
+
+class UserProfile(models.Model):
+
+    username = models.CharField(max_length=100)
+
+    age = models.IntegerField()
+
+    is_public = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.username
+
+
+===========================================
+WHAT THIS MODEL DOES
+===========================================
+
+username
+→ Stores username text
+
+age
+→ Stores age number
+
+is_public
+→ True or False value
+
+__str__()
+→ Shows username inside admin panel
+
+
+===========================================
+STEP 4: CREATE DATABASE TABLE
+===========================================
+
+Run:
+
+python manage.py makemigrations
+
+Then:
+
+python manage.py migrate
+
+
+===========================================
+STEP 5: CREATE MODEL FORM
+===========================================
+
+Create File:
+
+profiles/forms.py
+
+Write:
+
+from django import forms
+from .models import UserProfile
+
+class UserProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = UserProfile
+        fields = ['username', 'age', 'is_public']
+
+    def clean_age(self):
+
+        age = self.cleaned_data.get('age')
+
+        if age < 13:
+            raise forms.ValidationError(
+                "User must be above 13 years old."
+            )
+
+        return age
+
+
+===========================================
+WHAT clean_age() DOES
+===========================================
+
+This is custom validation.
+
+If user age is less than 13:
+
+Error will show.
+
+Example:
+
+Age = 10
+→ Form will NOT save.
+
+Age = 20
+→ Form will save successfully.
+
+
+===========================================
+STEP 6: CREATE VIEWS
+===========================================
+
+Open:
+
+profiles/views.py
+
+Write:
+
+from django.shortcuts import render, redirect
+
+from .forms import UserProfileForm
+from .models import UserProfile
+
+
+# CREATE PROFILE VIEW
+def create_profile(request):
+
+    if request.method == 'POST':
+
+        form = UserProfileForm(request.POST)
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect('profile_list')
+
+    else:
+
+        form = UserProfileForm()
+
+    return render(
+        request,
+        'create_profile.html',
+        {'form': form}
+    )
+
+
+# DISPLAY PROFILE VIEW
+def profile_list(request):
+
+    profiles = UserProfile.objects.all()
+
+    return render(
+        request,
+        'profile_list.html',
+        {'profiles': profiles}
+    )
+
+
+===========================================
+WHAT THIS VIEW DOES
+===========================================
+
+request.method == 'POST'
+→ Checks form submission
+
+form.is_valid()
+→ Checks validation
+
+form.save()
+→ Saves data into database
+
+redirect('profile_list')
+→ Opens profile list page
+
+UserProfile.objects.all()
+→ Gets all profiles from database
+
+
+===========================================
+STEP 7: CREATE APP URLS
+===========================================
+
+Create File:
+
+profiles/urls.py
+
+Write:
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+
+    path(
+        '',
+        views.create_profile,
+        name='create_profile'
+    ),
+
+    path(
+        'profiles/',
+        views.profile_list,
+        name='profile_list'
+    ),
+
+]
+
+
+===========================================
+STEP 8: CONNECT MAIN URLS
+===========================================
+
+Open:
+
+userprofileproject/urls.py
+
+Write:
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+
+    path('', include('profiles.urls')),
+
+]
+
+
+===========================================
+STEP 9: CREATE TEMPLATE FOLDER
+===========================================
+
+Create this structure:
+
+profiles/
+│
+├── templates/
+│      ├── create_profile.html
+│      └── profile_list.html
+
+
+===========================================
+STEP 10: CREATE HTML FORM PAGE
+===========================================
+
+File:
+
+profiles/templates/create_profile.html
+
+Write:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Create Profile</title>
+</head>
+
+<body>
+
+    <h1>Create User Profile</h1>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Save Profile
+        </button>
+
+    </form>
+
+</body>
+</html>
+
+
+===========================================
+WHAT THIS TEMPLATE DOES
+===========================================
+
+{% csrf_token %}
+→ Security protection
+
+{{ form.as_p }}
+→ Displays form automatically
+
+method="POST"
+→ Sends data securely
+
+
+===========================================
+STEP 11: CREATE PROFILE LIST PAGE
+===========================================
+
+File:
+
+profiles/templates/profile_list.html
+
+Write:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Profile List</title>
+</head>
+
+<body>
+
+    <h1>All User Profiles</h1>
+
+    <ul>
+
+        {% for profile in profiles %}
+
+            <li>
+                Username: {{ profile.username }}
+                |
+                Age: {{ profile.age }}
+            </li>
+
+        {% endfor %}
+
+    </ul>
+
+</body>
+</html>
+
+
+===========================================
+WHAT DTL LOOP DOES
+===========================================
+
+{% for profile in profiles %}
+
+Loops through all profiles.
+
+Example Output:
+
+Username: Richa | Age: 22
+Username: Amit | Age: 30
+
+
+===========================================
+STEP 12: RUN SERVER
+===========================================
+
+Run:
+
+python manage.py runserver
+
+
+===========================================
+STEP 13: OPEN WEBSITE
+===========================================
+
+Create Profile Page:
+
+http://127.0.0.1:8000/
+
+Profile List Page:
+
+http://127.0.0.1:8000/profiles/
+
+
+===========================================
+PROJECT FLOW
+===========================================
+
+USER FILLS FORM
+        ↓
+
+FORM VALIDATION CHECKS
+        ↓
+
+form.is_valid()
+        ↓
+
+form.save()
+        ↓
+
+DATA SAVED IN DATABASE
+        ↓
+
+profile_list VIEW FETCHES DATA
+        ↓
+
+DTL LOOP DISPLAYS DATA
+
+
+===========================================
+FINAL PROJECT STRUCTURE
+===========================================
+
+userprofileproject/
+│
+├── manage.py
+│
+├── userprofileproject/
+│     ├── settings.py
+│     ├── urls.py
+│
+├── profiles/
+│     ├── migrations/
+│     ├── templates/
+│     │      ├── create_profile.html
+│     │      └── profile_list.html
+│     ├── models.py
+│     ├── forms.py
+│     ├── views.py
+│     ├── urls.py
+
+
+===========================================
+COMMON ERRORS + SOLUTIONS
+===========================================
+
+1. TemplateDoesNotExist
+-------------------------------------------
+
+Wrong Folder:
+
+templates/templates/
+
+Correct Folder:
+
+profiles/templates/
+
+
+2. No module named forms
+-------------------------------------------
+
+Create:
+
+profiles/forms.py
+
+
+3. No such table
+-------------------------------------------
+
+Run:
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+
+4. Page Not Found
+-------------------------------------------
+
+Check:
+
+include('profiles.urls')
+
+inside main urls.py
+
+
+5. Validation Error
+-------------------------------------------
+
+If age < 13
+
+Form will not save.
+
+This is correct behavior.
+
+
+===========================================
+IMPORTANT FUNCTIONS
+===========================================
+
+models.Model
+→ Creates database table
+
+forms.ModelForm
+→ Creates form from model
+
+clean_age()
+→ Custom validation
+
+form.is_valid()
+→ Checks all validations
+
+form.save()
+→ Saves into database
+
+objects.all()
+→ Fetches all records
+
+render()
+→ Sends HTML page
+
+redirect()
+→ Redirects to another page
+
+
+===========================================
+OUTPUT
+===========================================
+
+You will get:
+
+✓ User Registration Form
+✓ Age Validation
+✓ Database Storage
+✓ Profile Display Page
+✓ DTL Loop Working
+✓ Complete Django Form Handling
+✓ Beginner-Friendly Django Project
+
+===========================================
+END OF NOTES
+===========================================
