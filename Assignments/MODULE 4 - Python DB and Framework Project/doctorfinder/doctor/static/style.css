@@ -1,0 +1,91 @@
+/* Smooth Animation */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/* Background Floating Animation */
+
+body{
+
+    position:relative;
+}
+
+
+/* Floating Blur Circles Animation */
+
+.absolute{
+
+    animation: float 6s ease-in-out infinite;
+}
+
+
+@keyframes float{
+
+    0%{
+
+        transform: translateY(0px);
+    }
+
+    50%{
+
+        transform: translateY(-20px);
+    }
+
+    100%{
+
+        transform: translateY(0px);
+    }
+}
+
+
+/* Button Hover Effects */
+
+button{
+
+    transition: all 0.3s ease;
+}
+
+
+button:hover{
+
+    transform: scale(1.05);
+}
+
+
+/* Glass Effect */
+
+.backdrop-blur-xl{
+
+    backdrop-filter: blur(20px);
+}
+
+
+/* Responsive Text */
+
+@media(max-width:768px){
+
+    h1{
+
+        font-size:40px !important;
+    }
+
+    p{
+
+        font-size:15px !important;
+    }
+
+}
+
+
+/* Extra Card Hover */
+
+.shadow-2xl:hover{
+
+    transform: translateY(-5px);
+
+    transition:0.4s;
+}
