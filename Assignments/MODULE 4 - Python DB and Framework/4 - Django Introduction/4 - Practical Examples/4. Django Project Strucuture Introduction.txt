@@ -1,0 +1,294 @@
+=================================================
+WRITE A PYTHON PROGRAM TO CREATE A DJANGO PROJECT
+AND UNDERSTAND ITS DIRECTORY STRUCTURE
+=================================================
+
+
+=========================================
+STEP 1 — CREATE PROJECT FOLDER
+=========================================
+
+Create one folder manually.
+
+Example:
+
+DjangoProject
+
+
+=========================================
+STEP 2 — OPEN CMD INSIDE FOLDER
+=========================================
+
+Open folder.
+
+Click path bar.
+
+Type:
+
+cmd
+
+Press Enter.
+
+
+=========================================
+STEP 3 — CREATE VIRTUAL ENVIRONMENT
+=========================================
+
+Command:
+
+python -m venv myenv
+
+
+After creation:
+
+DjangoProject/
+    myenv/
+
+
+=========================================
+STEP 4 — ACTIVATE ENVIRONMENT
+=========================================
+
+Command:
+
+myenv\Scripts\activate
+
+
+After activation:
+
+(myenv)
+
+
+=========================================
+STEP 5 — INSTALL DJANGO
+=========================================
+
+Command:
+
+pip install django
+
+
+=========================================
+STEP 6 — CHECK DJANGO VERSION
+=========================================
+
+Command:
+
+django-admin --version
+
+
+=========================================
+STEP 7 — CREATE DJANGO PROJECT
+=========================================
+
+Command:
+
+django-admin startproject doctorfinder
+
+
+=========================================
+STEP 8 — OPEN PROJECT FOLDER
+=========================================
+
+Command:
+
+cd doctorfinder
+
+
+=========================================
+STEP 9 — OPEN PROJECT IN VS CODE
+=========================================
+
+Command:
+
+code .
+
+
+=========================================
+DJANGO PROJECT DIRECTORY STRUCTURE
+=========================================
+
+After creating project:
+
+doctorfinder/
+│
+├── manage.py
+│
+├── doctorfinder/
+│   │
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── asgi.py
+│   └── wsgi.py
+
+
+=========================================
+UNDERSTANDING EACH FILE
+=========================================
+
+
+1. manage.py
+-----------------------------------------
+
+Main project management file.
+
+Used for:
+
+- Run server
+- Create app
+- Migrations
+- Admin tasks
+
+Example:
+
+python manage.py runserver
+
+
+-----------------------------------------
+
+
+2. __init__.py
+-----------------------------------------
+
+Makes folder a Python package.
+
+Usually empty file.
+
+
+-----------------------------------------
+
+
+3. settings.py
+-----------------------------------------
+
+Main settings file.
+
+Contains:
+
+- Installed apps
+- Database settings
+- Templates settings
+- Static files settings
+- Security settings
+
+
+-----------------------------------------
+
+
+4. urls.py
+-----------------------------------------
+
+Main URL routing file.
+
+Connects URLs with views.
+
+Example:
+
+path('',views.index)
+
+
+-----------------------------------------
+
+
+5. asgi.py
+-----------------------------------------
+
+Used for asynchronous servers.
+
+Supports:
+
+- WebSockets
+- Async applications
+
+
+-----------------------------------------
+
+
+6. wsgi.py
+-----------------------------------------
+
+Used for deployment.
+
+Helps web servers communicate with Django.
+
+
+=========================================
+STEP 10 — RUN SERVER
+=========================================
+
+Command:
+
+python manage.py runserver
+
+
+=========================================
+STEP 11 — OPEN BROWSER
+=========================================
+
+Open:
+
+http://127.0.0.1:8000/
+
+
+If Django installed correctly:
+
+“The install worked successfully!” page appears.
+
+
+=========================================
+IMPORTANT COMMANDS
+=========================================
+
+Create Environment:
+
+python -m venv myenv
+
+
+Activate Environment:
+
+myenv\Scripts\activate
+
+
+Install Django:
+
+pip install django
+
+
+Create Project:
+
+django-admin startproject doctorfinder
+
+
+Run Server:
+
+python manage.py runserver
+
+
+Open VS Code:
+
+code .
+
+
+=========================================
+FINAL UNDERSTANDING
+=========================================
+
+Project Folder
+    ↓
+
+manage.py
+    ↓
+
+Project Settings Folder
+    ↓
+
+settings.py
+urls.py
+wsgi.py
+asgi.py
+
+
+=========================================
+PROGRAM COMPLETED
+=========================================
