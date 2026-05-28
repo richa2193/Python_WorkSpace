@@ -1,0 +1,559 @@
+=================================================
+DJANGO PROJECT USING AJAX FOR CRUD
+OPERATIONS WITHOUT PAGE REFRESH
+=================================================
+
+Features:
+
+1. Add Doctor
+2. Edit Doctor
+3. Delete Doctor
+
+Using:
+
+- Django ORM
+- AJAX
+- JavaScript
+- SQLite Database
+
+
+=========================================
+STEP 1 — CREATE DJANGO PROJECT
+=========================================
+
+Command:
+
+django-admin startproject doctorfinder
+
+
+=========================================
+STEP 2 — OPEN PROJECT DIRECTORY
+=========================================
+
+Command:
+
+cd doctorfinder
+
+
+=========================================
+STEP 3 — CREATE APP
+=========================================
+
+Command:
+
+python manage.py startapp doctor
+
+
+=========================================
+STEP 4 — REGISTER APP
+=========================================
+
+Open:
+
+doctorfinder/settings.py
+
+
+Add:
+
+'doctor',
+
+
+inside:
+
+INSTALLED_APPS
+
+
+=========================================
+STEP 5 — CREATE MODEL
+=========================================
+
+Open:
+
+doctor/models.py
+
+
+Write:
+
+from django.db import models
+
+
+class Doctor(models.Model):
+
+    name = models.CharField(max_length=100)
+
+    specialization = models.CharField(max_length=100)
+
+    phone = models.CharField(max_length=10)
+
+
+    def __str__(self):
+
+        return self.name
+
+
+=========================================
+STEP 6 — CREATE MIGRATIONS
+=========================================
+
+Command:
+
+python manage.py makemigrations
+
+
+=========================================
+STEP 7 — APPLY MIGRATIONS
+=========================================
+
+Command:
+
+python manage.py migrate
+
+
+=========================================
+STEP 8 — CREATE TEMPLATE FOLDER
+=========================================
+
+Inside:
+
+doctor
+
+Create folder:
+
+templates
+
+
+Create file:
+
+index.html
+
+
+=========================================
+STEP 9 — CREATE VIEWS
+=========================================
+
+Open:
+
+doctor/views.py
+
+
+Write:
+
+from django.shortcuts import render
+from django.http import JsonResponse
+from .models import Doctor
+
+
+def index(request):
+
+    doctors = Doctor.objects.all()
+
+    return render(request,'index.html',
+                  {'doctors':doctors})
+
+
+# ADD DOCTOR
+
+def add_doctor(request):
+
+    if request.method == 'POST':
+
+        name = request.POST['name']
+
+        specialization =
+        request.POST['specialization']
+
+        phone = request.POST['phone']
+
+
+        doctor = Doctor.objects.create(
+
+            name=name,
+
+            specialization=specialization,
+
+            phone=phone
+
+        )
+
+
+        data = {
+
+            'id':doctor.id,
+
+            'name':doctor.name,
+
+            'specialization':
+            doctor.specialization,
+
+            'phone':doctor.phone
+
+        }
+
+
+        return JsonResponse(data)
+
+
+# EDIT DOCTOR
+
+def edit_doctor(request,id):
+
+    doctor = Doctor.objects.get(id=id)
+
+
+    if request.method == 'POST':
+
+        doctor.name =
+        request.POST['name']
+
+        doctor.specialization =
+        request.POST['specialization']
+
+        doctor.phone =
+        request.POST['phone']
+
+        doctor.save()
+
+
+        return JsonResponse({
+
+            'status':'updated'
+
+        })
+
+
+# DELETE DOCTOR
+
+def delete_doctor(request,id):
+
+    doctor = Doctor.objects.get(id=id)
+
+    doctor.delete()
+
+
+    return JsonResponse({
+
+        'status':'deleted'
+
+    })
+
+
+=========================================
+STEP 10 — CREATE URL FILE
+=========================================
+
+Create:
+
+doctor/urls.py
+
+
+Write:
+
+from django.urls import path
+from . import views
+
+
+urlpatterns = [
+
+    path('',views.index),
+
+    path('add/',views.add_doctor),
+
+    path('edit/<int:id>/',
+         views.edit_doctor),
+
+    path('delete/<int:id>/',
+         views.delete_doctor),
+
+]
+
+
+=========================================
+STEP 11 — CONNECT MAIN URL
+=========================================
+
+Open:
+
+doctorfinder/urls.py
+
+
+Write:
+
+from django.contrib import admin
+from django.urls import path,include
+
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+
+    path('',include('doctor.urls')),
+
+]
+
+
+=========================================
+STEP 12 — CREATE AJAX HTML PAGE
+=========================================
+
+Open:
+
+templates/index.html
+
+
+Write:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Doctor CRUD AJAX</title>
+
+</head>
+
+<body>
+
+<h1>Doctor Profiles</h1>
+
+
+<form id="doctorForm">
+
+    {% csrf_token %}
+
+    <input type="text"
+           id="name"
+           placeholder="Doctor Name">
+
+    <br><br>
+
+    <input type="text"
+           id="specialization"
+           placeholder="Specialization">
+
+    <br><br>
+
+    <input type="text"
+           id="phone"
+           placeholder="Phone">
+
+    <br><br>
+
+    <button type="button"
+            onclick="addDoctor()">
+
+        Add Doctor
+
+    </button>
+
+</form>
+
+
+<hr>
+
+
+<div id="doctorList">
+
+    {% for doctor in doctors %}
+
+        <div id="doctor-{{ doctor.id }}">
+
+            <h3>{{ doctor.name }}</h3>
+
+            <p>{{ doctor.specialization }}</p>
+
+            <p>{{ doctor.phone }}</p>
+
+            <button onclick=
+            "deleteDoctor({{ doctor.id }})">
+
+                Delete
+
+            </button>
+
+            <hr>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+
+<script>
+
+function addDoctor() {
+
+    let name =
+    document.getElementById("name").value;
+
+    let specialization =
+    document.getElementById(
+    "specialization").value;
+
+    let phone =
+    document.getElementById("phone").value;
+
+
+    let formData = new FormData();
+
+    formData.append("name",name);
+
+    formData.append(
+    "specialization",specialization);
+
+    formData.append("phone",phone);
+
+    formData.append(
+    "csrfmiddlewaretoken",
+    document.querySelector(
+    '[name=csrfmiddlewaretoken]').value
+    );
+
+
+    fetch('/add/',{
+
+        method:'POST',
+
+        body:formData
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        document.getElementById(
+        "doctorList").innerHTML +=
+
+        `<div id="doctor-${data.id}">
+
+            <h3>${data.name}</h3>
+
+            <p>${data.specialization}</p>
+
+            <p>${data.phone}</p>
+
+            <button onclick=
+            "deleteDoctor(${data.id})">
+
+                Delete
+
+            </button>
+
+            <hr>
+
+        </div>`;
+
+    });
+
+}
+
+
+function deleteDoctor(id) {
+
+    fetch(`/delete/${id}/`)
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        document.getElementById(
+        `doctor-${id}`).remove();
+
+    });
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+
+=========================================
+STEP 13 — RUN SERVER
+=========================================
+
+Command:
+
+python manage.py runserver
+
+
+=========================================
+STEP 14 — OPEN WEBSITE
+=========================================
+
+Open:
+
+http://127.0.0.1:8000/
+
+
+=========================================
+AJAX FEATURES WORKING
+=========================================
+
+ADD:
+
+New doctor added instantly.
+
+
+DELETE:
+
+Doctor removed instantly.
+
+
+NO PAGE REFRESH:
+
+Entire CRUD works dynamically.
+
+
+=========================================
+AJAX FUNCTIONS USED
+=========================================
+
+fetch()
+
+FormData()
+
+JsonResponse()
+
+
+=========================================
+DJANGO ORM METHODS USED
+=========================================
+
+Doctor.objects.create()
+
+Doctor.objects.get()
+
+doctor.save()
+
+doctor.delete()
+
+
+=========================================
+FINAL FLOW
+=========================================
+
+AJAX Request
+    ↓
+
+Django View
+    ↓
+
+Django ORM
+    ↓
+
+Database
+    ↓
+
+JSON Response
+    ↓
+
+Update Page Dynamically
+
+
+=========================================
+PROJECT COMPLETED
+=========================================

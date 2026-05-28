@@ -1,0 +1,353 @@
+===========================================
+DJANGO PROJECT WITH JAVASCRIPT VALIDATION
+PATIENT REGISTRATION FORM
+===========================================
+
+STEP 1 : CREATE DJANGO PROJECT
+--------------------------------
+
+django-admin startproject doctorfinder
+
+cd doctorfinder
+
+python manage.py startapp patient
+
+
+===========================================
+STEP 2 : ADD APP IN settings.py
+===========================================
+
+INSTALLED_APPS = [
+
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'patient',
+
+]
+
+
+===========================================
+STEP 3 : CREATE MODEL
+===========================================
+
+FILE : patient/models.py
+
+from django.db import models
+
+class Patient(models.Model):
+
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    mobile = models.CharField(max_length=10)
+    age = models.IntegerField()
+    password = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.full_name
+
+
+===========================================
+STEP 4 : RUN MIGRATIONS
+===========================================
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+
+===========================================
+STEP 5 : CREATE FORM
+===========================================
+
+FILE : patient/forms.py
+
+from django import forms
+from .models import Patient
+
+class PatientForm(forms.ModelForm):
+
+    class Meta:
+        model = Patient
+        fields = '__all__'
+
+
+===========================================
+STEP 6 : CREATE VIEW
+===========================================
+
+FILE : patient/views.py
+
+from django.shortcuts import render
+from .forms import PatientForm
+
+def register(request):
+
+    if request.method == "POST":
+
+        form = PatientForm(request.POST)
+
+        if form.is_valid():
+
+            form.save()
+
+            return render(request, 'success.html')
+
+    else:
+
+        form = PatientForm()
+
+    return render(request, 'register.html', {'form': form})
+
+
+===========================================
+STEP 7 : CREATE URLS
+===========================================
+
+FILE : patient/urls.py
+
+from django.urls import path
+from .views import register
+
+urlpatterns = [
+
+    path('', register, name='register'),
+
+]
+
+
+===========================================
+STEP 8 : MAIN PROJECT URL
+===========================================
+
+FILE : doctorfinder/urls.py
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+
+    path('', include('patient.urls')),
+
+]
+
+
+===========================================
+STEP 9 : CREATE TEMPLATES FOLDER
+===========================================
+
+patient/
+    templates/
+        register.html
+        success.html
+
+
+===========================================
+STEP 10 : CREATE REGISTER.HTML
+===========================================
+
+FILE : patient/templates/register.html
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Patient Registration</title>
+
+    <script>
+
+        function validateForm() {
+
+            let name = document.forms["myForm"]["full_name"].value;
+            let email = document.forms["myForm"]["email"].value;
+            let mobile = document.forms["myForm"]["mobile"].value;
+            let age = document.forms["myForm"]["age"].value;
+            let password = document.forms["myForm"]["password"].value;
+
+            // NAME VALIDATION
+            if (name == "") {
+
+                alert("Full Name is required");
+                return false;
+
+            }
+
+            // EMAIL VALIDATION
+            if (!email.includes("@")) {
+
+                alert("Enter valid email");
+                return false;
+
+            }
+
+            // MOBILE VALIDATION
+            if (mobile.length != 10 || isNaN(mobile)) {
+
+                alert("Mobile number must be 10 digits");
+                return false;
+
+            }
+
+            // AGE VALIDATION
+            if (age < 1 || age > 120) {
+
+                alert("Enter valid age");
+                return false;
+
+            }
+
+            // PASSWORD VALIDATION
+            if (password.length < 6) {
+
+                alert("Password must contain at least 6 characters");
+                return false;
+
+            }
+
+            return true;
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <h1>Patient Registration Form</h1>
+
+    <form name="myForm" method="POST" onsubmit="return validateForm()">
+
+        {% csrf_token %}
+
+        <input type="text" name="full_name" placeholder="Enter Full Name">
+
+        <br><br>
+
+        <input type="email" name="email" placeholder="Enter Email">
+
+        <br><br>
+
+        <input type="text" name="mobile" placeholder="Enter Mobile Number">
+
+        <br><br>
+
+        <input type="number" name="age" placeholder="Enter Age">
+
+        <br><br>
+
+        <input type="password" name="password" placeholder="Enter Password">
+
+        <br><br>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+</body>
+</html>
+
+
+===========================================
+STEP 11 : CREATE SUCCESS.HTML
+===========================================
+
+FILE : patient/templates/success.html
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Success</title>
+
+</head>
+
+<body>
+
+    <h1>Patient Registered Successfully</h1>
+
+</body>
+
+</html>
+
+
+===========================================
+STEP 12 : RUN SERVER
+===========================================
+
+python manage.py runserver
+
+
+===========================================
+OPEN IN BROWSER
+===========================================
+
+http://127.0.0.1:8000/
+
+
+===========================================
+JAVASCRIPT VALIDATION
+===========================================
+
+1. Full Name → Cannot be Empty
+
+2. Email → Must contain @
+
+3. Mobile Number → Must be 10 Digits
+
+4. Age → Between 1 to 120
+
+5. Password → Minimum 6 Characters
+
+
+===========================================
+PROJECT FLOW
+===========================================
+
+HTML FORM
+    ↓
+
+JAVASCRIPT VALIDATION
+    ↓
+
+DJANGO VIEW
+    ↓
+
+DATABASE SAVE
+    ↓
+
+SUCCESS PAGE
+
+
+===========================================
+INTERVIEW POINT
+===========================================
+
+Client-side validation means validation done in browser using JavaScript before sending data to server.
+
+Advantages:
+
+1. Faster Validation
+
+2. Better User Experience
+
+3. Reduces Server Load
+
+4. Instant Error Messages
+
+
+===========================================
+IMPORTANT NOTE
+===========================================
+
+JavaScript validation can be bypassed.
+
+So always use Django backend validation also.
