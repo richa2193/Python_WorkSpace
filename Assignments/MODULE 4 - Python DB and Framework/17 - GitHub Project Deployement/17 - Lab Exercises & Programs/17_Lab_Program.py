@@ -1,1 +1,0 @@
-#Deploy a Django project to GitHub for version control.
