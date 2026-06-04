@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Payment
+{% endblock %}
+
+{% block content %}
+
+<div class="max-w-xl mx-auto py-20">
+
+    <div class="bg-white shadow-xl rounded-xl p-8 text-center">
+
+        <h1 class="text-3xl font-bold mb-6">
+
+            Appointment Payment
+
+        </h1>
+
+        <p class="mb-6">
+
+            Amount: ₹500
+
+        </p>
+
+        <button
+            id="rzp-button"
+            class="bg-green-600 text-white px-8 py-3 rounded-lg">
+
+            Pay Now
+
+        </button>
+
+    </div>
+
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+var options = {
+
+    "key": "{{ razorpay_key }}",
+
+    "amount": "{{ amount }}",
+
+    "currency": "INR",
+
+    "name": "Doctor Finder",
+
+    "description": "Doctor Appointment Payment",
+
+    "order_id": "{{ payment.id }}",
+
+    "handler": function (response){
+
+        alert(
+            "Payment Successful\n" +
+            response.razorpay_payment_id
+        );
+
+    },
+
+    "theme": {
+        "color": "#2563eb"
+    }
+};
+
+var rzp = new Razorpay(options);
+
+document
+.getElementById('rzp-button')
+.onclick = function(e){
+
+    rzp.open();
+
+    e.preventDefault();
+};
+
+</script>
+
+{% endblock %}

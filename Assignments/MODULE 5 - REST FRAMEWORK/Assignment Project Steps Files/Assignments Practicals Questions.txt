@@ -1,0 +1,48 @@
+1. Write a Python script to fetch a random joke from an API and display it on the console.
+2) Write a Python script to set up a Django project and install packages like django, djangorestframework, requests, etc.
+
+3) Write a Django REST API to serialize a Doctor model with fields like name, specialty, and contact details.
+4) Write a Django project where the API accepts a POST request to add a doctor’s details to the database.
+5) Write a Django project that implements a class-based view to handle doctor profile creation, reading, updating, and deletion (CRUD operations).
+6) Write a Django project that routes URLs to the views handling doctor CRUD operations (/doctors, /doctors/<id>).
+7) Write a Django API that returns paginated results for a list of doctors.
+8) Write a Django project that connects to an SQLite database and stores doctor profiles.
+9) Write a Django project to set up a new app called doctor_finder and create models, serializers, and views.
+10) Write a Django project that integrates Google login.
+11) Write a Django REST API with endpoints for creating, reading, updating, and deleting doctors.
+12) Write a Django project that allows users to create, read, update, and delete doctor profiles using API endpoints.
+13) Write a Django project that uses token-based authentication for users and restricts access to certain API endpoints.
+19) Write a Django project to send a confirmation email to a user using the SendGrid API after successful registration.
+21) Write a Django project to allow users to make payments via razorpay for booking doctor appointments.
+i want to perform all these tasks and make one project which include this all. In this Django project I want to add two different apps:
+1. userapp
+2. AdminApp also add email otp verification and Design this app responsive and build with Tailwind CSS. Design beautiful email OTP mail template related to APP using HTML and CSS.
+tell me which prompt i give to antrogravity to perform this all tasks. give me error free prompt.
+
+MAKE PROJECT ON ANTIGRAVITY : 
+
+14) Write a Django project to fetch current weather data for a location using the OpenWeatherMap API.
+
+GOOGLE MAP GEOCODING API 
+
+15) Write a Django project that uses Google Maps API to find the coordinates of a given address.
+
+GITHUB API INTEGRATION 
+
+16) Write a Django project that interacts with the GitHub API to create a new repository and list all repositories for a given user.
+
+TWITTER API INTEGRATION 
+
+17) Write a Django project to fetch and display the latest 5 tweets from a Twitter user using the Twitter API.
+
+REST COUNTRIES API INTEGRATION 
+
+18) Write a Django project that displays details (population, language, currency) of a country entered by the user using the REST Countries API.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+

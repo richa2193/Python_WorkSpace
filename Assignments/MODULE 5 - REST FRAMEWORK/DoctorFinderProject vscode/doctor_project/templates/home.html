@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+
+<section class="relative bg-blue-700 text-white py-28">
+
+    <h1 class="text-6xl font-bold">
+
+        Find Trusted Doctors Near You
+
+    </h1>
+
+    <p class="mt-6 text-xl">
+
+        Book appointments online instantly.
+
+    </p>
+
+</section>
+
+<!-- STATS SECTION -->
+
+<section class="max-w-7xl mx-auto py-20 px-6">
+
+    <h2 class="text-4xl font-bold text-center mb-12">
+
+        Platform Statistics
+
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+        <div data-aos="fade-up" class="bg-white rounded-xl shadow-lg p-8 text-center">
+
+            <h3 class="text-5xl font-bold text-blue-700">
+
+                {{ total_doctors }}
+
+            </h3>
+
+            <p class="mt-4 text-lg dark:text-gray-300">
+
+                Total Doctors
+
+            </p>
+
+        </div>
+
+        <div data-aos="fade-up" class="bg-white rounded-xl shadow-lg p-8 text-center">
+
+            <h3 class="text-5xl font-bold text-green-600">
+
+                {{ total_appointments }}
+
+            </h3>
+
+            <p class="mt-4 text-lg dark:text-gray-300">
+
+                Total Appointments
+
+            </p>
+
+        </div>
+
+        <div data-aos="fade-up" class="bg-white rounded-xl shadow-lg p-8 text-center">
+
+            <h3 class="text-5xl font-bold text-purple-600">
+
+                24/7
+
+            </h3>
+
+            <p class="mt-4 text-lg dark:text-gray-300"></p>
+
+            Support
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="bg-gray-200 dark:bg-gray-950 py-20 transition">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <h2 class="text-4xl font-bold text-center mb-12">
+
+            Why Choose Us
+
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <div data-aos="fade-right" class="bg-white p-8 rounded-xl shadow">
+
+                <h3 class="text-2xl font-bold mb-4">
+
+                    Verified Doctors
+
+                </h3>
+
+                <p>
+
+                    All doctors are verified professionals.
+
+                </p>
+
+            </div>
+
+            <div data-aos="fade-up" class="bg-white p-8 rounded-xl shadow">
+
+                <h3 class="text-2xl font-bold mb-4">
+
+                    Easy Booking
+
+                </h3>
+
+                <p>
+
+                    Book appointments within minutes.
+
+                </p>
+
+            </div>
+
+            <div data-aos="fade-left" class="bg-white p-8 rounded-xl shadow">
+
+                <h3 class="text-2xl font-bold mb-4">
+
+                    Secure Payments
+
+                </h3>
+
+                <p>
+
+                    Safe online payment gateway integration.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- GOOGLE LOGIN -->
+
+<section class="py-20">
+
+    <div class="text-center">
+
+        <h2 class="text-3xl font-bold mb-6">
+
+            Login With Google
+
+        </h2>
+
+        <a href="/accounts/google/login/">
+
+            <button class="bg-red-500 text-white px-8 py-3 rounded-lg hover:bg-red-600">
+
+                Google Sign In
+
+            </button>
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

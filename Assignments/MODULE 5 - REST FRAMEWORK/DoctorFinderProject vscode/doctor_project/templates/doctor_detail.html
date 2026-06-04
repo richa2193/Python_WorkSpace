@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Doctor Details
+{% endblock %}
+
+{% block content %}
+
+<div class="max-w-5xl mx-auto py-12 px-6">
+
+    <div class="bg-white rounded-xl shadow-lg p-10">
+
+        <div class="text-center">
+
+            <img
+            src="https://ui-avatars.com/api/?name={{ doctor.name }}"
+            class="w-32 h-32 rounded-full mx-auto mb-6">
+
+            <h1 class="text-4xl font-bold">
+
+                Dr. {{ doctor.name }}
+
+            </h1>
+
+            <p class="text-blue-600 text-xl mt-2">
+
+                {{ doctor.specialty }}
+
+            </p>
+
+        </div>
+
+        <hr class="my-8">
+
+        <div class="grid md:grid-cols-2 gap-8">
+
+            <div>
+
+                <h2 class="text-2xl font-bold mb-4">
+
+                    Doctor Information
+
+                </h2>
+
+                <p>
+                    📍 City:
+                    {{ doctor.city }}
+                </p>
+
+                <p class="mt-2">
+                    📞 Contact:
+                    {{ doctor.contact }}
+                </p>
+
+                <p class="mt-2">
+                    ✉ Email:
+                    {{ doctor.email }}
+                </p>
+
+            </div>
+
+            <div>
+
+                <h2 class="text-2xl font-bold mb-4">
+
+                    About Doctor
+
+                </h2>
+
+                <p>
+
+                    Experienced healthcare professional specializing in
+                    {{ doctor.specialty }}.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="text-center mt-10">
+
+            <a href="/appointments/">
+
+                <button
+                class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700">
+
+                    Book Appointment
+
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

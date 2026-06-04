@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        Doctor Finder
+        {% endblock %}
+    </title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+
+
+    </script>
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+</head>
+
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-white transition duration-300">
+
+    <!-- NAVBAR -->
+
+    <nav class="bg-blue-700 dark:bg-gray-800 shadow-lg transition">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="flex justify-between items-center h-16">
+
+                <h1 class="text-2xl font-bold text-white">
+                    DoctorFinder
+                </h1>
+
+                <div class="space-x-6">
+
+                    <a href="/" class="text-white">
+                        Home
+                    </a>
+
+                    <a href="/doctors/" class="text-white">
+                        Doctors
+                    </a>
+
+                    <a href="/appointments/" class="text-white">
+                        Appointments
+                    </a>
+
+                    <a href="/dashboard/" class="text-white">
+                        Dashboard
+                    </a>
+
+                    <a href="/admin/" class="text-white">
+                        Admin
+                    </a>
+
+                    <button onclick="toggleDark()" class="bg-white text-black px-3 py-1 rounded">
+
+                        🌙
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- FOOTER -->
+
+    <footer class="bg-gray-900 dark:bg-black text-white mt-20">
+
+        <div class="max-w-7xl mx-auto px-6 py-10">
+
+            <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
+                Doctor Finder
+            </h3>
+
+            <p class="text-gray-600 dark:text-gray-300">
+                Email: support@doctorfinder.com
+            </p>
+
+            <p class="text-gray-600 dark:text-gray-300">
+                Phone: +91 9876543210
+            </p>
+
+            <hr class="my-4">
+
+            <p class="text-gray-600 dark:text-gray-300">
+                © 2026 Doctor Finder
+            </p>
+
+        </div>
+
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+    </script>
+
+    <script>
+
+        AOS.init();
+
+    </script>
+
+    <script>
+
+        function toggleDark() {
+
+            document.documentElement.classList.toggle('dark');
+
+        }
+
+    </script>
+
+</body>
+
+</html>

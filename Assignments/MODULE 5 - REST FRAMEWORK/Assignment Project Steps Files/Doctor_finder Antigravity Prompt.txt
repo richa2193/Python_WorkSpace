@@ -1,0 +1,339 @@
+====================================================
+ DOCTOR FINDER API PROJECT - ANTIGRAVITY PROMPTS
+ ====================================================
+PROJECT NAME: Doctor Finder API
+
+TECH STACK:
+•	Django
+•	Django REST Framework
+•	SQLite
+•	Tailwind CSS
+•	Google OAuth Login
+•	SendGrid Email Service
+•	Razorpay Payment Gateway
+
+==================================================== 
+PROMPT 1 : PROJECT SETUP 
+====================================================
+Create a Django REST Framework project called “doctor_project” and an app called “doctor_finder”.
+Requirements:
+1.	Use SQLite database.
+2.	Create proper project structure.
+3.	Install and configure:
+o	Django
+o	Django REST Framework
+o	Requests
+o	django-allauth
+o	dj-rest-auth
+o	Razorpay
+o	SendGrid
+o	python-dotenv
+4.	Register all required apps in settings.py.
+5.	Create requirements.txt.
+6.	Configure static and templates folders.
+7.	Create .env support using python-dotenv.
+8.	Add comments in code explaining each section.
+9.	Follow Django best practices.
+
+Generate complete code for:
+•	settings.py
+•	urls.py
+•	requirements.txt
+•	.env.example
+
+==================================================== 
+PROMPT 2 : DOCTOR MODEL
+====================================================
+Create a Doctor model for a Doctor Finder application.
+Fields:
+•	name
+•	specialty
+•	contact
+•	email
+•	experience_years
+•	clinic_address
+•	available_days
+•	consultation_fee
+•	created_at
+•	updated_at
+Requirements:
+1.	Add proper validations.
+2.	Add str method.
+3.	Register model in admin.py.
+4.	Create serializer.
+5.	Create migrations.
+Generate:
+•	models.py
+•	admin.py
+•	serializers.py
+
+==================================================== 
+PROMPT 3 : DOCTOR CRUD API 
+====================================================
+Using Django REST Framework:
+Create complete CRUD API for Doctor model.
+Requirements:
+1.	List Doctors
+2.	Create Doctor
+3.	Retrieve Single Doctor
+4.	Update Doctor
+5.	Delete Doctor
+Use:
+•	ModelViewSet
+•	DefaultRouter
+•	Proper serializers
+•	API validation
+•	Error handling
+Generate:
+•	views.py
+•	urls.py
+•	serializer updates
+Also provide Postman API testing examples.
+
+==================================================== 
+PROMPT 4 : PAGINATION 
+====================================================
+Add pagination to Doctor API.
+Requirements:
+1.	PageNumberPagination
+2.	Page Size = 5
+3.	Custom pagination response
+4.	Include:
+o	count
+o	next
+o	previous
+o	results
+Generate all required code.
+
+==================================================== 
+PROMPT 5 : TOKEN AUTHENTICATION 
+====================================================
+Add Token Authentication using Django REST Framework.
+Requirements:
+1.	Install and configure TokenAuthentication.
+2.	Protect all Doctor APIs.
+3.	Allow only authenticated users.
+4.	Create token generation process.
+5.	Explain how to test using Postman.
+Generate:
+•	settings.py updates
+•	urls.py updates
+•	authentication configuration
+
+==================================================== 
+PROMPT 6 : APPOINTMENT MODEL 
+====================================================
+Create Appointment module.
+Fields:
+•	patient_name
+•	patient_email
+•	patient_phone
+•	doctor
+•	appointment_date
+•	appointment_time
+•	payment_status
+•	booking_status
+•	created_at
+Requirements:
+1.	Foreign Key with Doctor.
+2.	Serializer.
+3.	CRUD APIs.
+4.	Admin registration.
+5.	Validation for future date booking.
+Generate complete code.
+
+==================================================== 
+PROMPT 7 : GOOGLE LOGIN
+ ====================================================
+Implement Google OAuth Login using:
+•	django-allauth
+•	dj-rest-auth
+Requirements:
+1.	Configure Google OAuth.
+2.	Create login endpoint.
+3.	Return authenticated user details.
+4.	Secure API integration.
+IMPORTANT: Create a separate section called:
+“GOOGLE CLOUD CONSOLE CONFIGURATION”
+Explain:
+1.	Where to create project.
+2.	How to enable Google APIs.
+3.	How to create OAuth Client ID.
+4.	How to obtain:
+o	Client ID
+o	Client Secret
+5.	Where to place them in Django settings.
+6.	How to store them inside .env.
+Example:
+GOOGLE_CLIENT_ID= 367417257905-8lmjm30og3m1b61cv8bgu0o2rjim1l4l.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET= 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
+Generate complete code.
+
+
+==================================================== 
+PROMPT 8 : SENDGRID EMAIL SERVICE
+====================================================
+Implement SendGrid Email Service.
+Requirements:
+1.	Send appointment confirmation email.
+2.	Send registration success email.
+3.	Use environment variables.
+4.	Create reusable email utility function.
+IMPORTANT: Create a separate section called:
+“SENDGRID ACCOUNT SETUP”
+Explain:
+1.	How to create SendGrid account.
+2.	How to verify sender email.
+3.	How to create API Key.
+4.	Where API Key should be stored.
+Example:
+SENDGRID_API_KEY= 
+Generate complete code.
+
+==================================================== 
+PROMPT 9 : RAZORPAY PAYMENT GATEWAY 
+====================================================
+Implement Razorpay Payment Gateway.
+Requirements:
+1.	Create payment order.
+2.	Store payment details.
+3.	Verify payment signature.
+4.	Link payment with Appointment.
+5.	Update payment status after success.
+IMPORTANT: Create a separate section called:
+“RAZORPAY DASHBOARD SETUP”
+Explain:
+1.	How to create Razorpay account.
+2.	How to obtain Test Key ID.
+3.	How to obtain Test Secret Key.
+4.	Difference between Test and Live mode.
+5.	Where to place keys inside Django project.
+Example:
+RAZORPAY_KEY_ID = rzp_test_Suj4Y5auZo3mXK
+RAZORPAY_KEY_SECRET =  jYXriR99xNbKMnFvf2oa73Jj
+Generate complete code.
+
+==================================================== 
+PROMPT 10 : TAILWIND CSS FRONTEND 
+====================================================
+Create responsive Tailwind CSS frontend.
+Pages:
+1.	Home Page
+2.	Login Page
+3.	Register Page
+4.	Doctor Listing Page
+5.	Doctor Details Page
+6.	Appointment Booking Page
+7.	Payment Success Page
+Requirements:
+•	Mobile Responsive
+•	Professional Medical Theme
+•	Navbar
+•	Footer
+•	Tailwind CSS Setup
+•	Clean UI Design
+Generate all HTML templates.
+
+==================================================== 
+PROMPT 11 : API TESTING 
+====================================================
+Create complete Postman testing guide.
+Include:
+1.	Doctor CRUD APIs
+2.	Appointment APIs
+3.	Authentication APIs
+4.	Google Login APIs
+5.	Payment APIs
+Provide:
+•	URL
+•	Method
+•	Headers
+•	Request Body
+•	Sample Responses
+
+==================================================== 
+PROMPT 12 : PROJECT DEPLOYMENT 
+====================================================
+Prepare project for deployment.
+Requirements:
+1.	Environment Variables
+2.	Production Settings
+3.	Static Files
+4.	Security Settings
+5.	Deployment Checklist
+Generate:
+•	production settings
+•	deployment guide
+•	.env.example
+
+==================================================== 
+ENV FILE TEMPLATE 
+====================================================
+SECRET_KEY=
+DEBUG=True
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+SENDGRID_API_KEY=
+RAZORPAY_KEY_ID=
+RAZORPAY_KEY_SECRET=
+ALLOWED_HOSTS=
+
+==================================================== 
+WHERE TO GET EACH KEY 
+====================================================
+1.	SECRET_KEY Django automatically generates it in settings.py.
+2.	GOOGLE_CLIENT_ID Google Cloud Console → APIs & Services → Credentials → OAuth Client ID
+3.	GOOGLE_CLIENT_SECRET Google Cloud Console → APIs & Services → Credentials → OAuth Client Secret
+4.	SENDGRID_API_KEY SendGrid Dashboard → Settings → API Keys
+5.	RAZORPAY_KEY_ID Razorpay Dashboard → Settings → API Keys
+6.	RAZORPAY_KEY_SECRET Razorpay Dashboard → Settings → API Keys
+
+==================================================== 
+RECOMMENDED ORDER 
+====================================================
+1.	Project Setup
+2.	Doctor Model
+3.	Doctor CRUD
+4.	Pagination
+5.	Token Authentication
+6.	Appointment Module
+7.	Google Login
+8.	SendGrid Email
+9.	Razorpay Payment
+10.	Tailwind Frontend
+11.	API Testing
+12.	Deployment
+
+==================================================== 
+END OF FILE 
+====================================================
+django-insecure-%@4n%uf3dez*eg7^y3ncx+ethc6xp9+880_9v0gnhjs_csshh+
+
+Use environment variables for all sensitive information. Create a .env file in the project root directory and store SECRET_KEY, 
+, GOOGLE_CLIENT_SECRET = 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
+, SENDGRID_API_KEY = 
+, RAZORPAY_KEY_ID = rzp_test_Suj4Y5auZo3mXK
+, and RAZORPAY_KEY_SECRET =  jYXriR99xNbKMnFvf2oa73Jj
+there. Configure settings.py to load these values using python-dotenv. Generate .env.example with placeholder values and explain where each credential can be obtained from Google Cloud Console, SendGrid Dashboard, and Razorpay Dashboard.
+
+GOOGLE_CLIENT_ID = 367417257905-8lmjm30og3m1b61cv8bgu0o2rjim1l4l.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET = 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
+
+
+github client id = Ov23liNY9Xj6W6OVdATe
+github secret = 9716421a851e8d009fe5244600e360cd3082aa90
+
+EMAIL_HOST_USER - richa.django.19@gmail.com
+EMAIL_HOST_PASSWORD - azod wlrr ehxh juxj
+
+RAZORPAY_KEY_ID = rzp_test_Suj4Y5auZo3mXK
+RAZORPAY_KEY_SECRET =  jYXriR99xNbKMnFvf2oa73Jj
+
+"refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDU3MjMzNiwiaWF0IjoxNzgwNDg1OTM2LCJqdGkiOiJkMDE5ZGFkM2M3Zjk0ZDdmOTNhNTNkOTY2MTVhNDZiMyIsInVzZXJfaWQiOiIxIn0.gRdbSdQzVhFrhNzNWywgfwe4MNUF4vKI12tPOm_nXeg",
+    
+"access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgwNDg2MjM2LCJpYXQiOjE3ODA0ODU5MzcsImp0aSI6ImRiZjJlZDdiZGYyZDQ0MzBhY2VlNTY1NjQxYjllMTNiIiwidXNlcl9pZCI6IjEifQ.i0xicii-7wv_3IB-i79yhTqkaNnN-0VbBZ4_d5YyM0A"
+
+qnmc awyb wepj lhck
+
+
+

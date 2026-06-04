@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Book Appointment
+{% endblock %}
+
+{% block content %}
+
+<div class="max-w-3xl mx-auto py-10">
+
+    <div class="bg-white shadow-lg rounded-xl p-8">
+
+        <h1 class="text-3xl font-bold mb-4">
+
+            Appointment Booking
+
+        </h1>
+
+        <p class="text-xl">
+
+            Doctor:
+            <strong>
+                Dr. {{ doctor.name }}
+            </strong>
+
+        </p>
+
+        <p>
+            Specialty:
+            {{ doctor.specialty }}
+        </p>
+
+        <p>
+            City:
+            {{ doctor.city }}
+        </p>
+
+        <div class="mt-6">
+
+            <p class="text-green-600 font-bold">
+
+                Booking form will be added next.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

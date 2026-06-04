@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Doctors
+{% endblock %}
+
+{% block content %}
+
+<div class="max-w-7xl mx-auto py-12 px-6">
+
+    <h1 class="text-4xl font-bold text-center mb-10">
+        Our Doctors
+    </h1>
+
+    <!-- SEARCH FORM START -->
+
+    <form method="GET" class="bg-white p-6 rounded-xl shadow-lg mb-10">
+
+        <div class="grid md:grid-cols-4 gap-4">
+
+            <input type="text" name="search" placeholder="Doctor Name" class="border p-3 rounded-lg">
+
+            <input type="text" name="city" placeholder="City" class="border p-3 rounded-lg">
+
+            <input type="text" name="specialty" placeholder="Specialty" class="border p-3 rounded-lg">
+
+            <button type="submit" class="bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+
+                Search
+
+            </button>
+
+        </div>
+
+    </form>
+
+    <!-- SEARCH FORM END -->
+
+    <!-- Search -->
+
+    <form method="GET" class="mb-8">
+
+        <input type="text" name="search" placeholder="Search Doctor..." value="{{ request.GET.search }}"
+            class="w-full border rounded-lg p-3 shadow">
+
+    </form>
+
+    <!-- Filters -->
+
+    <div class="flex gap-3 flex-wrap mb-10">
+
+        <a href="/doctors/" class="bg-blue-600 text-white px-4 py-2 rounded">
+            All
+        </a>
+
+        <a href="/doctors/?specialty=Cardiologist" class="bg-red-500 text-white px-4 py-2 rounded">
+            Cardiologist
+        </a>
+
+        <a href="/doctors/?specialty=Dentist" class="bg-green-500 text-white px-4 py-2 rounded">
+            Dentist
+        </a>
+
+        <a href="/doctors/?specialty=Neurologist" class="bg-purple-500 text-white px-4 py-2 rounded">
+            Neurologist
+        </a>
+
+    </div>
+
+    <!-- Doctor Cards -->
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+        {% for doctor in doctors %}
+
+        <div class="bg-white rounded-xl shadow-lg p-6">
+
+            <div class="text-center">
+
+                <!-- Doctor Image -->
+
+                {% if doctor.image %}
+
+                <img src="{{ doctor.image.url }}"
+                    class="w-24 h-24 rounded-full mx-auto object-cover border-4 border-blue-500">
+
+                {% else %}
+
+                <img src="https://ui-avatars.com/api/?name={{ doctor.name }}"
+                    class="w-24 h-24 rounded-full mx-auto border-4 border-blue-500">
+
+                {% endif %}
+
+                <a href="{% url 'doctor_detail' doctor.id %}">
+                    <h2 class="text-2xl font-bold hover:text-blue-600">
+                        Dr. {{ doctor.name }}
+                    </h2>
+                </a>
+
+                <p class="text-blue-600">
+                    {{ doctor.specialty }}
+                </p>
+
+            </div>
+
+            <hr class="my-4">
+
+            <p>
+                📍 {{ doctor.city }}
+            </p>
+
+            <p>
+                📞 {{ doctor.contact }}
+            </p>
+
+            <p>
+                ✉ {{ doctor.email }}
+            </p>
+
+            <div class="mt-5 flex gap-2">
+
+                <a href="{% url 'doctor_detail' doctor.id %}"
+                    class="w-1/2 bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700">
+
+                    View Profile
+
+                </a>
+
+                <a href="{% url 'book_appointment' doctor.id %}"
+                    class="w-1/2 bg-green-600 text-white text-center py-2 rounded-lg hover:bg-green-700">
+
+                    Book Appointment
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <h2>No Doctors Found</h2>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

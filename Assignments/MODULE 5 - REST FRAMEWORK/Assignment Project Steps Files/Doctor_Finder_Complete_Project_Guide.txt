@@ -1,0 +1,359 @@
+
+=========================================================================
+                DOCTOR FINDER API PROJECT
+      Django + DRF + SQLite + Tailwind + Google Login
+              SendGrid + Razorpay Integration
+=========================================================================
+
+PROJECT TASKS COVERED
+---------------------
+✓ Task 2  - Django Setup
+✓ Task 3  - Doctor Serializer
+✓ Task 4  - Add Doctor API
+✓ Task 5  - CRUD Operations
+✓ Task 6  - URL Routing
+✓ Task 7  - Pagination
+✓ Task 8  - SQLite Database
+✓ Task 9  - doctor_finder App
+✓ Task 10 - Google Login
+✓ Task 11 - Doctor CRUD API
+✓ Task 12 - Doctor CRUD Endpoints
+✓ Task 13 - Token Authentication
+✓ Task 19 - SendGrid Email
+✓ Task 21 - Razorpay Payment
+
+=========================================================================
+PHASE 1 : PROJECT SETUP
+=========================================================================
+
+================================
+STEP 1 : CREATE PROJECT FOLDER
+================================
+
+mkdir DoctorFinderProject
+cd DoctorFinderProject
+
+========================================
+STEP 2 : CREATE VIRTUAL ENVIRONMENT
+========================================
+python -m venv env
+
+Windows:
+env\Scripts\activate
+
+Mac/Linux:
+source env/bin/activate
+
+==============================
+STEP 3 : INSTALL PACKAGES
+===============================
+pip install django
+pip install djangorestframework
+pip install requests
+pip install django-allauth
+pip install dj-rest-auth
+pip install razorpay
+pip install sendgrid
+pip install python-dotenv
+
+=================================
+STEP 4 : SAVE REQUIREMENTS
+==================================
+pip freeze > requirements.txt
+
+STEP 5 : CREATE PROJECT
+django-admin startproject doctor_project .
+
+STEP 6 : CREATE APP
+python manage.py startapp doctor_finder
+
+PROJECT STRUCTURE
+
+DoctorFinderProject
+├── env
+├── doctor_project
+├── doctor_finder
+├── templates
+├── static
+├── manage.py
+└── requirements.txt
+
+STEP 7 : REGISTER APPS
+Add rest_framework and doctor_finder in INSTALLED_APPS.
+
+STEP 8 : DATABASE
+Use default SQLite database.
+
+STEP 9 : MIGRATE
+python manage.py migrate
+
+STEP 10 : RUN SERVER
+python manage.py runserver
+
+=========================================================================
+PHASE 2 : DOCTOR CRUD API
+=========================================================================
+
+TASKS COVERED
+✓ Task 3
+✓ Task 4
+✓ Task 5
+✓ Task 6
+✓ Task 11
+✓ Task 12
+
+STEP 1 : CREATE MODEL
+File: doctor_finder/models.py
+
+Doctor Fields:
+- name
+- specialty
+- contact
+- email
+
+STEP 2 : CREATE MIGRATIONS
+python manage.py makemigrations
+python manage.py migrate
+
+STEP 3 : CREATE SERIALIZER
+File: doctor_finder/serializers.py
+
+Create DoctorSerializer using ModelSerializer.
+
+STEP 4 : CREATE CRUD VIEW
+File: doctor_finder/views.py
+
+Create DoctorViewSet using ModelViewSet.
+
+STEP 5 : CREATE APP URLS
+File: doctor_finder/urls.py
+
+Register DoctorViewSet using DefaultRouter.
+
+STEP 6 : MAIN URLS
+File: doctor_project/urls.py
+
+path('api/', include('doctor_finder.urls'))
+
+CRUD ENDPOINTS
+
+POST    /api/doctors/
+GET     /api/doctors/
+GET     /api/doctors/1/
+PUT     /api/doctors/1/
+DELETE  /api/doctors/1/
+
+=========================================================================
+PHASE 3 : PAGINATION + TOKEN AUTHENTICATION
+=========================================================================
+
+TASKS COVERED
+✓ Task 7
+✓ Task 13
+
+STEP 1 : ENABLE TOKEN AUTH
+
+Add:
+rest_framework.authtoken
+
+STEP 2 : REST FRAMEWORK SETTINGS
+
+Authentication:
+TokenAuthentication
+
+Permission:
+IsAuthenticated
+
+Pagination:
+PageNumberPagination
+
+PAGE_SIZE = 5
+
+STEP 3 : MIGRATE
+python manage.py migrate
+
+STEP 4 : CREATE ADMIN
+python manage.py createsuperuser
+
+STEP 5 : TOKEN USAGE
+
+Authorization
+Token xxxxxxxxx
+
+Sample Response
+
+{
+ "count":10,
+ "next":"...",
+ "previous":"...",
+ "results":[]
+}
+
+=========================================================================
+PHASE 4 : GOOGLE LOGIN
+=========================================================================
+
+TASK COVERED
+✓ Task 10
+
+STEP 1 : INSTALL
+pip install django-allauth
+pip install dj-rest-auth
+
+STEP 2 : GOOGLE CLOUD CONSOLE
+
+Create OAuth Client ID
+
+STEP 3 : REDIRECT URL
+
+http://localhost:8000/accounts/google/login/callback/
+
+STEP 4 : ADD APPS
+
+allauth
+allauth.account
+allauth.socialaccount
+allauth.socialaccount.providers.google
+
+=========================================================================
+PHASE 5 : SENDGRID EMAIL
+=========================================================================
+
+TASK COVERED
+✓ Task 19
+
+STEP 1 : INSTALL
+
+pip install sendgrid
+
+STEP 2 : CREATE ACCOUNT
+
+Generate SendGrid API Key
+
+STEP 3 : SETTINGS
+
+SENDGRID_API_KEY = "YOUR_API_KEY"
+
+STEP 4 : SEND CONFIRMATION EMAIL
+
+Use SendGridAPIClient and Mail class after successful registration.
+
+FLOW
+
+User Registration
+      ↓
+Registration Success
+      ↓
+Send Email
+      ↓
+User Receives Email
+
+=========================================================================
+PHASE 6 : RAZORPAY PAYMENT
+=========================================================================
+
+TASK COVERED
+✓ Task 21
+
+STEP 1 : INSTALL
+
+pip install razorpay
+
+STEP 2 : CREATE ACCOUNT
+
+Generate Test Key
+
+STEP 3 : SETTINGS
+
+RAZORPAY_KEY_ID = "YOUR_KEY"
+RAZORPAY_KEY_SECRET = "YOUR_SECRET"
+
+STEP 4 : CREATE ORDER
+
+Use razorpay.Client()
+Create order amount and currency.
+
+APPOINTMENT FLOW
+
+User
+ ↓
+Select Doctor
+ ↓
+Book Appointment
+ ↓
+Pay via Razorpay
+ ↓
+Payment Success
+ ↓
+Appointment Confirmed
+ ↓
+Send Email
+
+=========================================================================
+TAILWIND CSS SETUP
+=========================================================================
+
+Create folders
+
+templates
+static
+
+Install
+
+npm install -D tailwindcss
+
+npx tailwindcss init
+
+Templates
+
+base.html
+home.html
+login.html
+register.html
+doctors.html
+appointments.html
+
+=========================================================================
+TASK 1 : RANDOM JOKE API (SEPARATE PROJECT)
+=========================================================================
+
+File : joke.py
+
+import requests
+
+url = "https://official-joke-api.appspot.com/random_joke"
+
+response = requests.get(url)
+
+data = response.json()
+
+print(data['setup'])
+print(data['punchline'])
+
+Run:
+
+python joke.py
+
+=========================================================================
+FINAL EXECUTION ORDER
+=========================================================================
+
+1. Project Setup
+2. Doctor Model
+3. Serializer
+4. CRUD APIs
+5. URLs
+6. SQLite
+7. Pagination
+8. Token Authentication
+9. Google Login
+10. SendGrid Email
+11. Razorpay Payment
+12. Tailwind UI
+13. Testing using Postman
+14. Deploy Project
+
+NOTE:
+Task 1 is a separate Python project.
+Tasks 2-21 belong to one Django Project.
+=========================================================================
