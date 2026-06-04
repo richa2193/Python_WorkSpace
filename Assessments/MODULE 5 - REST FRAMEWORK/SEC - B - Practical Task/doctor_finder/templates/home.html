@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+<!-- NAVBAR -->
+<nav class="bg-blue-600 text-white p-4 text-center font-bold text-xl">
+    Doctor Finder
+</nav>
+
+<!-- HERO SECTION -->
+<div class="text-center mt-10">
+    <h1 class="text-3xl font-bold">Find Best Doctors Near You</h1>
+
+    <input id="search"
+           class="mt-4 p-3 w-1/2 border rounded"
+           placeholder="Search doctor, city, specialization">
+
+    <button onclick="loadDoctors()"
+            class="bg-blue-600 text-white px-4 py-3 rounded">
+        Search
+    </button>
+</div>
+
+<!-- 👇 DOCTOR CARDS WILL LOAD HERE -->
+<div id="doctorList"
+     class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 mt-10">
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+async function loadDoctors() {
+    let res = await fetch("/api/doctors/");
+    let data = await res.json();
+
+    let html = "";
+
+    data.results.forEach(doc => {
+        html += `
+        <div class="bg-white shadow-lg rounded-xl p-5 hover:shadow-2xl transition">
+
+            <h2 class="text-xl font-bold text-blue-600">${doc.name}</h2>
+
+            <p><b>Specialization:</b> ${doc.specialization}</p>
+            <p><b>City:</b> ${doc.city}</p>
+            <p><b>Hospital:</b> ${doc.hospital}</p>
+            <p><b>Experience:</b> ${doc.experience} years</p>
+
+            <div class="flex gap-2 mt-4">
+                <button class="bg-red-500 text-white px-3 py-1 rounded"
+                        onclick="deleteDoctor(${doc.id})">
+                    Delete
+                </button>
+            </div>
+
+        </div>
+        `;
+    });
+
+    document.getElementById("doctorList").innerHTML = html;
+}
+
+async function deleteDoctor(id) {
+    await fetch(`/api/doctors/${id}/`, {
+        method: "DELETE"
+    });
+
+    loadDoctors();
+}
+
+// AUTO LOAD ON PAGE OPEN
+loadDoctors();
+</script>
+
+</body>
+</html>
