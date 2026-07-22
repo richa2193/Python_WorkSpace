@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-black via-gray-900 to-black min-h-screen text-white">
+
+    <div class="container mx-auto px-4 py-10">
+
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold mb-4 md:mb-0">
+                Student Data
+            </h1>
+
+            <a href="/insert"
+               class="bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition">
+                Add Data
+            </a>
+        </div>
+
+        <div class="overflow-x-auto bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-gray-700">
+
+            <table class="min-w-full text-center">
+
+                <thead class="bg-white text-black">
+                    <tr>
+                        <th class="py-4 px-4">ID</th>
+                        <th class="py-4 px-4">Name</th>
+                        <th class="py-4 px-4">Email</th>
+                        <th class="py-4 px-4">Mobile</th>
+                        <th class="py-4 px-4">DOB</th>
+                        <th class="py-4 px-4">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for i in data %}
+
+                    <tr class="border-b border-gray-700 hover:bg-white/5 transition">
+
+                        <td class="py-4 px-4">{{i.id}}</td>
+                        <td class="py-4 px-4">{{i.name}}</td>
+                        <td class="py-4 px-4">{{i.email}}</td>
+                        <td class="py-4 px-4">{{i.mobile}}</td>
+                        <td class="py-4 px-4">{{i.dob}}</td>
+
+                        <td class="py-4 px-4 space-x-2">
+
+                            <a href="/update/{{i.id}}"
+                               class="bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded-lg">
+                                Edit
+                            </a>
+
+                            <a href="/delete/{{i.id}}"
+                               class="bg-red-500 hover:bg-red-700 px-4 py-2 rounded-lg">
+                                Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
