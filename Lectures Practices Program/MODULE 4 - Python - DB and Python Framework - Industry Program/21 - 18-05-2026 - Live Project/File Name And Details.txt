@@ -1,0 +1,95 @@
+live website 
+
+1. open project 
+
+2.  open in vscode 
+
+3. local to live
+ setings.py ma 26 
+line debug = true 
+change it to false 
+
+4. in 28 line allowed_host = ['*'] - 
+otherwise abc.com - domain name 
+
+5. runserver check 
+
+6. in new terminal run command to check what is install in our environment.
+pip freeze> requirements.txt press enter 
+
+7. upload it to GitHub 
+steps for upload at GitHub 
+put project in different new repository 
+
+8. pythonanywhere search 
+do sign in 
+find beginner 
+
+create account:
+noteApp26
+email
+password 
+
+continue 
+
+9. check verification mail
+from there click this link 
+
+10. dashboard 
+
+11. in google search host Django  website studygyan  
+
+12. follow steps from there to live website 
+
+13. in step 3 
+change env 3.10 for myenv 
+
+14. create new repository for live project 
+
+15. copy that folder and move other location and make new folder and copy that folder where no one GitHub folder likd.
+
+16. in batchproject and after that open gitbash. do not forget 
+
+17. using this command do not use main 
+
+18. in last step change main to master.
+
+19. now to step 4 
+
+20. write git clone in pythonanywhere copy paste url 
+
+21. now write ls
+
+22. now cd tab 
+now we come from myenv to batchproject 
+
+23. step 5 from studygyan and install requirements file using pip command.
+
+24. step 6 from studygyan - skip this step 
+
+25. step 7  - set path 
+and select python 3.10 
+
+26. from file open in new tab from that you find path copy and paste anywhere 
+
+27. source and working directory same 
+
+28. now find virutualenv path from files 
+
+29. in url write /static/ and media - remove static if not required. 
+static - main folder inside that media 
+
+30. step 8 - copy paste code 
+path  - home vado path first  - which we use in step 27.
+
+31. mysite - change to our project name 
+in our project copy project name from wsgi.py 
+
+32. reload for save changes.
+
+33. which you upload they all see in media folders.
+
+godaddy and hostinger 
+devops 
+docker 
+ci/cd

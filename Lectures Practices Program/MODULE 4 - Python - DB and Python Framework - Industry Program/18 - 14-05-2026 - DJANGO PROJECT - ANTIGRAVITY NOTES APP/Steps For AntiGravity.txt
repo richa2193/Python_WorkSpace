@@ -1,0 +1,413 @@
+===========================================
+DJANGO PROJECT - ANTIGRAVITY NOTES APP
+===========================================
+
+Project Features:
+
+- Email OTP Verification
+- Mobile OTP
+- Password Protected
+- Custom Admin Panel
+- User Panel
+- Map Integration
+- WhatsApp Integration
+- Forget Password
+- Notes Upload System
+- Notes Approval/Rejection
+- Email Notifications
+
+
+===================================
+1. DOWNLOAD ANTIGRAVITY
+===================================
+
+Download and install:
+
+antigravity
+
+
+===================================
+2. CREATE NEW DJANGO PROJECT
+===================================
+
+Create project name:
+
+BatchProject
+
+Command:
+
+django-admin startproject BatchProject
+
+
+===================================
+3. OPEN PROJECT DIRECTORY
+===================================
+
+Command:
+
+cd BatchProject
+
+
+===================================
+4. RUN ANTIGRAVITY
+===================================
+
+Command:
+
+antigravity .
+
+
+===================================
+5. SELECT FLASH IN AGENT
+===================================
+
+Select:
+
+Flash mode in agent
+
+
+===================================
+6. RUN MIGRATIONS
+===================================
+
+Command:
+
+python manage.py migrate
+
+
+===================================
+7. WRITE THIS PROMPT IN AGENT
+===================================
+
+Prompt:
+
+In this Django project I want to add two different apps:
+
+1. userapp
+2. AdminApp
+
+--------------------------------------
+
+Design this app responsive and build with Tailwind CSS.
+
+Theme:
+- Yellow and Grey Combination
+- Gradient UI Design
+
+Features:
+
+- User Registration
+- Login
+- Logout
+- Email OTP Verification
+- Mobile OTP Verification
+- Password Protected Authentication
+- Forget Password
+- User Dashboard
+- Custom Admin Panel
+
+Flow:
+
+- When user registers,
+  one OTP email should be sent.
+
+- After OTP verification,
+  user can login and access dashboard.
+
+- In custom admin app,
+  admin can display all registered users list.
+
+- Admin can:
+    - Block users
+    - Unblock users
+    - Edit user information
+
+- Add Map Integration
+- Add WhatsApp Integration
+
+--------------------------------------
+
+
+===================================
+8. ACCEPT ALL GENERATED FILES
+===================================
+
+Accept all generated files/code.
+
+
+===================================
+9. RUN SERVER
+===================================
+
+Command:
+
+python manage.py runserver
+
+
+=================================================
+10. EMAIL CONFIGURATION IN settings.py
+=================================================
+
+Open:
+
+settings.py
+
+Find line around:
+
+131
+
+Remove:
+
+EMAIL_BACKEND = 
+'django.core.mail.backends.console.EmailBackend'
+
+Change to SMTP backend:
+
+EMAIL_BACKEND = 
+'django.core.mail.backends.smtp.EmailBackend'
+
+
+=================================================
+11. FOR KNOWLEDGE SEARCH SMTP SETTINGS
+=================================================
+
+Search in Google:
+
+- Google SMTP Settings
+- Microsoft SMTP Settings
+
+
+=================================================
+12. ADD EMAIL HOST USER DETAILS
+=================================================
+
+Add:
+
+EMAIL_HOST_USER = 'your email id'
+
+EMAIL_HOST_PASSWORD = 'your password'
+
+
+=================================================
+13. CREATE GMAIL APP PASSWORD
+=================================================
+
+Open Gmail account.
+
+Go to:
+
+Manage Your Google Account
+
+Then:
+
+Security
+
+Enable:
+
+2-Step Verification
+
+After enabling:
+
+Search:
+
+App Passwords
+
+Add app name:
+
+notesapp
+
+Generate password.
+
+Copy generated password and paste in:
+
+EMAIL_HOST_PASSWORD
+
+
+===================================
+14. RUNSERVER AND REGISTER
+===================================
+
+Run:
+
+python manage.py runserver
+
+Now:
+
+- Register user
+- Signup user
+- Check email OTP
+
+
+===================================
+15. CHECK CUSTOM ADMIN PANEL
+===================================
+
+Open admin panel:
+
+custom-admin
+
+Check panel name in generated files.
+
+
+=================================================
+16. DELETE adminexample MAIL IN SQLITE DB
+=================================================
+
+Delete:
+
+adminexample mail 
+
+from sqlite database if needed.
+
+
+===================================
+17. EMAIL VERIFICATION DONE
+===================================
+
+Now email verification successfully completed.
+
+
+===================================
+18. CHECK LOGIN
+===================================
+
+Try login after OTP verification.
+
+
+===================================
+19. WRITE PROMPT FOR OTP EMAIL DESIGN
+===================================
+
+Prompt:
+
+Design beautiful email OTP mail template
+related to Notes App using HTML and CSS.
+
+
+===================================
+20. CHECK DESIGNED EMAIL
+===================================
+
+Check email inbox and verify designed OTP mail.
+
+
+=================================================
+21. CREATE ADMIN USER VERIFIED BY DEFAULT
+=================================================
+
+Add admin user with:
+
+verified = True
+
+by default.
+
+
+===================================
+22. LOGIN WITH ADMIN DETAILS
+===================================
+
+Login using admin credentials.
+
+
+===================================
+23. CHECK BLOCK / UNBLOCK
+===================================
+
+Try:
+
+- Block User
+- Unblock User
+
+Check functionality properly.
+
+
+=================================================
+24. WRITE PROMPT FOR NOTES SYSTEM
+=================================================
+
+Prompt:
+
+After user login,
+user can submit/upload notes with:
+
+- Title
+- Description
+- Files
+- Category
+- PDF Upload
+
+When user submits notes,
+status should be:
+
+"Pending" by default.
+
+Admin can:
+
+- Approve Notes
+- Reject Notes
+
+When admin approves/rejects notes,
+one confirmation email should be sent to user.
+
+
+===================================
+25. RUNSERVER AND ADD NOTES
+===================================
+
+Run:
+
+python manage.py runserver
+
+Now:
+
+- Login user
+- Upload notes
+- Add PDF file
+- Submit notes
+
+
+=================================================
+26. LOGIN ADMIN AND CHECK NOTES STATUS
+=================================================
+
+Login Admin.
+
+Open:
+
+Manage Notes
+
+Check:
+- Pending Notes
+- Approved Notes
+- Rejected Notes
+
+
+=================================================
+27. WRITE PROMPT FOR APPROVE/REJECT EMAIL
+=================================================
+
+Prompt:
+
+Design beautiful Notes Approval/Rejection
+email template using HTML and CSS.
+
+
+=================================================
+28. TEST PDF UPLOAD AND EMAIL
+=================================================
+
+Upload PDF notes.
+
+Approve/Reject from admin panel.
+
+Check:
+
+- Mail design
+- Confirmation email
+- PDF upload
+- Notes status
+
+
+===========================================
+PROJECT COMPLETED
+===========================================

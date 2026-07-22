@@ -1,0 +1,488 @@
+===========================================
+DJANGO OLD PROJECT UPDATE FLOW
+===========================================
+
+Project Update Features:
+
+- Reset Password with Email OTP
+- Full Name and Mobile Field
+- About Page
+- Contact Page
+- Testimonials
+- YouTube Embedded Videos
+- Google Map Integration
+- WhatsApp Chat Button
+- Thank You Email
+- Admin Contact Messages Panel
+- Antigravity Background Animation
+- Floating Particle System
+
+
+=================================================
+START OLD PROJECT
+=================================================
+
+Open old Django project folder.
+
+Open terminal inside project folder.
+
+
+===================================
+1. RESET PASSWORD FEATURE
+===================================
+
+Prompt:
+
+add reset password features for user with email otp verification.
+
+
+-----------------------------------------
+What this feature will do:
+-----------------------------------------
+
+- User clicks "Forgot Password"
+- User enters registered email
+- OTP will send on email
+- User verifies OTP
+- User sets new password
+- Password updated successfully
+
+Pages required:
+- forgot_password.html
+- verify_otp.html
+- new_password.html
+
+Backend required:
+- OTP generation
+- Email sending
+- OTP verification
+- Password update logic
+
+
+===================================
+2. RUNSERVER
+===================================
+
+Command:
+
+python manage.py runserver
+
+
+=================================================
+3. UPDATE REGISTRATION FORM
+=================================================
+
+Prompt:
+
+update user registration with full name and mobile field.
+
+
+-----------------------------------------
+What to update:
+-----------------------------------------
+
+Frontend:
+- Add Full Name field
+- Add Mobile field
+
+Backend:
+- Update model
+- Update forms.py
+- Update views.py
+- Run migrations
+
+Database:
+- Add new columns
+
+
+=================================================
+4. RUNSERVER AND CHECK FEATURES
+=================================================
+
+Check:
+- Registration working
+- Login working
+- Reset password working
+- OTP verification working
+- Full name storing
+- Mobile number storing
+
+
+===================================
+5. ABOUT AND CONTACT PAGE
+===================================
+
+Prompt:
+
+add about and contact page.
+
+testimonial,
+
+
+-----------------------------------------
+Pages to create:
+-----------------------------------------
+
+- about.html
+- contact.html
+
+Features:
+- Responsive design
+- Tailwind CSS
+- Gradient UI
+- Testimonial cards
+- Contact form
+
+
+=================================================
+6. ADD TESTIMONIALS AND YOUTUBE VIDEOS
+=================================================
+
+Prompt:
+
+in about page add some testimonials and youtube videos.
+
+
+-----------------------------------------
+About Page Content:
+-----------------------------------------
+
+Add:
+- User testimonials
+- Student reviews
+- YouTube video section
+- Cards and animations
+
+Use:
+- iframe tag for video
+- Responsive video layout
+
+
+=================================================
+7. ADD YOUTUBE EMBED CODE
+=================================================
+
+Prompt:
+
+in about page youtube section in iframe tag change youtube link.
+
+v = id take it and put it in notpad and search in google youtube youtube embed code
+
+now from that copy that code in iframe.
+
+
+-----------------------------------------
+Explanation:
+-----------------------------------------
+
+Example YouTube URL:
+
+https://www.youtube.com/watch?v=abc123xyz
+
+Take only:
+
+abc123xyz
+
+Search Google:
+
+YouTube Embed Code
+
+Example Embed URL:
+
+https://www.youtube.com/embed/abc123xyz
+
+Paste inside iframe.
+
+
+Example:
+
+<iframe 
+src="https://www.youtube.com/embed/abc123xyz">
+</iframe>
+
+
+=================================================
+8. IF YOUTUBE VIDEO NOT PLAY
+=================================================
+
+Prompt:
+
+copy paste error in agnt
+
+
+-----------------------------------------
+What to do:
+-----------------------------------------
+
+If video does not play:
+- Copy full error
+- Paste inside agent
+- Check iframe src link
+- Check browser console error
+
+
+=================================================
+9. RUNSERVER AND CHECK VIDEO
+=================================================
+
+Run:
+
+python manage.py runserver
+
+Check:
+- Video loading
+- Video playing
+- Responsive layout
+- iframe working properly
+
+
+=================================================
+10. ADD GOOGLE MAP AND WHATSAPP BUTTON
+=================================================
+
+Prompt:
+
+in agent add google map and whatspp chat button in contact page.
+
+
+-----------------------------------------
+Features:
+-----------------------------------------
+
+- Embedded Google Map
+- Floating WhatsApp Button
+- Contact Section
+- Mobile Responsive UI
+
+
+=================================================
+11. USE REAL LOCATION MAP
+=================================================
+
+Instruction:
+
+in google app search tops tech and find embed code and copy and paste in contact page google map section in iframe
+
+
+-----------------------------------------
+Steps:
+-----------------------------------------
+
+1. Open Google Maps
+2. Search:
+   Tops Tech
+3. Click:
+   Share
+4. Click:
+   Embed Map
+5. Copy iframe code
+6. Paste in contact.html
+
+
+=================================================
+12. CHANGE WIDTH
+=================================================
+
+Change iframe width:
+
+930
+
+
+Example:
+
+width="930"
+
+
+=================================================
+13. RUNSERVER AGAIN
+=================================================
+
+Command:
+
+python manage.py runserver
+
+Check:
+- Google map visible
+- Contact page responsive
+- WhatsApp button working
+
+
+=================================================
+14. CHANGE WHATSAPP NUMBER
+=================================================
+
+Instruction:
+
+in contact.html find WhatsApp button in a href change number.
+
+
+Example:
+
+https://wa.me/919999999999
+
+
+Replace with your number.
+
+
+=================================================
+15. CHANGE CONTACT DETAILS
+=================================================
+
+Change in contact.html:
+
+- Phone number
+- Email address
+- Office address
+- Social links
+
+
+=================================================
+16. CONTACT FORM EMAIL FEATURE
+=================================================
+
+Prompt:
+
+send thank uou email when submit the contact form and also admin can show all the messages from contact page.
+
+
+-----------------------------------------
+Feature Flow:
+-----------------------------------------
+
+When user submits contact form:
+
+- Save message in database
+- Send Thank You email to user
+- Admin can see all messages
+
+Admin Panel Features:
+- View messages
+- Delete messages
+- Reply messages
+
+
+=================================================
+17. CHECK CONTACT FORM
+=================================================
+
+Run project and check:
+
+- Contact form submit
+- Email received
+- Admin panel messages visible
+- Database entries stored
+
+
+=================================================
+18. ADD ANTIGRAVITY ANIMATION
+=================================================
+
+Prompt:
+
+add antigravity type background animation in every pages.
+
+
+-----------------------------------------
+Animation Features:
+-----------------------------------------
+
+- Floating particles
+- Moving stars
+- Gradient animation
+- Interactive background
+- Smooth animation effects
+
+
+=================================================
+19. IF PARTICLE SYSTEM NOT WORKING
+=================================================
+
+Prompt:
+
+floating partical system not working, try this promt in agent if not working.
+
+
+-----------------------------------------
+What to check:
+-----------------------------------------
+
+- JavaScript file loaded
+- CDN link working
+- particles.js connected
+- Browser console errors
+
+
+=================================================
+20. IF STILL ANIMATION NOT SHOW
+=================================================
+
+Prompt:
+
+put antigravity link and same like this write.
+
+
+-----------------------------------------
+Use:
+-----------------------------------------
+
+- Antigravity background links
+- CDN particle animation
+- JS particle libraries
+- Canvas animation
+
+
+===========================================
+INTERVIEW QUESTIONS
+===========================================
+
+MESSAGE SENDING API
+
+
+=================================================
+1. WAY2SMS
+=================================================
+
+Features:
+- SMS Sending
+
+Important:
+- Official API support OFF
+
+
+=================================================
+2. FAST2SMS
+=================================================
+
+Features:
+- OTP Sending
+- WhatsApp API
+- Bulk SMS
+- Transactional SMS
+
+
+=================================================
+3. TWILIO
+=================================================
+
+Features:
+- SMS OTP
+- Video Call
+- Video KYC
+- WhatsApp API
+- Voice Call API
+
+
+=================================================
+4. TEXTLOCAL
+=================================================
+
+Features:
+- Bulk SMS
+- OTP Service
+- Promotional SMS
+- Transactional SMS
+
+
+===========================================
+PROJECT UPDATE COMPLETED
+===========================================

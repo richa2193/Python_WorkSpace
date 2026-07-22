@@ -1,0 +1,670 @@
+in the file which i gave you in that file before step 14 write this lines that before/already you make one folder and copy your project there and uploaded it before so you do not need this step from 14 to 18 otherwise if you do not make different folder for project then make it and copy project there. make one file with this changes which i tell you. 
+
+
+===========================================
+DJANGO LIVE WEBSITE DEPLOYMENT FLOW
+===========================================
+
+Deployment Platform:
+- PythonAnywhere
+
+Topics Covered:
+- GitHub Upload
+- Django Deployment
+- Requirements File
+- Static and Media Files
+- Virtual Environment
+- Live Hosting
+- DevOps Basics
+- Docker
+- CI/CD
+
+
+=================================================
+1. OPEN PROJECT
+=================================================
+
+Open your Django project folder.
+
+
+=================================================
+2. OPEN PROJECT IN VSCODE
+=================================================
+
+Open project using:
+
+Visual Studio Code
+
+
+=================================================
+3. LOCAL TO LIVE SETTINGS
+=================================================
+
+Open:
+
+settings.py
+
+Find around line 26:
+
+DEBUG = True
+
+Change it to:
+
+DEBUG = False
+
+
+-----------------------------------------
+Why?
+-----------------------------------------
+
+When project goes live:
+- Debug mode should be OFF
+- Otherwise security issue occurs
+
+
+=================================================
+4. ALLOWED HOSTS
+=================================================
+
+Find around line 28:
+
+ALLOWED_HOSTS = []
+
+Change to:
+
+ALLOWED_HOSTS = ['*']
+
+
+OR use domain name:
+
+ALLOWED_HOSTS = ['abc.com']
+
+
+-----------------------------------------
+Why?
+-----------------------------------------
+
+This allows your live website domain
+to access Django project.
+
+
+=================================================
+5. RUNSERVER CHECK
+=================================================
+
+Command:
+
+python manage.py runserver
+
+Check:
+- Project working properly
+- No errors after DEBUG=False
+
+
+=================================================
+6. CREATE requirements.txt FILE
+=================================================
+
+Open new terminal.
+
+Run command:
+
+pip freeze > requirements.txt
+
+
+-----------------------------------------
+What this does?
+-----------------------------------------
+
+This stores all installed packages
+inside requirements.txt
+
+Example:
+- Django
+- Pillow
+- mysqlclient
+- requests
+- etc.
+
+
+=================================================
+7. UPLOAD PROJECT TO GITHUB
+=================================================
+
+Steps:
+
+- Create new repository on GitHub
+- Upload complete project
+- Use separate repository
+
+Example Repository Name:
+- BatchProject
+- NoteApp
+- DjangoLiveProject
+
+
+-----------------------------------------
+GitHub Commands
+-----------------------------------------
+
+git init
+
+git add .
+
+git commit -m "first commit"
+
+git branch -M master
+
+git remote add origin YOUR_GITHUB_URL
+
+git push -u origin master
+
+
+=================================================
+8. CREATE PYTHONANYWHERE ACCOUNT
+=================================================
+
+Search:
+
+PythonAnywhere
+
+Open website and sign up.
+
+
+-----------------------------------------
+Find:
+-----------------------------------------
+
+Beginner Plan
+
+
+-----------------------------------------
+Create Account:
+-----------------------------------------
+
+Username:
+noteApp26
+
+Email:
+your email
+
+Password:
+your password
+
+
+Click:
+Continue
+
+
+=================================================
+9. VERIFY EMAIL
+=================================================
+
+Check email inbox.
+
+Open verification mail.
+
+Click verification link.
+
+
+=================================================
+10. OPEN DASHBOARD
+=================================================
+
+After login:
+
+Open PythonAnywhere Dashboard.
+
+
+=================================================
+11. SEARCH STUDYGYAN GUIDE
+=================================================
+
+Search in Google:
+
+host Django website studygyan
+
+
+=================================================
+12. FOLLOW STUDYGYAN STEPS
+=================================================
+
+Follow deployment steps from StudyGyan website
+to make Django project live.
+
+
+=================================================
+13. CHANGE ENVIRONMENT VERSION
+=================================================
+
+In step 3:
+
+Change environment version:
+
+3.10
+
+Use:
+
+myenv
+
+
+-----------------------------------------
+Example:
+-----------------------------------------
+
+mkvirtualenv --python=/usr/bin/python3.10 myenv
+
+
+=================================================
+14. CREATE NEW REPOSITORY FOR LIVE PROJECT
+=================================================
+
+Create another clean GitHub repository
+for deployment project.
+
+
+=================================================
+15. COPY PROJECT TO NEW LOCATION
+=================================================
+
+Copy project folder.
+
+Move to different location.
+
+Create new clean folder.
+
+Paste project there.
+
+
+-----------------------------------------
+Important:
+-----------------------------------------
+
+No old .git folder should exist.
+
+
+=================================================
+16. OPEN GITBASH
+=================================================
+
+Open project folder.
+
+Inside BatchProject folder:
+
+Right click →
+Open Git Bash Here
+
+
+-----------------------------------------
+Important:
+-----------------------------------------
+
+Do not forget this step.
+
+
+=================================================
+17. USE GIT COMMANDS
+=================================================
+
+Use commands carefully.
+
+Do NOT use:
+
+main
+
+Use:
+
+master
+
+
+=================================================
+18. CHANGE MAIN TO MASTER
+=================================================
+
+Last step:
+
+Replace:
+
+main
+
+with:
+
+master
+
+
+=================================================
+19. GO TO STEP 4
+=================================================
+
+Continue StudyGyan deployment steps.
+
+
+=================================================
+20. CLONE GITHUB PROJECT
+=================================================
+
+In PythonAnywhere console:
+
+Run:
+
+git clone YOUR_GITHUB_REPOSITORY_URL
+
+
+Example:
+
+git clone https://github.com/username/project.git
+
+
+=================================================
+21. CHECK FILES
+=================================================
+
+Run command:
+
+ls
+
+
+This shows all folders/files.
+
+
+=================================================
+22. OPEN PROJECT DIRECTORY
+=================================================
+
+Run:
+
+cd BatchProject
+
+
+Use TAB for auto complete.
+
+
+-----------------------------------------
+Explanation:
+-----------------------------------------
+
+We move from:
+
+myenv
+
+to:
+
+BatchProject folder
+
+
+=================================================
+23. INSTALL REQUIREMENTS
+=================================================
+
+Follow StudyGyan step 5.
+
+Run:
+
+pip install -r requirements.txt
+
+
+-----------------------------------------
+This installs:
+-----------------------------------------
+
+- Django
+- Pillow
+- mysqlclient
+- all dependencies
+
+
+=================================================
+24. SKIP STEP 6
+=================================================
+
+From StudyGyan:
+
+Skip Step 6
+
+
+=================================================
+25. SET PYTHON PATH
+=================================================
+
+Go to:
+
+Web Tab
+
+Set Python version:
+
+Python 3.10
+
+
+=================================================
+26. FIND PROJECT PATH
+=================================================
+
+Open:
+
+Files Tab
+
+Open project in new tab.
+
+Copy full project path.
+
+
+Example:
+
+/home/username/BatchProject
+
+
+Paste where required.
+
+
+=================================================
+27. SOURCE CODE AND WORKING DIRECTORY
+=================================================
+
+Set:
+
+Source Code:
+Project folder path
+
+Working Directory:
+Project folder path
+
+
+-----------------------------------------
+Both paths mostly same.
+-----------------------------------------
+
+
+=================================================
+28. FIND VIRTUALENV PATH
+=================================================
+
+From Files tab:
+
+Find virtual environment path.
+
+
+Example:
+
+/home/username/.virtualenvs/myenv
+
+
+=================================================
+29. STATIC AND MEDIA SETTINGS
+=================================================
+
+In URL section:
+
+Add:
+
+/static/
+
+/media/
+
+
+-----------------------------------------
+Important:
+-----------------------------------------
+
+Remove static path if not required.
+
+Static:
+CSS, JS, Images
+
+Media:
+Uploaded files/PDF/Profile Photos
+
+
+-----------------------------------------
+Example:
+-----------------------------------------
+
+static → main folder
+
+inside main folder → media
+
+
+=================================================
+30. COPY PASTE STATIC/MEDIA CODE
+=================================================
+
+From StudyGyan Step 8:
+
+Copy paste code.
+
+
+-----------------------------------------
+Path:
+-----------------------------------------
+
+Use:
+
+/home/ path first
+
+which we copied in Step 27.
+
+
+=================================================
+31. CHANGE mysite TO PROJECT NAME
+=================================================
+
+Open:
+
+wsgi.py
+
+Copy project name.
+
+
+Replace:
+
+mysite
+
+with your actual project name.
+
+
+Example:
+
+BatchProject
+
+
+=================================================
+32. RELOAD WEBSITE
+=================================================
+
+Click:
+
+Reload
+
+to save changes.
+
+
+=================================================
+33. CHECK MEDIA FOLDER
+=================================================
+
+All uploaded files will appear in:
+
+media folder
+
+
+Examples:
+- PDFs
+- Images
+- Notes
+- User uploads
+
+
+===========================================
+EXTRA TOPICS
+===========================================
+
+
+=================================================
+GODADDY
+=================================================
+
+Domain Provider
+
+Used for:
+- Buying domain
+- Hosting
+- Email hosting
+
+
+=================================================
+HOSTINGER
+=================================================
+
+Hosting platform
+
+Used for:
+- Shared hosting
+- VPS hosting
+- Domain hosting
+
+
+=================================================
+DEVOPS
+=================================================
+
+DevOps means:
+
+Development + Operations
+
+Used for:
+- Deployment
+- Automation
+- CI/CD
+- Server management
+
+
+=================================================
+DOCKER
+=================================================
+
+Docker is container technology.
+
+Used for:
+- Run app anywhere
+- Same environment everywhere
+- Easy deployment
+
+
+=================================================
+CI/CD
+=================================================
+
+CI:
+Continuous Integration
+
+CD:
+Continuous Deployment
+
+Used for:
+- Automatic testing
+- Automatic deployment
+- Faster development workflow
+
+
+===========================================
+DEPLOYMENT COMPLETED
+===========================================

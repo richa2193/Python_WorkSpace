@@ -1,0 +1,541 @@
+===============================
+DJANGO CRUD OPERATION PROJECT
+===============================
+
+Step 1. Xmapp and open project in vscode 
+
+start xmapp, open phpmyadmin and create database named as newdbapp.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 2. 
+In settings.py change from sqlite to mysql database and project name - newdbapp
+
+Ex: 
+        "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "newdbapp",
+        "USER": "root",
+        "PASSWORD": "",
+        "HOST": "127.0.0.1",
+        "PORT": "3307",
+    }
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================================
+Step 3. MAKE MIGRATE (CREATE DEFAULT TABLES)
+===============================================
+
+Run this command: 
+
+python manage.py migrate
+ 
+This command will create default Django tables.
+(around 10 tables).
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=====================
+Step 4. CREATE APP
+=====================	
+
+Run command in terminal:
+
+python manage.py startapp crudapp
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+Step 5. REGISTER APP IN settings.py
+==============================	
+
+Open:
+
+settings.py
+
+Add app name inside INSTALLED_APPS:
+
+'dbapp',
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 6. CREATE templates FOLDER AND urls.py
+======================================
+
+Inside dbapp create:
+
+templates folder
+
+and create file:
+
+dbapp/urls.py
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=========================================
+Step 7. INCLUDE MAIN URL IN newdbapp/urls.py
+=========================================
+
+Open:
+
+newdbapp/urls.py
+
+Copy this code:
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('crudapp.urls')),
+]
+
+Now open:
+
+dbapp/urls.py
+
+from django.contrib import admin
+from django.urls import path,include
+from dbapp import views
+
+urlpatterns = [
+    path('', views.index),
+    
+]
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=========================================
+Step 8. CREATE HTML PAGES USING CHATGPT
+=========================================
+ 
+in my Django app CRUD operation app required some html pages.
+design index.html pages for data display table format.
+design one more html page for data insert (name email mobile dob)
+design one more html page for data updation.
+design all the html pages with responseive and using tailwind css with black and white theme gradients.
+
+Prompt:
+In my Django app CRUD operation app required some html pages.
+
+Design index.html page for data display in table format.
+
+Design one more html page for data insert with fields:
+- name
+- email
+- mobile
+- dob
+
+Design one more html page for data updation.
+
+Design all html pages responsive using Tailwind CSS with:
+- black and white theme
+- gradients
+- modern UI
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 9. CREATE index.html
+======================================
+
+search in chatgpt and copy code.
+
+Features:
+- Display data in table format
+- Add Edit button
+- Add Delete button
+- Add Add Data button
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 10. CREATE insert.html
+======================================
+
+search in chatgpt and copy code.
+
+Create form fields: 
+- Name
+- Email
+- Mobile
+- DOB
+
+Add submit button.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 11. CREATE update.html
+======================================
+
+search in chatgpt and copy code.
+
+Same form as insert.html
+
+But old data should already be filled inside form fields.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 12. CREATE 3 VIEWS IN views.py
+======================================
+
+make 3 views in views.py 
+index 
+insert 
+update 
+
+copy code 
+
+Ex: 
+from django.shortcuts import render, redirect
+
+# Create your views here.
+def index(request):
+    return render(request,'index.html')
+
+def insert(request):
+    return render(request,'insert.html')
+
+def update(request):
+    return render(request,'update.html')
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 13. CREATE 3 URLS IN urls.py
+======================================
+
+copy this code.  
+
+Ex: 
+from django.contrib import admin
+from django.urls import path,include
+from dbapp import views
+
+urlpatterns = [
+    path('',views.index),
+    path('insert/', views.insert),
+    path('update/', views.update),
+
+]
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 14. RUNSERVER TO CHECK INDEX PAGE
+======================================
+
+Run command:
+
+python manage.py runserver
+
+Open browser:
+
+http://127.0.0.1:8000/
+
+Now change all a href links properly.
+
+change the a href.
+
+
+======================================
+Step 15. ADD DATA BUTTON IN index.html
+======================================
+
+add data mate index.html call insert 
+
+Ex: 
+<a href="/insert"
+               class="bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition">
+                Add Data
+            </a>
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Pure Backend Start From here....
+
+======================================
+Step 16. CREATE MODEL/ class fOR DATABASE IN models.py
+======================================
+
+in models.py file write this code to make a table.
+
+Ex:
+from django.db import models
+
+# Create your models here.
+
+class Userinfo(models.Model):
+    name=models.CharField(max_length=20)
+    email=models.EmailField()
+    mobile=models.BigIntegerField()
+    dob=models.DateField()
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 17. 
+======================================
+
+run command for create table : make migratons 
+
+
+==================================================
+Step 18. RUN COMMAND FOR CREATE TABLE (MIGRATIONS) 
+==================================================
+
+first check method post and name filed.
+button click submit.
+
+Run commands in terminal :
+
+python manage.py makemigrations
+python manage.py migrate
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=========================================
+Step 19. CHECK METHOD POST AND NAME FIELD
+=========================================
+
+In insert.html form:
+
+- Add method="POST"
+- Add csrf token
+- Add name attribute in all fields
+
+Example:
+
+<form method="POST">
+
+{% csrf_token %}
+
+<input type="text" name="name">
+
+Button click submit.
+
+Request first goes from HTML form
+to views.py
+then forms.py
+then database.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 20. CREATE forms.py FILE
+======================================
+
+write this code
+
+Ex:
+from django import forms
+from .models import * 
+
+class Userform(forms.ModelForm):
+    class Meta:
+        model=Userinfo
+        fields='__all__' 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=================================================
+Step 21. IN views.py INSIDE INSERT FUNCTION WRITE CODE	
+=================================================
+
+First import:
+
+from django.shortcuts import render, redirect
+from .forms import StudentForm
+from .models import Student
+
+Now in insert view:
+
+- Check request method POST
+- Receive form data
+- Save data in database
+
+Ex:
+
+from .forms import *
+
+def insert(request):
+    if request.method=='POST':
+        form=Userform(request.POST)
+        if form.is_valid():
+            form.save()
+            print("Record Inserted!")
+            return redirect('/')
+        else:
+            print(form.errors)
+    return render(request,'insert.html')
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 22. RUNSERVER AGAIN
+======================================
+
+Run:
+
+python manage.py runserver
+
+Now insert data and check database.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 23. DISPLAY DATA IN INDEX PAGE
+======================================
+
+data display in views.py in index 
+change in index function.
+
+In views.py index function:
+
+Fetch all data:
+
+Ex:
+def index(request):
+    data=Userinfo.objects.all()
+    return render(request,'index.html',{'data':data})
+
+USE: 
+
+data = Student.objects.all()
+
+Pass data in context:
+
+return render(request,'index.html',{'data':data})
+
+Now display data in table format in index.html.
+
+----------------------------------------------------------------------------------------------------------
+
+======================================
+Step 24. INSERT AND ADD DONE
+======================================
+
+Now Add Data button working successfully.
+
+Data insert operation completed.
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 25. ADD EDIT LINK IN index.html
+======================================
+
+in index.html link for edit 
+
+Example:
+
+<a href="/update/{{i.id}}">Edit</a>
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 26. GET DATA USING ID FOR UPDATE
+======================================
+
+In urls.py:
+
+path('update/<int:id>/', views.update)
+
+in views.py :
+
+data = Student.objects.get(id=id)
+Pass that variable in context.
+
+Ex:
+
+stid=Userinfo.objects.get(id=id)
+    if request.method=='POST':
+        form=Userform(request.POST,instance=stid)
+        if form.is_valid():
+            form.save()
+            print("Resord Updated!")
+            return redirect('/')
+        else:
+            print(form.errors)
+    return render(request,'update.html', {'stid':stid})
+
+
+In update.html:
+
+Add value field:
+
+value="{{data.name}}"
+
+value="{{data.email}}"
+
+value="{{data.mobile}}"
+
+value="{{data.dob}}"
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 27. UPDATE EXISTING RECORD
+======================================
+
+copy code form insert function
+	
+Use:
+
+instance=data
+
+Example:
+
+form = StudentForm(request.POST,instance=data)
+
+Save updated data.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 28. CREATE DELETE VIEW
+======================================
+
+same process like update.
+ 
+create view for delete  and pass id like above Example.
+
+Ex:
+
+def deletedata(request,id):
+    stid=Userinfo.objects.get(id=id)
+    Userinfo.delete(stid)
+    return redirect('/')
+
+------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+Step 29. ADD DELETE LINK
+======================================
+
+In index.html:
+
+<a href="/delete/{{i.id}}">Delete</a>
+
+In urls.py:
+
+    path('update/<int:id>/', views.update),
+    path('delete/<int:id>/', views.delete),
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+===================================
+FINAL COMMANDS
+===================================
+
+Run server:
+
+python manage.py runserver
+
+===================================
+PROJECT COMPLETE
+===================================
