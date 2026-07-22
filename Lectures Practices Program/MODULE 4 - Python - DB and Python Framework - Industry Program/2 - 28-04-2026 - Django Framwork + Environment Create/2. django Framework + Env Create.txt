@@ -1,0 +1,47 @@
+env create 
+script folder 
+env file 
+
+command:
+env activate - cd myenv 
+cmd direct
+ 
+automatic avi jase tab press kri name badha 
+
+jya folder tya cmd open krvanu 
+step 1 - myenv\scripts tab \ activate tab
+
+step 2 - pip install django==5.1
+ 
+step 3 - django-admin --version
+
+step 4 - project myenv avi jase lakhelu 
+
+step 4- django -admin startproject demoproject
+
+step 5 - cd demoproject tab
+ 
+step 6 - code .
+
+Basic Files of Every Project:
+ 
+1. init -  constructor file - background ma automatic process 
+2. settings.py 
+3. urls.py - path all 
+4. wsgi - web server gateway internet 
+
+After Coming in VS code first Open New Terminal Then run this Command.
+ 
+step 1 - python .\manage.py  runserver tab
+
+ctrl + c - stop the server 
+ 
+step 2 - python .\manage.py  runserver 4500 - change the port number 
+
+step 3 - python .\manage.py migraine everytime - for database
+
+step 4 - python .\manage.py createsuperuser
+name 
+email 
+password : 
+
