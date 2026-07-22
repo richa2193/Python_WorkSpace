@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Project</title>
+</head>
+<body style="background-color:lavenderblush">
+    <h1 style="text-align: center; color: darkred; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Student Management System</h1>
+    <hr>   
+
+    <form method="POST">
+        {%csrf_token%}
+        <input type="text" value="{{stid.name}}" name="name" placeholder="Name"><br><br>
+        <input type="text" value="{{stid.course}}" name="course" placeholder="Course"><br><br>
+        <input type="date" value="{{stid.dob}}" name="dob" placeholder="DOB"><br><br>
+        <input type="number" value="{{stid.mobile}}" name="mobile" placeholder="Mobile"><br><br>
+        <input type="text" value="{{stid.city}}" name="city" placeholder="City"><br><br>
+        <input type="submit">
+    </form>
+    <hr align="center">
+    <a href="/showdata">ShowData</a>
+</body>
+</html>

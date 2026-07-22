@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Project</title>
+</head>
+
+<body style="background-color:lavenderblush">
+    <h1
+        style="text-align: center; color: darkred; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+        Student Management System</h1>
+    <hr>
+
+    <form method="POST">
+        {%csrf_token%}
+        <input type="text" name="name" placeholder="Name"><br><br>
+        <!-- <input type="text" name="course" placeholder="Course"><br><br> -->
+        <select name="course">
+            <option value="">-- Select Course --</option>
+            <option value="Python">Python Developer</option>
+            <option value="Java">Java Developer</option>
+            <option value="PHP">PHP Web Developer</option>
+            <option value="Django">Django Developer</option>
+            <option value="React">React JS Developer</option>
+            <option value="Full Stack">Full Stack Developer</option>
+            <option value="Digital Marketing">Digital Marketing</option>
+            <option value="Graphic Designer">Graphic Designer</option>
+            <option value="Video Editor">Video Editor</option>
+            <option value="UI/UX Designer">UI/UX Designer</option>
+            <option value="Flutter Developer">Flutter Developer</option>
+            <option value="Python Developer">Python Developer</option>
+            <option value="AI/ML Developer"></option>
+        </select><br><br>
+        <input type="date" name="dob" placeholder="DOB"><br><br>
+        <input type="number" name="mobile" placeholder="Mobile"><br><br>
+        <input type="text" name="city" placeholder="City"><br><br>
+        <input type="submit">
+    </form>
+    <hr align="center">
+    <a href="/showdata">ShowData</a>
+</body>
+
+</html>
