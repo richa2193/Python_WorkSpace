@@ -1,0 +1,174 @@
+authentication 
+
+----------------------------------------------------------------------------------------
+
+Step 1. 
+Make new project named as AuthApp. 
+
+Ex: 
+1. activate environment in cmd 
+2. After that run command for create new project : django-admin startproject AuthApp
+3. cd AuthApp
+4. code .
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 2.
+in vscode open new terminal and run this command for create App: python manage.py startapp appname
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 3
+In settings.py add the name of the app (Ex: myapp) and make changes from line no. 76 and copy code from above website for connecting mysql using xmapp.
+
+Ex:   'default': {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "newauthdbb",
+        "USER": "root",
+        "PASSWORD": "",
+        "HOST": "127.0.0.1",
+        "PORT": "3306",
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 3. 
+Now in new terminal install this : pip install mysqlclient
+
+used for mysql database 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+Step 4.  Django 4.2
+now django version is high so mysqlclient does not compare with that so now we require low django version. 
+in terminal just run this command: pip install django==4.2 
+it will install this version and now check this command: django-admin --version
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 5. 
+Now in MySQL admin panel make Database (newauthdb) and add that dbname in settings.py file.
+and in terminal run this command - python manage.py migrate 
+after this check that 10 tables appear in mysql newauthdb database.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 6. createsuperuser 
+Now createsuperuser in terminal using this command: python manage.py createsuperuser.
+now add username, email and password.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 7. 
+Make templates folder inside your appname (myapp). 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 8. 
+Now inside templates make index.html, signup.html and home.html file. 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 9. 
+generate login.html with tailwind css.
+Search this above in chatgpt and paste that code in index.html. 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 10. 
+Now in chatgpt just write signup.html and copy that code in signup.html file.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 11. Make views and import redirect for further use 
+in views.py file make 3 views.  
+1 is for index and 2 is for signup and 3 is for home.
+
+Ex: def index(request):
+ return render(request, 'index.html')
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 12. 
+make file urls.py in myapp and copy code of other urls.py file.
+import views & include and add 3 path.
+ 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 14. 
+index.html at last where register write in that a href tag change path # to signup/.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 15. 
+in signup.html remove confirm password field.
+now in this signup.html file after form tag add this {% csrf_token %} and form method should be POST.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 16. 
+in models.py make one class and write this.
+
+Ex:
+class Usersignup(models.Model):
+    fullname=models.CharField(max_length=25)
+    email=models.EmailField()
+    mobile=models.BigIntegerField()
+    password=models.CharField(max_length=12)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+Step 17. python make migration to make table 
+to make table run this command in terminal: python makemigrations
+ 
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 18. 
+run this command in terminal: python manage.py migrate
+
+------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+Step 19.name jovanu models sathe match thy che ke nai ae 
+now in signup.html check that name="fullname" and cross verify with models name.
+Both name should be same.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Step 21. 
+Make files in myapp named as forms.py and 
+write this code 
+
+Ex:
+from django import forms
+from .models import *
+
+class Signupform(forms.ModelForm):
+    class Meta:
+        model=Usersignup
+        fields='__all__'
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 22. views.py 
+now in views.py add this code for fetch data.
+
+Ex:
+from .forms import *
+
+def signup(request):
+    if request.method=='POST':
+        form=Signupform(request.POST)
+        if form.is_valid():
+            form.save()
+            print("Signup Successfully!")
+            return redirect('/')
+        else:
+            print(form.errors)
+    return render(request,'signup.html')
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+ 

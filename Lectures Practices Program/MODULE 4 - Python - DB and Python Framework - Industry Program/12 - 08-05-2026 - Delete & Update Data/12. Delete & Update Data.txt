@@ -1,0 +1,77 @@
+update and delete in Form using Link
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Step 1 
+do changes in showdata.html and make two link for Update and Delete.
+
+Ex:
+<th>Action</th>
+<td>{{i.mobile}}</td>
+            <td><a href="/updatedata/{{i.id}}">Update</a>
+                <a href="/deletedata/{{i.id}}">Delete</a>
+            </td>
+ 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 2 - make view for action column 
+firs make function for delete in views.py
+
+Ex:
+def deletedata(request,id):				- 
+    stid=studinfo.objects.get(id=id)		- get specific record using id
+    studinfo.delete(stid)					- delete that record.		
+    return redirect('showdata')			- after delete, go to showdata page.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 3 
+now write url for delete and updatedata.html file in urls.py 
+
+Ex:
+    path('showdata/',views.showdata,name='showdata'),		- Open showdata page and give URL name showdata
+    path('deletedata/<int:id>',views.deletedata),				- <> used for assign id. 
+    path('updatedata/<int:id>',views.updatedata),				- used for update data.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 4
+now make one file inside updatedata.html and copy the code of index.html file .
+
+Ex:
+Here,
+value keyword puts old data inside the input box.
+Django Template Variable {{}} - Used to display data from database in HTML.
+{{stid.name}} - Show name of current record
+
+    <form method="post">
+        {%csrf_token%}
+        <input type="text" value="{{stid.name}}"  name="name" placeholder="Name"><br><br>		
+        <input type="email" value="{{stid.email}}" name="email" placeholder="Email"><br><br>
+        <input type="date" value="{{stid.dob|date:'Y-m-d'}}" name="dob" placeholder="DOB"><br><br>
+        <input type="number" value="{{stid.mobile}}" name="mobile" placeholder="Mobile"><br><br>
+        <textarea name="address" id="" placeholder="Address">{{stid.address}}</textarea><br><br>
+        <input type="submit">
+    </form>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 5
+now in views.py make function for updatedata
+
+Ex:
+
+def updatedata(request,id):								- Create update function and receive record ID
+    stid=studinfo.objects.get(id=id)						- Get old record using ID
+    if request.method=='POST':								- Check if form is submitted
+        form=studform(request.POST,instance=stid)		- Load submitted data and old record together, 
+															- instamce -Update existing record, not create new one.
+        if form.is_valid():										- check form validation
+            form.save()											- save updated data in database	
+            print("Record Updated!")							- print message in terminal.
+            return redirect('showdata')						- go back to showdata page.	
+        else:
+            print(form.errors)									- show specific form error 
+    return render(request,'updatedata.html',{'stid':stid})	- send old Data to HTMl Page.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

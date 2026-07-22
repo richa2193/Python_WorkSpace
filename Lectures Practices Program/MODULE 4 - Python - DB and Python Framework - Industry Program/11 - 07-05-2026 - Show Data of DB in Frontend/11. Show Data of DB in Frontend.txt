@@ -1,0 +1,79 @@
+How to show the data of Database in frontend page.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+context - view to template pass the data 
+ {{ }} - jinja format 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Step 1
+make one file named showdata and write basic html code. 
+
+Step 2
+now after that in urls.py write path of showdata file and views.py make function of this file.
+
+Ex:
+views.py
+def showdata(request):
+    stdata=studinfo.objects.all()  - Fetch all data from studinfo table/model.
+    return render(request,'showdata.html',{'stdata':stdata})  - Send the data to showdata.html page
+
+urls.py 
+from django.contrib import admin
+from django.urls import path,include
+from myapp import views
+
+urlpatterns = [
+    path('', views.index),
+    path('showdata/',views.showdata),
+]
+
+Step 3 
+in showdata file write for loop condition for print all stored data and also for which data you entered last.
+
+Ex:
+
+Write this code after h1 tag or hr tag.
+
+1. {{ stdata }} - This print data in list format.
+
+2. This gives you that data which you want to fetch form Database Table like id and name and etc. 
+{% for i in stdata %}
+    {{i.id}}
+    {{i.name}}
+    {{i.email}}
+    {% endfor %} 
+
+3. If you want print data in table format you should write below code. 
+using for loop you print all data.
+
+<table border="1" cellpadding="10" cellspacing="0" width="70%" align="center">
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>email</th>
+            <th>DOB</th>
+            <th>Mobile</th>
+    
+        </tr>
+        {% for i in stdata %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.dob}}</td>
+            <td>{{i.mobile}}</td>
+        </tr>
+        {% endfor%}
+    </table>
+
+------------------------------------------------------------------------------------------------
+
+for loop in HTML 
+
+{% for i in stdata %}
+
+{% endfor%}
+
+-----------------------------------------------------------------------------------------------------------
