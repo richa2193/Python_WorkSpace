@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | Doctor Finder{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="flex flex-col md:flex-row gap-8">
+        
+        <!-- Sidebar -->
+        <div class="w-full md:w-1/4">
+            <div class="bg-white rounded-3xl shadow-soft border border-gray-100 overflow-hidden sticky top-28">
+                <div class="p-6 bg-gradient-to-r from-primary to-secondary text-white text-center">
+                    <div class="w-20 h-20 mx-auto bg-white text-primary rounded-full flex items-center justify-center text-3xl font-bold mb-3 shadow-md">
+                        {{ request.user.first_name|first|default:request.user.username|first|upper }}
+                    </div>
+                    <h3 class="font-bold text-xl">{{ request.user.first_name }} {{ request.user.last_name }}</h3>
+                    <p class="text-blue-100 text-sm">{{ request.user.email }}</p>
+                </div>
+                <div class="p-4">
+                    <nav class="space-y-2">
+                        <a href="{% url 'dashboard' %}" class="flex items-center px-4 py-3 bg-blue-50 text-primary font-semibold rounded-xl transition">
+                            <i class="fa-solid fa-house w-6"></i> Dashboard
+                        </a>
+                        <a href="{% url 'profile' %}" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50 hover:text-primary font-medium rounded-xl transition">
+                            <i class="fa-solid fa-user w-6"></i> My Profile
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50 hover:text-primary font-medium rounded-xl transition">
+                            <i class="fa-solid fa-calendar-check w-6"></i> My Appointments
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50 hover:text-primary font-medium rounded-xl transition">
+                            <i class="fa-solid fa-file-medical w-6"></i> Medical Records
+                        </a>
+                        <div class="border-t border-gray-100 my-2"></div>
+                        <a href="{% url 'logout' %}" class="flex items-center px-4 py-3 text-red-500 hover:bg-red-50 font-medium rounded-xl transition">
+                            <i class="fa-solid fa-arrow-right-from-bracket w-6"></i> Logout
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="w-full md:w-3/4 space-y-8">
+            <h1 class="text-3xl font-extrabold text-gray-900">Dashboard</h1>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-3xl shadow-soft border border-gray-100 flex items-center gap-4 hover-lift">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-primary flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500 font-medium">Upcoming</p>
+                        <p class="text-2xl font-bold text-gray-900">0</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-3xl shadow-soft border border-gray-100 flex items-center gap-4 hover-lift">
+                    <div class="w-12 h-12 rounded-xl bg-green-50 text-green-500 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500 font-medium">Past Visits</p>
+                        <p class="text-2xl font-bold text-gray-900">0</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-3xl shadow-soft border border-gray-100 flex items-center gap-4 hover-lift">
+                    <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-500 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-file-prescription"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500 font-medium">Prescriptions</p>
+                        <p class="text-2xl font-bold text-gray-900">0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="bg-white p-8 rounded-3xl shadow-soft border border-gray-100">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-900">Quick Actions</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <a href="{% url 'home' %}" class="flex items-center p-4 border border-gray-100 rounded-2xl hover:border-primary hover:shadow-md transition group">
+                        <div class="w-10 h-10 rounded-full bg-blue-50 text-primary flex items-center justify-center mr-4 group-hover:bg-primary group-hover:text-white transition">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Find a Doctor</h4>
+                            <p class="text-xs text-gray-500">Search for specialists</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'profile' %}" class="flex items-center p-4 border border-gray-100 rounded-2xl hover:border-primary hover:shadow-md transition group">
+                        <div class="w-10 h-10 rounded-full bg-sky-50 text-secondary flex items-center justify-center mr-4 group-hover:bg-secondary group-hover:text-white transition">
+                            <i class="fa-solid fa-user-pen"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Update Profile</h4>
+                            <p class="text-xs text-gray-500">Manage your details</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Recent Appointments Dummy -->
+            <div class="bg-white rounded-3xl shadow-soft border border-gray-100 overflow-hidden">
+                <div class="p-6 border-b border-gray-100">
+                    <h2 class="text-xl font-bold text-gray-900">Recent Appointments</h2>
+                </div>
+                <div class="p-8 text-center text-gray-500">
+                    <div class="w-16 h-16 mx-auto bg-gray-50 rounded-full flex items-center justify-center text-2xl mb-4 text-gray-300">
+                        <i class="fa-regular fa-calendar-xmark"></i>
+                    </div>
+                    <p>You have no recent appointments.</p>
+                    <a href="{% url 'home' %}" class="inline-block mt-4 px-6 py-2 bg-blue-50 text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition">Book Now</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

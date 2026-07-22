@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us | Doctor Finder & Appointment Booking{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl mb-4">Get in Touch</h1>
+            <p class="text-xl text-gray-500">Have questions or need assistance? We're here to help. Reach out to us
+                anytime.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <!-- Contact Info -->
+            <div class="lg:col-span-1 space-y-8">
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-soft border border-gray-100 flex items-start gap-5 hover-lift">
+                    <div
+                        class="bg-blue-50 text-primary w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-1">Our Location</h3>
+                        <p class="text-gray-500">123 Health Avenue, Medical District, NY 10001, United States</p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-soft border border-gray-100 flex items-start gap-5 hover-lift">
+                    <div
+                        class="bg-green-50 text-green-500 w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-1">Phone Number</h3>
+                        <p class="text-gray-500">+1 (555) 123-4567<br>Mon-Fri 8am to 8pm</p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-soft border border-gray-100 flex items-start gap-5 hover-lift">
+                    <div
+                        class="bg-sky-50 text-secondary w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-1">Email Address</h3>
+                        <p class="text-gray-500">support@doctorfinder.com<br>info@doctorfinder.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="lg:col-span-2">
+                <div class="bg-white p-10 rounded-3xl shadow-soft border border-gray-100">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-8">Send us a Message</h2>
+                    <form action="#" method="POST" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="first_name" class="block text-sm font-medium text-gray-700 mb-2">First
+                                    Name</label>
+                                <input type="text" id="first_name" name="first_name"
+                                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary transition duration-200 outline-none"
+                                    placeholder="John">
+                            </div>
+                            <div>
+                                <label for="last_name" class="block text-sm font-medium text-gray-700 mb-2">Last
+                                    Name</label>
+                                <input type="text" id="last_name" name="last_name"
+                                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary transition duration-200 outline-none"
+                                    placeholder="Doe">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email
+                                Address</label>
+                            <input type="email" id="email" name="email"
+                                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary transition duration-200 outline-none"
+                                placeholder="john@example.com">
+                        </div>
+
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject"
+                                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary transition duration-200 outline-none"
+                                placeholder="How can we help you?">
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5"
+                                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary transition duration-200 outline-none resize-none"
+                                placeholder="Your message here..."></textarea>
+                        </div>
+
+                        <button type="button"
+                            class="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-4 px-8 rounded-xl hover:shadow-lg transform transition hover:-translate-y-0.5 duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div
+            class="mt-16 bg-white rounded-3xl p-4 shadow-soft border border-gray-100 h-[400px] w-full overflow-hidden hover-lift">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.854291821338!2d70.77103947436095!3d22.28350867969865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959ca3b1422b099%3A0x1cc7e83e34911d14!2sShree%20Giriraj%20Hospital!5e0!3m2!1sen!2sin!4v1783499423834!5m2!1sen!2sin"
+                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}

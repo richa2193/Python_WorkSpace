@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}About Us | Doctor Finder & Appointment Booking{% endblock %}
+
+{% block content %}
+<!-- Header Section -->
+<div class="bg-gradient-to-r from-primary to-secondary py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <h1 class="text-4xl font-extrabold tracking-tight mb-4">About Doctor Finder</h1>
+        <p class="text-xl max-w-2xl mx-auto opacity-90">Revolutionizing healthcare access with a simple, secure, and modern platform.</p>
+    </div>
+</div>
+
+<!-- Mission Section -->
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+            <div class="mb-10 lg:mb-0">
+                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Hospital staff" class="rounded-3xl shadow-xl">
+            </div>
+            <div>
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Our Mission</h2>
+                <p class="text-lg text-gray-500 mb-6">
+                    At Doctor Finder, our mission is to make quality healthcare accessible to everyone. We believe that finding the right doctor and booking an appointment should be as simple as booking a flight or ordering food.
+                </p>
+                <p class="text-lg text-gray-500 mb-8">
+                    We've built a platform that connects patients with top-rated medical professionals, offering transparency, reliability, and ease of use. Your health is your most valuable asset, and we're here to help you protect it.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-6 rounded-2xl">
+                        <div class="text-primary text-3xl mb-3"><i class="fa-solid fa-user-doctor"></i></div>
+                        <h4 class="font-bold text-gray-900 text-2xl">5,000+</h4>
+                        <p class="text-sm text-gray-600">Verified Doctors</p>
+                    </div>
+                    <div class="bg-sky-50 p-6 rounded-2xl">
+                        <div class="text-secondary text-3xl mb-3"><i class="fa-solid fa-users"></i></div>
+                        <h4 class="font-bold text-gray-900 text-2xl">2M+</h4>
+                        <p class="text-sm text-gray-600">Happy Patients</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-extrabold text-gray-900">Our Core Values</h2>
+            <p class="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">The principles that guide everything we do.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="bg-white p-8 rounded-3xl shadow-soft text-center hover-lift border border-gray-100">
+                <div class="w-16 h-16 mx-auto bg-green-50 text-green-500 rounded-full flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-shield-heart"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Trust & Safety</h3>
+                <p class="text-gray-500">All doctors on our platform undergo a rigorous verification process to ensure the highest quality of care.</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-3xl shadow-soft text-center hover-lift border border-gray-100">
+                <div class="w-16 h-16 mx-auto bg-blue-50 text-primary rounded-full flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Efficiency</h3>
+                <p class="text-gray-500">We leverage modern technology to streamline the booking process, saving you valuable time.</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-3xl shadow-soft text-center hover-lift border border-gray-100">
+                <div class="w-16 h-16 mx-auto bg-purple-50 text-purple-500 rounded-full flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-hand-holding-medical"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Empathy</h3>
+                <p class="text-gray-500">We understand that seeking medical help can be stressful, so we design everything with compassion in mind.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
