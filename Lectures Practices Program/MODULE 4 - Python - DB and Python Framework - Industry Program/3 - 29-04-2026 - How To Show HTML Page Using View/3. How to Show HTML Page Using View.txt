@@ -1,0 +1,607 @@
+===========================================
+DJANGO - HOW TO SHOW HTML PAGE USING VIEW
+===========================================
+
+Main Concept:
+
+jetla template etla view
+jetla view etli url
+
+Meaning:
+
+- Every HTML page needs one view
+- Every view needs one URL
+
+
+=================================================
+STEP 1 — CREATE PROJECT FOLDER
+=================================================
+
+Create one folder manually.
+
+Example Folder Name:
+
+DjangoProject
+
+
+=================================================
+STEP 2 — OPEN CMD INSIDE FOLDER
+=================================================
+
+Open that folder.
+
+Click in folder path bar.
+
+Type:
+
+cmd
+
+Press Enter.
+
+Now command prompt opens inside folder.
+
+
+=================================================
+STEP 3 — CREATE VIRTUAL ENVIRONMENT
+=================================================
+
+Command:
+
+python -m venv myenv
+
+
+-----------------------------------------
+Explanation:
+-----------------------------------------
+
+myenv = environment name
+
+
+After command:
+
+myenv folder will create.
+
+
+Structure:
+
+DjangoProject/
+    myenv/
+
+
+=================================================
+STEP 4 — ACTIVATE ENVIRONMENT
+=================================================
+
+FOR WINDOWS:
+
+Command:
+
+myenv\Scripts\activate
+
+
+After activation terminal shows:
+
+(myenv)
+
+
+Example:
+
+(myenv) C:\Users\HP\Desktop\DjangoProject>
+
+
+-----------------------------------------
+Why environment required?
+-----------------------------------------
+
+- Separate packages
+- Avoid conflicts
+- Professional workflow
+- Safe installation
+
+
+=================================================
+STEP 5 — INSTALL DJANGO
+=================================================
+
+Command:
+
+pip install django
+
+
+Wait until Django installs successfully.
+
+
+=================================================
+STEP 6 — CHECK DJANGO VERSION
+=================================================
+
+Command:
+
+django-admin --version
+
+
+If version appears then Django installed properly.
+
+
+=================================================
+STEP 7 — CREATE DJANGO PROJECT
+=================================================
+
+Command:
+
+django-admin startproject BatchProject
+
+
+After command structure becomes:
+
+DjangoProject/
+    myenv/
+    BatchProject/
+
+
+=================================================
+STEP 8 — OPEN PROJECT DIRECTORY
+=================================================
+
+Command:
+
+cd BatchProject
+
+
+Now structure:
+
+DjangoProject/
+    myenv/
+    BatchProject/
+        manage.py
+        BatchProject/
+
+
+=================================================
+STEP 9 — OPEN PROJECT IN VS CODE
+=================================================
+
+Now open VS Code.
+
+
+Method 1:
+
+Inside CMD type:
+
+code .
+
+
+Press Enter.
+
+=================================================
+STEP 10 — CREATE APP
+=================================================
+
+Open terminal in VS Code.
+
+Command:
+
+python manage.py startapp myapp
+
+
+Example app name:
+
+myapp
+
+
+=================================================
+STEP 11 — REGISTER APP
+=================================================
+
+Open:
+
+settings.py
+
+
+Path:
+
+BatchProject/BatchProject/settings.py
+
+
+Find:
+
+INSTALLED_APPS
+
+
+Add:
+
+'myapp',
+
+
+Example:
+
+INSTALLED_APPS = [
+
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'myapp',
+
+]
+
+
+Save file.
+
+
+=================================================
+STEP 12 — CREATE templates FOLDER
+=================================================
+
+Inside:
+
+myapp
+
+Create folder:
+
+templates
+
+
+Structure:
+
+myapp/
+    templates/
+
+
+=================================================
+STEP 13 — CREATE HTML FILE
+=================================================
+
+Inside templates folder create:
+
+index.html
+
+
+Structure:
+
+myapp/
+    templates/
+        index.html
+
+
+=================================================
+STEP 14 — WRITE HTML CODE
+=================================================
+
+Open:
+
+index.html
+
+
+Write:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+
+<body>
+
+    <h1>Welcome To Django</h1>
+
+</body>
+</html>
+
+
+Save file.
+
+
+=================================================
+STEP 15 — CREATE VIEW
+=================================================
+
+Open:
+
+views.py
+
+
+Path:
+
+myapp/views.py
+
+
+Write:
+
+from django.shortcuts import render
+
+
+def index(request):
+
+    return render(request,'index.html')
+
+
+-----------------------------------------
+Explanation:
+-----------------------------------------
+
+index = view function
+
+render() = show HTML page
+
+'index.html' = template file
+
+
+=================================================
+STEP 16 — CREATE urls.py INSIDE APP
+=================================================
+
+Inside:
+
+myapp
+
+Create file:
+
+urls.py
+
+
+Path:
+
+myapp/urls.py
+
+
+Write:
+
+from django.urls import path
+from . import views
+
+
+urlpatterns = [
+
+    path('',views.index),
+
+]
+
+
+-----------------------------------------
+Explanation:
+-----------------------------------------
+
+'' = home URL
+
+views.index = call index view
+
+
+=================================================
+STEP 17 — CONNECT MAIN URL
+=================================================
+
+Open:
+
+BatchProject/urls.py
+
+
+Write:
+
+from django.contrib import admin
+from django.urls import path,include
+
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+
+    path('',include('myapp.urls')),
+
+]
+
+
+-----------------------------------------
+Explanation:
+-----------------------------------------
+
+include('myapp.urls')
+
+connects app URLs with main project
+
+
+=================================================
+STEP 18 — RUN SERVER
+=================================================
+
+Command:
+
+python manage.py runserver
+
+
+=================================================
+STEP 19 — OPEN BROWSER
+=================================================
+
+Open:
+
+http://127.0.0.1:8000/
+
+
+Now:
+
+index.html page will display.
+
+
+===========================================
+FINAL FLOW UNDERSTANDING
+===========================================
+
+HTML Page
+   ↓
+
+VIEW
+   ↓
+
+URL
+   ↓
+
+Browser
+
+
+===========================================
+REMEMBER THIS
+===========================================
+
+jetla template etla view
+
+jetla view etli url
+
+
+Example:
+
+index.html
+   ↓
+index() view
+   ↓
+path('',views.index)
+
+
+about.html
+   ↓
+about() view
+   ↓
+path('about/',views.about)
+
+
+contact.html
+   ↓
+contact() view
+   ↓
+path('contact/',views.contact)
+
+
+===========================================
+HOW TO ADD MULTIPLE HTML PAGES
+===========================================
+
+STEP 1:
+
+Create HTML file.
+
+
+Example:
+
+about.html
+
+
+STEP 2:
+
+Create view.
+
+
+Example:
+
+def about(request):
+
+    return render(request,'about.html')
+
+
+STEP 3:
+
+Create URL.
+
+
+Example:
+
+path('about/',views.about)
+
+
+===========================================
+FULL EXAMPLE
+===========================================
+
+templates/
+
+    index.html
+    about.html
+    contact.html
+
+
+views.py
+
+from django.shortcuts import render
+
+
+def index(request):
+
+    return render(request,'index.html')
+
+
+def about(request):
+
+    return render(request,'about.html')
+
+
+def contact(request):
+
+    return render(request,'contact.html')
+
+
+urls.py
+
+from django.urls import path
+from . import views
+
+
+urlpatterns = [
+
+    path('',views.index),
+
+    path('about/',views.about),
+
+    path('contact/',views.contact),
+
+]
+
+
+===========================================
+IMPORTANT COMMANDS
+===========================================
+
+Create Environment:
+
+python -m venv myenv
+
+
+Activate Environment:
+
+myenv\Scripts\activate
+
+
+Install Django:
+
+pip install django
+
+
+Check Django Version:
+
+django-admin --version
+
+
+Create Project:
+
+django-admin startproject BatchProject
+
+
+Create App:
+
+python manage.py startapp myapp
+
+
+Run Server:
+
+python manage.py runserver
+
+
+Open VS Code:
+
+code .
+
+
+===========================================
+PROJECT COMPLETED
+===========================================
