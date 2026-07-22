@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white text-center">
+                <h2 class="mb-0">Student Data Table</h2>
+            </div>
+
+            <div class="card-body">
+
+                <div class="table-responsive">
+
+                    <table class="table table-striped table-hover table-bordered align-middle">
+
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Mobile No</th>
+                                <th>City</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for i in data %}
+                            <tr>
+                                <td>{{i.id}}</td>
+                                <td>{{i.name}}</td>
+                                <td>{{i.email}}</td>
+                                <td>{{i.mobile}}</td>
+                                <td>{{i.city}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
