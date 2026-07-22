@@ -1,0 +1,3 @@
+how to connect all other pages.
+
+Set path in all files where like static/css/

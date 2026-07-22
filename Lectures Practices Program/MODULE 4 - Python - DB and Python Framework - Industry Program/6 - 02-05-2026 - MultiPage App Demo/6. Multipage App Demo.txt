@@ -1,0 +1,87 @@
+How to make Multipage app in Django and how to connect them.
+
+Step 1
+inside settings.py file in last add this lines.
+
+Ex:
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+-----------------------------------------------------------------------------------------------------------------
+
+Step 2
+now make static folder and inside this make file named as css, js and img. 
+this is must for every project.
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+Step 3
+inside templates folder make files named as index.html , contact.html and about.html and write basic html code in these all files.
+
+------------------------------------------------------------------------------------------------------------------------------
+
+Step 5
+now for put imgs on frontend page and add other file's path to connect multi page & write this code inside body tag.
+
+Ex:
+index.html
+    <h1 style="text-align: center; color: blueviolet;">Welcome to Home</h1>
+    <hr>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    <hr>
+    <img src="/static/imgs/first.jpg" alt="" height="300" width="250">
+    <img src="/static/imgs/second.jpg" alt="" height="300" width="250">
+
+about.html
+    <h1 style="text-align: center; color: lightcoral;">Welcome to About Page</h1>
+    <hr>
+    <a href="/">Home</a>
+    <a href="/contact">Contact</a>
+
+contact.html
+    <h1 style="text-align: center; color: rgb(5, 70, 5);">Welcome to Contact Page</h1>
+    <hr>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 6 
+now in urls.py add path of the index, about and contact page and from myapp import views.
+
+Ex:
+urls.py
+from myapp import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('',views.index),
+    path('about/',views.about),
+    path('contact/',views.contact),
+]
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 7 
+Now in views.py make functions for each files.
+
+Ex:
+from django.shortcuts import render
+
+# Create your views here.
+def index(request):
+    return render(request,'index.html')
+
+def about(request):
+    return render(request,'about.html')
+
+def contact(request):
+    return render(request,'contact.html')
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+step 8 
+New Terminal - write command python manage.py runserver.
+

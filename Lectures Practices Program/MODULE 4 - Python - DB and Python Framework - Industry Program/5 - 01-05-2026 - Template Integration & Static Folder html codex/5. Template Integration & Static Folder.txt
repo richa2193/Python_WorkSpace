@@ -1,0 +1,17 @@
+Must folder for every project 
+
+static folder  - imag, css, js
+
+settings.py  - path
+
+template integration - how to connect frontend with backend 
+
+change location in each html file - static/
+
+jetli html file etla views bane and etla j urls na path 
+
+html codex 
+
+
+
+
