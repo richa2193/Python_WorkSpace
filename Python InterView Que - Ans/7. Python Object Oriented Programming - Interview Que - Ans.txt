@@ -1,0 +1,291 @@
+1. What is Object-Oriented Programming (OOP), and why is it used?
+- OOP is a programming approach based on objects and classes.
+- It helps organize code better.
+
+Interview line:
+“OOP is used to make programs more modular, reusable, secure, and easier to maintain.”
+
+--------------------------------------------------
+
+2. Explain the four main principles of OOP.
+- Encapsulation → binding data and methods together.
+- Abstraction → hiding implementation details.
+- Inheritance → reusing properties of another class.
+- Polymorphism → one method behaving differently.
+
+Interview line:
+“These four principles help create flexible, reusable, and secure applications.”
+
+--------------------------------------------------
+
+3. What is a class in Python, and how do you define one?
+- A class is a blueprint for creating objects.
+
+Example:
+class Student:
+    pass
+
+Interview line:
+“A class defines the structure and behavior that objects will have.”
+
+--------------------------------------------------
+
+4. What is an object, and how is it related to a class?
+- An object is an instance of a class.
+
+Example:
+s = Student()
+
+Interview line:
+“Objects are real entities created from a class and can access class properties and methods.”
+
+--------------------------------------------------
+
+5. What is the purpose of the self keyword in Python classes?
+- self refers to the current object.
+
+Interview line:
+“The self keyword is used to access instance variables and methods of the current object.”
+
+--------------------------------------------------
+
+6. How do you create an instance (object) of a class in Python?
+
+Example:
+obj = Student()
+
+Interview line:
+“An object is created by calling the class name like a function.”
+
+--------------------------------------------------
+
+7. Explain the difference between instance variables and class variables.
+- Instance variables belong to objects.
+- Class variables are shared by all objects.
+
+Interview line:
+“Instance variables are unique for each object, while class variables are common for all objects of a class.”
+
+--------------------------------------------------
+
+8. What is the purpose of the __init__ method in Python?
+- __init__ is a constructor.
+- It initializes object data.
+
+Example:
+class Student:
+    def __init__(self, name):
+        self.name = name
+
+Interview line:
+“The __init__ method automatically initializes object attributes when an object is created.”
+
+--------------------------------------------------
+
+9. What is encapsulation, and how is it implemented in Python?
+- Encapsulation means wrapping data and methods together.
+
+Interview line:
+“Encapsulation helps protect data by controlling direct access to variables.”
+
+--------------------------------------------------
+
+10. How do you make an attribute or method private in Python?
+- Use double underscore __
+
+Example:
+class Test:
+    def __init__(self):
+        self.__x = 10
+
+Interview line:
+“In Python, private members are created using double underscores to restrict direct access.”
+
+--------------------------------------------------
+
+11. What is abstraction, and how does it differ from encapsulation?
+- Abstraction hides implementation details.
+- Encapsulation protects data.
+
+Interview line:
+“Abstraction focuses on hiding complexity, while encapsulation focuses on securing data.”
+
+--------------------------------------------------
+
+12. How can you achieve abstraction in Python?
+- Using abstract classes and methods.
+
+Example:
+from abc import ABC, abstractmethod
+
+Interview line:
+“Python achieves abstraction using abstract base classes from the abc module.”
+
+--------------------------------------------------
+
+13. What are getter and setter methods, and how are they used in Python?
+- Getter retrieves value.
+- Setter updates value.
+
+Interview line:
+“Getter and setter methods provide controlled access to object data.”
+
+--------------------------------------------------
+
+14. Explain the @property decorator in Python and its purpose.
+- @property allows method access like attribute.
+
+Example:
+@property
+
+Interview line:
+“The @property decorator helps implement getter methods in a cleaner and more Pythonic way.”
+
+--------------------------------------------------
+
+15. How do public, protected, and private access modifiers work in Python?
+- Public → accessible everywhere.
+- Protected → single underscore _.
+- Private → double underscore __.
+
+Interview line:
+“Python uses naming conventions to indicate access levels for class members.”
+
+--------------------------------------------------
+
+16. What is inheritance, and how does it work in Python?
+- Inheritance allows one class to use properties of another class.
+
+Interview line:
+“Inheritance improves code reusability by allowing child classes to inherit features from parent classes.”
+
+--------------------------------------------------
+
+17. Explain single, multiple, and multilevel inheritance.
+- Single → one parent.
+- Multiple → multiple parents.
+- Multilevel → inheritance chain.
+
+Interview line:
+“These inheritance types allow classes to reuse functionality in different ways.”
+
+--------------------------------------------------
+
+18. How do you create a subclass in Python?
+
+Example:
+class Child(Parent):
+    pass
+
+Interview line:
+“A subclass is created by passing the parent class name inside parentheses.”
+
+--------------------------------------------------
+
+19. What is the super() function, and when would you use it?
+- super() accesses parent class methods.
+
+Example:
+super().__init__()
+
+Interview line:
+“The super() function is used to call methods or constructors of the parent class.”
+
+--------------------------------------------------
+
+20. What is method overriding, and how is it implemented in Python?
+- Child class changes parent method behavior.
+
+Interview line:
+“Method overriding allows subclasses to provide their own implementation of inherited methods.”
+
+--------------------------------------------------
+
+21. What are the potential issues with multiple inheritance, and how does Python handle them?
+- Method conflicts can occur.
+- Python uses MRO to solve this.
+
+Interview line:
+“Python resolves multiple inheritance conflicts using Method Resolution Order.”
+
+--------------------------------------------------
+
+22. What is the MRO (Method Resolution Order) in Python?
+- MRO defines the order for searching methods.
+
+Example:
+ClassName.mro()
+
+Interview line:
+“MRO determines the sequence in which Python searches parent classes for methods and attributes.”
+
+--------------------------------------------------
+
+23. What is polymorphism in OOP, and how does it work in Python?
+- Same method behaves differently.
+
+Interview line:
+“Polymorphism allows the same method name to perform different actions depending on the object.”
+
+--------------------------------------------------
+
+24. What is method overloading, and does Python support it?
+- Same method name with different parameters.
+- Python does not support true overloading directly.
+
+Interview line:
+“Python achieves method overloading behavior using default arguments or variable-length arguments.”
+
+--------------------------------------------------
+
+25. Explain operator overloading and give an example in Python.
+- Operators can work differently for objects.
+
+Example:
+__add__()
+
+Interview line:
+“Operator overloading allows operators like + to work with user-defined objects.”
+
+--------------------------------------------------
+
+26. How do the __str__ and __repr__ methods work in Python classes?
+- __str__ → readable output.
+- __repr__ → developer representation.
+
+Interview line:
+“__str__ is used for user-friendly output, while __repr__ is mainly for debugging and development.”
+
+--------------------------------------------------
+
+27. What is duck typing, and how does it apply to Python?
+- Python checks behavior, not object type.
+
+Interview line:
+“Duck typing means Python focuses on what an object can do rather than its actual type.”
+
+--------------------------------------------------
+
+28. How is polymorphism useful in designing flexible and maintainable code?
+- Same interface for different objects.
+
+Interview line:
+“Polymorphism improves flexibility because the same code can work with different object types.”
+
+--------------------------------------------------
+
+29. What are abstract classes and interfaces, and how are they implemented in Python?
+- Abstract classes contain abstract methods.
+- Implemented using abc module.
+
+Interview line:
+“Abstract classes define common structures that child classes must implement.”
+
+--------------------------------------------------
+
+30. What is composition, and how is it different from inheritance?
+- Composition means one class contains another object.
+- Inheritance means one class derives another.
+
+Interview line:
+“Composition creates ‘has-a’ relationships, while inheritance creates ‘is-a’ relationships.”

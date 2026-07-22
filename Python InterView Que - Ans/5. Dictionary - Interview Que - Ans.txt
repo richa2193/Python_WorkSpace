@@ -1,0 +1,231 @@
+1. What is a dictionary in Python, and how do you create one?
+- A dictionary is a collection of data stored in key-value pairs.
+- Dictionaries are mutable and unordered.
+- Created using curly braces {}.
+
+Example:
+student = {"name": "Richa", "age": 20}
+
+Interview line:
+“A dictionary in Python stores data in key-value pairs, which allows fast and easy access to values using keys.”
+
+--------------------------------------------------
+
+2. How do dictionaries differ from lists and tuples in Python?
+- Lists and tuples use indexes.
+- Dictionaries use keys.
+- Dictionaries store data in key-value format.
+
+Interview line:
+“Lists and tuples access elements using indexes, while dictionaries access data using unique keys.”
+
+--------------------------------------------------
+
+3. Explain the concept of key-value pairs in dictionaries.
+- Each item has a key and its related value.
+
+Example:
+{"name": "Richa"}
+
+- "name" is key.
+- "Richa" is value.
+
+Interview line:
+“In dictionaries, every value is associated with a unique key, making data retrieval faster and organized.”
+
+--------------------------------------------------
+
+4. How do you access the value associated with a specific key in a dictionary?
+- Use the key inside square brackets.
+
+Example:
+student = {"name": "Richa"}
+print(student["name"])
+
+Interview line:
+“We access dictionary values by using their corresponding keys.”
+
+--------------------------------------------------
+
+5. How can you add a new key-value pair to an existing dictionary?
+- Assign a new key and value.
+
+Example:
+student["city"] = "Surat"
+
+Interview line:
+“New key-value pairs can be added simply by assigning a value to a new key.”
+
+--------------------------------------------------
+
+6. How do you update the value of an existing key in a dictionary?
+- Assign a new value to the existing key.
+
+Example:
+student["age"] = 21
+
+Interview line:
+“We can update dictionary values by reassigning a new value to an existing key.”
+
+--------------------------------------------------
+
+7. Explain the difference between get() and direct key access in a dictionary.
+- get() returns None if key is missing.
+- Direct access gives an error.
+
+Example:
+student.get("name")
+
+Interview line:
+“get() is safer because it avoids errors when the key does not exist in the dictionary.”
+
+--------------------------------------------------
+
+8. How can you remove a key-value pair from a dictionary? Describe pop(), popitem(), and del.
+- pop() removes by key.
+- popitem() removes last item.
+- del deletes specific item or whole dictionary.
+
+Example:
+student.pop("age")
+del student["name"]
+
+Interview line:
+“Python provides multiple ways to remove dictionary elements depending on whether we remove by key or by position.”
+
+--------------------------------------------------
+
+9. What are dictionary methods like keys(), values(), and items() used for?
+- keys() → returns all keys.
+- values() → returns all values.
+- items() → returns key-value pairs.
+
+Interview line:
+“These methods help us retrieve and work with dictionary data efficiently.”
+
+--------------------------------------------------
+
+10. How can you iterate over key-value pairs in a dictionary?
+
+Example:
+student = {"name":"Richa", "age":20}
+
+for k, v in student.items():
+    print(k, v)
+
+Interview line:
+“We commonly use the items() method with a for loop to iterate through dictionary keys and values.”
+
+--------------------------------------------------
+
+11. What happens if you try to access a key that doesn’t exist in a dictionary?
+- Direct access gives KeyError.
+
+Example:
+student["city"]   # Error
+
+Interview line:
+“If a key is not found, Python raises a KeyError unless we use safer methods like get().”
+
+--------------------------------------------------
+
+12. How do you check if a key exists in a dictionary?
+- Use in keyword.
+
+Example:
+"name" in student
+
+Interview line:
+“We use the ‘in’ keyword to check whether a specific key exists in a dictionary.”
+
+--------------------------------------------------
+
+13. What is a dictionary comprehension, and how is it used?
+- Short way to create dictionaries.
+
+Example:
+square = {x: x*x for x in range(5)}
+
+Interview line:
+“Dictionary comprehension provides a compact and readable way to create dictionaries.”
+
+--------------------------------------------------
+
+14. Explain how to merge two dictionaries in Python.
+- Use update() or | operator.
+
+Example:
+a = {"x":1}
+b = {"y":2}
+
+a.update(b)
+
+Interview line:
+“Dictionaries can be merged to combine data from multiple sources into one dictionary.”
+
+--------------------------------------------------
+
+15. Can dictionary keys be mutable? Why or why not?
+- No, keys must be immutable.
+- Mutable objects can change, causing lookup problems.
+
+Interview line:
+“Dictionary keys must be immutable because Python uses hashing for fast data access.”
+
+--------------------------------------------------
+
+16. What are some use cases for using dictionaries in Python?
+- Database records
+- User information
+- Configuration settings
+- Counting frequency
+
+Interview line:
+“Dictionaries are useful whenever data needs to be stored and accessed using meaningful keys.”
+
+--------------------------------------------------
+
+17. How do you sort a dictionary by keys or by values?
+- Use sorted().
+
+Example:
+sorted(student.keys())
+
+Interview line:
+“We can sort dictionaries based on keys or values using the sorted() function.”
+
+--------------------------------------------------
+
+18. What is the purpose of the fromkeys() method in dictionaries?
+- Creates dictionary with given keys and same default value.
+
+Example:
+dict.fromkeys(["a","b"], 0)
+
+Interview line:
+“fromkeys() is used to quickly create a dictionary with predefined keys and default values.”
+
+--------------------------------------------------
+
+19. How do clear() and copy() methods work in dictionaries?
+- clear() removes all items.
+- copy() creates a shallow copy.
+
+Example:
+student.clear()
+new_dict = student.copy()
+
+Interview line:
+“clear() empties the dictionary, while copy() creates another dictionary with the same data.”
+
+--------------------------------------------------
+
+20. Explain how a dictionary can be used to implement a simple lookup table.
+- Keys act as lookup identifiers.
+- Values store related information.
+
+Example:
+marks = {"Richa": 90, "Rahul": 85}
+
+Interview line:
+“A dictionary works as an efficient lookup table because values can be quickly accessed using keys.”

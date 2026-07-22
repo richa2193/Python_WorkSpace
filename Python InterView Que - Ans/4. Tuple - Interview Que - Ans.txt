@@ -1,0 +1,234 @@
+1. What is a tuple in Python, and how do you create one?
+- A tuple is a collection of items stored in a single variable.
+- Tuples are ordered and immutable.
+- Created using parentheses ().
+
+Example:
+data = ("Richa", 20, "Python")
+
+Interview line:
+“A tuple is an ordered and immutable collection in Python used to store multiple values together.”
+
+--------------------------------------------------
+
+2. How is a tuple different from a list in Python?
+- Lists are mutable (changeable).
+- Tuples are immutable (cannot be changed).
+
+Interview line:
+“The main difference is that lists can be modified, while tuples cannot be changed after creation.”
+
+--------------------------------------------------
+
+3. What does it mean for a tuple to be immutable?
+- Immutable means values cannot be changed after creation.
+
+Example:
+t = (1, 2, 3)
+# t[0] = 10 ❌ Error
+
+Interview line:
+“Tuple immutability means we cannot add, remove, or modify elements once the tuple is created.”
+
+--------------------------------------------------
+
+4. How can you access elements in a tuple by index?
+- Use indexing starting from 0.
+
+Example:
+t = ("a", "b", "c")
+print(t[1])
+
+Interview line:
+“We use index positions to access tuple elements, just like lists.”
+
+--------------------------------------------------
+
+5. Explain how tuple slicing works in Python.
+- Slicing is used to get part of a tuple.
+
+Example:
+t = (1,2,3,4,5)
+print(t[1:4])
+
+Interview line:
+“Tuple slicing allows us to extract specific portions of a tuple using start and end indexes.”
+
+--------------------------------------------------
+
+6. How can you create a single-element tuple?
+- Add a comma after the element.
+
+Example:
+t = (5,)
+
+Interview line:
+“In Python, a single-element tuple must contain a comma, otherwise it is treated as a normal value.”
+
+--------------------------------------------------
+
+7. What are some situations where using a tuple is more beneficial than a list?
+- When data should not change.
+- Faster than lists.
+- Can be used as dictionary keys.
+
+Interview line:
+“Tuples are useful for fixed data because they are immutable, memory efficient, and more secure.”
+
+--------------------------------------------------
+
+8. How can you concatenate two tuples in Python?
+- Use + operator.
+
+Example:
+a = (1,2)
+b = (3,4)
+print(a + b)
+
+Interview line:
+“We can combine two tuples using the + operator to create a new tuple.”
+
+--------------------------------------------------
+
+9. Can you modify a tuple in Python? If not, why?
+- No, tuples are immutable.
+
+Interview line:
+“No, tuples cannot be modified because Python tuples are designed to be immutable for data safety and performance.”
+
+--------------------------------------------------
+
+10. How do you unpack values from a tuple into individual variables?
+
+Example:
+t = (1, 2, 3)
+a, b, c = t
+
+Interview line:
+“Tuple unpacking allows us to assign tuple values directly into separate variables.”
+
+--------------------------------------------------
+
+11. What is tuple packing and unpacking? Give an example.
+- Packing → storing multiple values in one tuple.
+- Unpacking → extracting values into variables.
+
+Example:
+t = 1, 2, 3     # packing
+a, b, c = t     # unpacking
+
+Interview line:
+“Packing groups values into a tuple, while unpacking separates tuple values into variables.”
+
+--------------------------------------------------
+
+12. How can you check if an element exists within a tuple?
+- Use in keyword.
+
+Example:
+1 in (1,2,3)
+
+Interview line:
+“We use the ‘in’ keyword to check whether an element exists inside a tuple.”
+
+--------------------------------------------------
+
+13. How do you find the length of a tuple in Python?
+- Use len().
+
+Example:
+len((1,2,3))
+
+Interview line:
+“The len() function returns the total number of elements present in a tuple.”
+
+--------------------------------------------------
+
+14. Explain the use of count() and index() methods in tuples.
+- count() → counts occurrences.
+- index() → gives position.
+
+Example:
+t = (1,2,2,3)
+t.count(2)
+t.index(3)
+
+Interview line:
+“count() is used to count repeated values, while index() finds the position of an element.”
+
+--------------------------------------------------
+
+15. How do you iterate over elements in a tuple?
+
+Example:
+t = (1,2,3)
+
+for i in t:
+    print(i)
+
+Interview line:
+“We can iterate through tuple elements using a for loop.”
+
+--------------------------------------------------
+
+16. Can a tuple contain mutable data types, such as lists? If yes, how does it affect immutability?
+- Yes, tuples can contain lists.
+- Tuple itself cannot change, but list inside it can change.
+
+Example:
+t = ([1,2], 3)
+t[0].append(4)
+
+Interview line:
+“A tuple can contain mutable objects like lists, and those inner objects can still be modified.”
+
+--------------------------------------------------
+
+17. How do you convert a list to a tuple, and vice versa?
+- tuple() converts list to tuple.
+- list() converts tuple to list.
+
+Example:
+tuple([1,2,3])
+list((1,2,3))
+
+Interview line:
+“Python provides tuple() and list() functions for easy conversion between lists and tuples.”
+
+--------------------------------------------------
+
+18. How does Python handle memory management with tuples compared to lists?
+- Tuples use less memory than lists.
+- Tuples are faster because they are immutable.
+
+Interview line:
+“Tuples are more memory efficient and slightly faster than lists because they cannot be modified.”
+
+--------------------------------------------------
+
+19. What are named tuples, and how do they differ from regular tuples?
+- Named tuples allow access using names instead of indexes.
+
+Example:
+from collections import namedtuple
+
+Student = namedtuple("Student", ["name", "age"])
+s = Student("Richa", 20)
+
+Interview line:
+“Named tuples improve readability because values can be accessed using field names instead of indexes.”
+
+--------------------------------------------------
+
+20. Explain how to use a tuple as a dictionary key.
+- Tuples can be dictionary keys because they are immutable.
+
+Example:
+data = {(1,2): "Python"}
+
+Interview line:
+“Tuples can be used as dictionary keys because immutable objects are hashable in Python.”
+
+
+*******************************************************************************************
+

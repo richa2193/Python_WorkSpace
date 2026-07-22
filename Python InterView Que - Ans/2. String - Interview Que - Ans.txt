@@ -1,0 +1,198 @@
+Que 1. 
+What is a string in Python, and how do you create one? 
+Ans.
+A string is a sequence of characters (text).
+Created using quotes. (‘ ’ or “ ”)
+Ex:
+name = "Richa"
+Interview Line:
+A string is a collection of characters used to store text data.
+
+
+Que 2. 
+Explain the immutability of strings in Python. What does it mean, and why is it important? 
+Ans.
+Strings are immutable – cannot be changed after creation.
+Imp – you can create a new string, but not modify the original.
+Ex:
+s = "hello"
+# s[0] = 'H'  error
+Interview Line:
+Immutability means strings cannot be changed, which makes them safe and memory efficient.
+
+Que 3. 
+How do you access individual characters in a string? 
+Ans.
+Use indexing.
+Ex:
+s = "Python"
+print(s[0])  # P
+interview Line:
+we use index to access characters in a string.
+
+
+Que 4.
+What is string slicing, and how do you perform it in Python? 
+Ans.
+Used to get a part of string.
+Syntax – string[start:end]
+Ex:
+s = "Python"
+print(s[0:3])  # Pyt
+interview Line:
+slicing is used to extract a part of a string.
+
+Que 5.
+How can you concatenate two or more strings in Python? 
+Ans.
+Combine string using +.
+Ex:
+a = "Hello"
+b = "World"
+print(a + " " + b)
+Interview Line:
+We use + operator to join strings.
+
+
+
+Que 6.
+What are some common string methods in Python, and what do they do? 
+Ans.
+Upper() – uppercase 
+Lower() – lowercase
+Strip() – remove spaces
+Replace() – replace text
+Interview Line:
+String methods are built-in functions to perform operations on strings.
+
+Que 7.
+How does the len() function work with strings? 
+Ans.
+Returns length of string.
+Ex:
+len("Hello")  # 5
+interview Line:
+len() gives the number of characters in a string.
+
+
+
+
+Que 8. 
+Explain the difference between upper(), lower(), and title() string methods. 
+Ans.
+Upper() – ALL CAPS 
+Lower() – all small
+Title() – First letter capital
+Interview Line:
+These methods change the case of characters in a string.
+
+Que 9.
+How do you remove whitespace from the beginning or end of a string?
+Ans.
+Strip() – both sides.
+Lstrip() – left
+Rstrip() – right
+Interview Line:
+We use strip methods to remove unwanted spaces.
+
+Que 10.
+What is string formatting, and what are the different ways to format strings in Python? 
+Ans.
+Used to insert values into string.
+Ways :
+% formatting 
+format()
+f-strings
+interview Line:
+string formatting is used to create dynamic strings.
+ 
+Que 11.
+Explain f-strings (formatted string literals) in Python and give an example. 
+Ans.
+Easy and modern way.
+Ex:
+name = "Richa"
+print(f"Hello {name}")
+interview Line:
+f-strings allow us to directly include variables inside strings.
+
+Que 12.
+How do you check if a substring exists within a string in Python? 
+Ans.
+Use in.
+Ex:
+"Py" in "Python"  # True
+Interview Line:
+We use ‘in’ keyword to check substring.
+
+Que 13.
+What is the purpose of the find() and index() methods? How do they differ? 
+Ans.
+Both find position.
+Find() – returns -1 if not found.
+Index() – gives error.
+Interview Line:
+Find() is safer because it does not crash the program.
+
+Que 14.
+How can you split a string into a list of substrings? 
+Ans.
+Split() – converts string to list.
+Ex:
+"a,b,c".split(",")  # ['a','b','c']
+Interview Line:
+Split() breaks string into list.
+
+
+
+Que 15.
+How do you join a list of strings into a single string in Python? 
+Ans.
+Join() – list to string.
+Ex:
+",".join(["a","b","c"])  # a,b,c
+Interview Line:
+Join() combines list elements into string.
+
+Que 16.
+Explain how to replace a substring within a string using the replace() method. 
+Ans.
+Replace part of string.
+Ex:
+"hello".replace("h", "H")
+Interview Line:
+Replace() changes a substring with another value.
+
+Que 17.
+What is string interpolation, and how is it achieved in Python? 
+Ans.
+Inserting values into string.
+Done using f-string or format().
+Interview Line:
+It is a way to insert variables into strings.
+
+Que 18.
+How can you reverse a string in Python? 
+Ans.
+s = "Python"
+print(s[::-1])
+interview Line:
+we use slicing to reverse a string.
+
+Que 19.
+How do startswith() and endswith() methods work with strings? 
+Ans.
+Check start or end of the string.
+Ex:
+"Python".startswith("Py")  # True
+Interview Line:
+These methods check the beginning or ending of a string.
+
+Que 20. 
+How do you compare two strings in Python? What operators or functions can be used? 
+Ans.
+Use ==, !=, <, >.
+Ex:
+"Python".startswith("Py")  # True
+Interview Line:
+We use comparison operators to compare strings.

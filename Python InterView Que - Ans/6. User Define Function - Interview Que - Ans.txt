@@ -1,0 +1,252 @@
+1. What is a function in Python, and why are functions used?
+- A function is a block of reusable code that performs a specific task.
+- Functions help avoid repeating code.
+
+Example:
+def greet():
+    print("Hello")
+
+Interview line:
+“A function is used to organize code into reusable blocks, which improves readability, modularity, and code reusability.”
+
+--------------------------------------------------
+
+2. How do you define a user-defined function in Python? Provide an example.
+- Functions are created using the def keyword.
+
+Example:
+def add(a, b):
+    return a + b
+
+Interview line:
+“In Python, user-defined functions are created using the def keyword to perform custom tasks.”
+
+--------------------------------------------------
+
+3. What is the purpose of the return statement in a function?
+- return sends a value back from the function.
+
+Example:
+def square(x):
+    return x * x
+
+Interview line:
+“The return statement is used to send the result of a function back to the caller.”
+
+--------------------------------------------------
+
+4. What is the difference between a function that returns a value and one that doesn’t?
+- Functions with return give output.
+- Functions without return give None.
+
+Example:
+def show():
+    print("Hello")
+
+Interview line:
+“A function with return provides a result, while a function without return mainly performs an action.”
+
+--------------------------------------------------
+
+5. How do you call a function in Python?
+- Use function name with parentheses.
+
+Example:
+greet()
+
+Interview line:
+“A function is called by writing its name followed by parentheses.”
+
+--------------------------------------------------
+
+6. What are parameters and arguments in the context of functions?
+- Parameters are variables in function definition.
+- Arguments are values passed during function call.
+
+Example:
+def add(a, b):   # parameters
+    return a+b
+
+add(2,3)         # arguments
+
+Interview line:
+“Parameters receive values inside the function, while arguments are the actual values passed to the function.”
+
+--------------------------------------------------
+
+7. What is the difference between positional and keyword arguments?
+- Positional arguments follow order.
+- Keyword arguments use parameter names.
+
+Example:
+add(2,3)
+add(a=2, b=3)
+
+Interview line:
+“Positional arguments depend on order, while keyword arguments explicitly specify parameter names.”
+
+--------------------------------------------------
+
+8. Explain default parameters in Python functions and give an example.
+- Default parameters use predefined values if no argument is passed.
+
+Example:
+def greet(name="Guest"):
+    print(name)
+
+Interview line:
+“Default parameters allow functions to use predefined values when arguments are not provided.”
+
+--------------------------------------------------
+
+9. What is the purpose of *args in a function definition?
+- *args allows multiple positional arguments.
+
+Example:
+def total(*nums):
+    print(sum(nums))
+
+Interview line:
+“*args is used when we want a function to accept any number of positional arguments.”
+
+--------------------------------------------------
+
+10. How does **kwargs work in a function, and when would you use it?
+- **kwargs accepts multiple keyword arguments.
+
+Example:
+def info(**data):
+    print(data)
+
+Interview line:
+“**kwargs allows passing variable numbers of keyword arguments into a function.”
+
+--------------------------------------------------
+
+11. Can you explain the scope of variables inside a function (local vs. global scope)?
+- Local variables exist only inside function.
+- Global variables exist throughout program.
+
+Example:
+x = 10   # global
+
+def test():
+    y = 5   # local
+
+Interview line:
+“Local variables are accessible only inside functions, while global variables can be accessed throughout the program.”
+
+--------------------------------------------------
+
+12. What is the global keyword, and when is it used in a function?
+- global is used to modify global variables inside a function.
+
+Example:
+x = 5
+
+def change():
+    global x
+    x = 10
+
+Interview line:
+“The global keyword allows a function to modify variables defined outside the function.”
+
+--------------------------------------------------
+
+13. What does the nonlocal keyword do, and how is it different from global?
+- nonlocal modifies variables from outer function.
+- global modifies variables from global scope.
+
+Example:
+def outer():
+    x = 5
+
+    def inner():
+        nonlocal x
+        x = 10
+
+Interview line:
+“The nonlocal keyword is used to modify variables from the nearest enclosing function scope.”
+
+--------------------------------------------------
+
+14. How can you return multiple values from a function in Python?
+- Return values separated by commas.
+
+Example:
+def data():
+    return 1, 2
+
+a, b = data()
+
+Interview line:
+“Python functions can return multiple values together in the form of tuples.”
+
+--------------------------------------------------
+
+15. What is a lambda function, and how does it differ from a standard function?
+- Lambda is a small anonymous function written in one line.
+
+Example:
+square = lambda x: x*x
+
+Interview line:
+“Lambda functions are short, anonymous functions mainly used for simple operations.”
+
+--------------------------------------------------
+
+16. Explain the concept of a recursive function and provide a simple example.
+- A recursive function calls itself.
+
+Example:
+def fact(n):
+    if n == 1:
+        return 1
+    return n * fact(n-1)
+
+Interview line:
+“A recursive function repeatedly calls itself until a stopping condition is reached.”
+
+--------------------------------------------------
+
+17. What are higher-order functions, and how can they be used in Python?
+- Higher-order functions take functions as arguments or return functions.
+
+Example:
+def greet(func):
+    func()
+
+Interview line:
+“Higher-order functions improve flexibility by allowing functions to work with other functions.”
+
+--------------------------------------------------
+
+18. What is function overloading, and does Python support it?
+- Function overloading means multiple functions with same name but different parameters.
+- Python does not support traditional overloading directly.
+
+Interview line:
+“Python does not support true function overloading, but similar behavior can be achieved using default or variable arguments.”
+
+--------------------------------------------------
+
+19. Explain the concept of function decorators and give an example of how to use one.
+- Decorators modify behavior of functions.
+
+Example:
+def decorator(func):
+    def wrapper():
+        print("Before")
+        func()
+    return wrapper
+
+Interview line:
+“Decorators are used to add extra functionality to functions without changing their original code.”
+
+--------------------------------------------------
+
+20. How can you use functions to improve code modularity and reusability?
+- Functions divide code into smaller reusable parts.
+
+Interview line:
+“Functions improve modularity by breaking programs into smaller sections and improve reusability by avoiding repeated code.”

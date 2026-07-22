@@ -1,0 +1,257 @@
+Que 1.
+what is python, and why is it popular for programming?
+Ans.
+python is a high - level, interpreted programming language.
+popular because it is :
+easy to learn - simple syntax 
+versatile - web, data, science, AI
+large community and libraries
+
+Que 2.
+what are the main features of python that make it beginner - friendly?
+Ans.
+Easy to learn and use - python's syntax is clear and closely reassembles the English language, making it beginner - friendly.
+Interpreted Language - so no compilation required.
+Dynamic Typing - no need to declare variable types.
+object-oriented - python supports oop enabling developers to create reusable code through classes and objects.
+Extensive standard library - python has a rich set of built in libraries that supports various tasks. (file io, re, networking)
+cross - platform - python is platform independent, meaning it can run on various os.
+extensibility - python can integrate with any other programming language such as a c, c++, java.
+
+Que 3.
+How do you right and run a python program?
+Ans.
+open a text editor, write a code and save with py extension.
+
+Que 4.
+Explain Python's dynamic typing and give an example. 
+Ans.
+Definition – python is a dynamically types language, which means you do not need to declare the data type of a variable explicitly.
+The type is automatically decided at runtime based on the value assigned.
+Ex:
+x = 10        # x is an integer
+print(type(x))
+
+x = "Hello"   # now x becomes a string
+print(type(x))
+Output:
+<class 'int'>
+<class 'str'>
+
+Que 5.
+What is the role of indentation in Python, and how does it differ from other languages? 
+Ans.
+Indentation means giving space at the beginning of a line.
+In python, it is used to define blocks of code (like inside if, loop, function).
+It replaces { } used in other languages like C or java.
+Ex:
+if True:
+    print("Hello")   # indented line
+Interview Line:
+Indentation in python is used to define code blocks instead of curly braces, so it is very important for correct execution.
+
+Que 6.
+What is an if statement, and how is it used in Python?
+Ans.
+ An if statement is used to check a condition.
+If the condition is true, the code inside the if block will run.
+If the condition is false, the code will be skipped.
+Ex:
+age = 18
+
+if age >= 18:
+    print("You can vote")
+Explanation:
+Here, python checks the condition age >= 18. Since it is true, the message is printed.
+Interview Line:
+An if statement is used to check a condition and execute code only when the condition is true.
+
+Que 7.
+Explain the syntax of an if-elif-else structures.
+Ans.
+Used to check multiple conditions.
+if – first condition.
+elif – more conditions.
+else – default case.
+Ex:
+marks = 75
+
+if marks >= 90:
+    print("A Grade")
+elif marks >= 60:
+    print("B Grade")
+else:
+    print("C Grade")
+Interview Line:
+It is used when we have multiple conditions, and only one block runs based on the condition.
+
+
+Que 8. 
+What is the difference between = and == operators in python?
+Ans.
+Single equal to = is used to assign value.
+Double equal == is used to compare values.
+Ex:
+x = 5      # assignment
+if x == 5: # comparison
+    print("Equal")
+Interview Line:
+= is used to assign value, while == is used to compare two values.
+
+Que 9.
+How does the elif statement work in python? Provide an example.
+Ans.
+Elif means else if.
+It checks another condition if previous one is false.
+Ex:
+num = 0
+
+if num > 0:
+    print("Positive")
+elif num == 0:
+    print("Zero")
+else:
+    print("Negative")
+Interview Line:
+Elif is used to check additional conditions when the previous if condition is false.
+
+Que 10.
+Explain the use of logical operators (and, or, not) in if statements.
+Ans.
+and – both conditions must be true.
+or – at least one condition must be true.
+not – reverse the condition.
+Ex:
+age = 20
+has_id = True
+
+if age >= 18 and has_id:
+    print("Allowed")
+
+if age < 18 or not has_id:
+    print("Not allowed")
+Interview Line:
+Logical operators are used to combine multiple conditions in an if statement.
+Que 11.
+What is a for loop in python, and how does it work?
+Ans.
+A for loop is used to repeat a block of code.
+It works by iterating over a sequence (like list, string, range).
+Ex:
+for i in range(3):
+    print(i)
+Interview Line:
+A for loop is used to repeat code for each item in a sequence.
+
+Que 12.
+How does the range() function work in python? Give example.
+Ans.
+Range() generates a sequence of numbers.
+Ex:
+range(5)        # 0 to 4
+range(1, 5)     # 1 to 4
+range(1, 10, 2) # 1, 3, 5, 7, 9
+Interview Line:
+range() is used to generates numbers for looping.
+
+
+
+Que 13.
+Explain how to use a for loop to iterate over a list.
+Ans.
+Used to access each element of a list.
+Ex:
+fruits = ["apple", "banana", "mango"]
+
+for fruit in fruits:
+    print(fruit)
+Interview Line:
+We use a for loop to iterate through each item in a list.
+
+Que 14.
+How can you use a for loop with the enumerate() function, and why is it useful?
+Ans.
+Enumerate() gives index + value together.
+Ex:
+fruits = ["apple", "banana"]
+
+for i, fruit in enumerate(fruits):
+    print(i, fruit)
+Why useful – when you need both index and value.
+Interview Line:
+
+Enumerate() is useful when we need index along with value in a loop.
+
+Que 15.
+What is list comprehension, and how is it different from a for loop?
+Ans.
+List comprehension is a short and clean way to create lists.
+Ex:
+# for loop
+nums = []
+for i in range(5):
+    nums.append(i)
+
+# list comprehension
+nums = [i for i in range(5)]
+Interview Line:
+List comprehension is a shorter and faster way to create lists compared to a for loop.
+
+Que 16.
+What is a while loop, and when would you use it over a for loop?
+Ans.
+A while loop runs as long as condition is true.
+When to use – When we don’t know how many times to run.
+Interview Line:
+A while loop runs until a condition become false.
+
+Que 17.
+Explain the syntax of a while loop and give an example.
+Ans.
+Syntax and Ex:
+i = 1
+while i <= 3:
+    print(i)
+    i += 1
+Interview Line:
+It keeps executing until the condition becomes false.
+
+Que 18.
+What is an infinite loop, and how can it occur with a while loop?
+Ans.
+A loop that never stops.
+Ex:
+while True:
+    print("Hello")
+Reason – condition never become false.
+Interview Line:
+An infinite loop runs forever when the condition is always true.
+
+Que 19.
+How can you use break and continue statements in a while loop?
+Ans.
+Break – Stops the loop.
+Continue – Skips current iteration.
+Ex:
+i = 0
+while i < 5:
+    i += 1
+    if i == 3:
+        continue
+    if i == 5:
+        break
+    print(i)
+Interview Line:
+Break exits the loop, continue skips one iteration.
+
+Que 20.
+What is the difference between for and while loops, and when would you use each?
+Ans.
+
+Feature				for loop							while loop
+Use				Known iterations					Unknown iterations
+Condition		Based on sequence					Based on condition
+Example		list, range							user input, conditions
+
+Interview Line:
+I use for loop when I know how many times to run, and while loop when the condition decides the execution.

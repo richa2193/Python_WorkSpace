@@ -1,0 +1,248 @@
+1. What is Django, and what are its main features?
+- Django is a high-level Python web framework used to build web applications quickly.
+- It follows the “batteries included” approach.
+
+Main Features:
+- Built-in admin panel
+- Authentication system
+- ORM support
+- Security features
+- Fast development
+
+Interview line:
+“Django is a powerful Python web framework that helps developers build secure, scalable, and maintainable web applications quickly.”
+
+--------------------------------------------------
+
+2. What is the MTV (Model-Template-View) architecture in Django?
+- Model → handles database.
+- Template → handles frontend/UI.
+- View → handles business logic.
+
+Interview line:
+“Django uses MTV architecture to separate database logic, application logic, and presentation logic for better code organization.”
+
+--------------------------------------------------
+
+3. How do you create a new Django project, and how is it structured?
+
+Commands:
+django-admin startproject myproject
+
+Project Structure:
+- settings.py → project settings
+- urls.py → URL routing
+- manage.py → command-line utility
+
+Interview line:
+“A Django project contains the main configuration and settings required to manage the entire web application.”
+
+--------------------------------------------------
+
+4. What is a Django app, and how is it different from a project?
+- Project → complete website/application.
+- App → small module performing a specific task.
+
+Interview line:
+“A Django project can contain multiple apps, where each app handles a specific functionality.”
+
+--------------------------------------------------
+
+5. What is the purpose of the settings.py file in Django?
+- Stores project configuration settings.
+
+Examples:
+- Database settings
+- Installed apps
+- Static files
+- Middleware
+
+Interview line:
+“The settings.py file controls the configuration and behavior of the Django project.”
+
+--------------------------------------------------
+
+6. How do you define a model in Django, and what are some common field types?
+- Models are defined using classes.
+
+Example:
+from django.db import models
+
+class Student(models.Model):
+    name = models.CharField(max_length=100)
+
+Common Fields:
+- CharField
+- IntegerField
+- EmailField
+- DateField
+
+Interview line:
+“Django models define the structure of database tables using Python classes.”
+
+--------------------------------------------------
+
+7. What is Django ORM, and how does it simplify database interactions?
+- ORM stands for Object Relational Mapping.
+- It allows database operations using Python code instead of SQL.
+
+Interview line:
+“Django ORM simplifies database operations by allowing developers to work with Python objects instead of writing raw SQL queries.”
+
+--------------------------------------------------
+
+8. How do you create and apply database migrations in Django?
+
+Commands:
+python manage.py makemigrations
+python manage.py migrate
+
+Interview line:
+“Migrations help synchronize Django models with the database schema.”
+
+--------------------------------------------------
+
+9. Explain the purpose of makemigrations and migrate commands.
+- makemigrations → creates migration files.
+- migrate → applies changes to database.
+
+Interview line:
+“makemigrations prepares database changes, while migrate actually updates the database.”
+
+--------------------------------------------------
+
+10. What are Django views, and what is the difference between function-based views (FBVs) and class-based views (CBVs)?
+- Views handle request and response logic.
+
+FBV:
+- Written as functions.
+- Simple and easy.
+
+CBV:
+- Written as classes.
+- Reusable and organized.
+
+Interview line:
+“Views process user requests and return responses, while CBVs provide more reusable and structured code compared to FBVs.”
+
+--------------------------------------------------
+
+11. How do URL patterns work in Django, and how do you define a URL in urls.py?
+- URLs connect requests to views.
+
+Example:
+from django.urls import path
+
+urlpatterns = [
+    path('', views.home),
+]
+
+Interview line:
+“Django URL patterns map browser requests to specific view functions or classes.”
+
+--------------------------------------------------
+
+12. What are templates in Django, and how do they help with the presentation layer?
+- Templates are HTML files with dynamic content.
+
+Interview line:
+“Templates separate frontend presentation from backend logic, making applications easier to maintain.”
+
+--------------------------------------------------
+
+13. How does Django’s template language handle variables, filters, and tags?
+- Variables → display data.
+- Filters → modify data.
+- Tags → control logic.
+
+Example:
+{{ name }}
+{{ name|upper }}
+
+Interview line:
+“Django template language helps display dynamic content and apply logic inside HTML templates.”
+
+--------------------------------------------------
+
+14. What is a Django form, and how does it simplify form handling?
+- Django forms handle user input validation and processing.
+
+Interview line:
+“Django forms simplify form creation, validation, and data handling with built-in features.”
+
+--------------------------------------------------
+
+15. How does Django handle user authentication?
+- Django provides built-in authentication system.
+
+Features:
+- Login
+- Logout
+- Password hashing
+- Permissions
+
+Interview line:
+“Django includes a secure built-in authentication system for managing users and permissions.”
+
+--------------------------------------------------
+
+16. Explain middleware in Django and give examples of common middleware types.
+- Middleware processes requests and responses globally.
+
+Examples:
+- AuthenticationMiddleware
+- SessionMiddleware
+- SecurityMiddleware
+
+Interview line:
+“Middleware acts as a bridge between requests and responses to process application-wide functionalities.”
+
+--------------------------------------------------
+
+17. How does Django’s built-in admin interface work, and how do you customize it?
+- Django automatically provides admin panel for models.
+
+Customization:
+admin.py
+
+Example:
+admin.site.register(Student)
+
+Interview line:
+“Django admin provides an automatic interface for managing database records and can be customized easily.”
+
+--------------------------------------------------
+
+18. What are Django signals, and how can they be used?
+- Signals allow actions when events occur.
+
+Example:
+- After saving a model
+- Before deleting data
+
+Interview line:
+“Django signals help trigger automatic actions when specific events happen in the application.”
+
+--------------------------------------------------
+
+19. How do you manage static and media files in Django?
+- Static files → CSS, JS, images.
+- Media files → user uploads.
+
+Settings:
+STATIC_URL
+MEDIA_URL
+
+Interview line:
+“Django separates static files and user-uploaded media files for better organization and management.”
+
+--------------------------------------------------
+
+20. What are some common security features provided by Django?
+- CSRF protection
+- SQL injection protection
+- XSS protection
+- Password hashing
+
+Interview line:
+“Django provides strong built-in security features to protect web applications from common attacks.”
