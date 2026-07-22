@@ -1,0 +1,38 @@
+razorpay 
+stripe 
+phonepay payment integration 
+PayUMoney 
+
+step  1
+in google search razorpay login 
+
+step 2 now click on signup '
+
+step 3 
+login 
+mail - parmarricha2319@gmail.com
+
+test api key - rzp_test_Suj4Y5auZo3mXK
+test secrect - jYXriR99xNbKMnFvf2oa73Jj
+
+step 4 
+now in antigravity 
+
+step 4 
+create new project and open in antigravity 
+
+step 5 
+paymentapp
+
+step 6 
+create an app for payment integration using razorpay api
+design simple Django web app where user can payment. 
+here i'm providing API key and secret key 
+
+step 7 
+runserver 
+
+step 8 
+now check by adding amount 
+
+ where i am write half code or half step you complete this step with code and tell me where to do changes and where i write theory give me answer which is useful for interview also and other things you can tell by which me and all easily understand. write step 1 and all so i can understand and also tell me where and in which file i change what to change and all. give me full steps. but do not change the prompt which i write

@@ -1,0 +1,298 @@
+API KEY ID - d71a2ab2132c649c7d0d0a703a391a81
+
+
+======================================================
+🌦️ Django Weather API Project using OpenWeatherMap API
+======================================================
+
+https://api.openweathermap.org/data/2.5/weather?q=Rajkot&appid=d71a2ab2132c649c7d0d0a703a391a81
+& mode=xml - if you want to change mode like xml or etc.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+📌 Project Name
+
+weatherMapAPI
+
+This project will:
+
+Take city name from user
+Fetch weather data from OpenWeatherMap API
+Display:
+Temperature
+Humidity
+Weather condition
+Wind speed
+Country
+Icon
+Use responsive Tailwind CSS UI
+Orange + Black gradient theme
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=====================================
+STEP 1 — Search OpenWeatherMap API
+=====================================
+
+Search in Google:
+OpenWeatherMap API
+Website: https://openweathermap.org/api
+
+========================
+STEP 2 — Create Account
+========================
+
+•	Open website
+•	Click Sign Up
+•	Create free account
+•	Verify email
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=========================
+STEP 3 — Generate API Key
+=========================
+After login:
+•	Click profile
+•	Select My API Keys
+•	Click Generate
+•	Give name:
+
+tos demo
+•	Copy API key
+•	Paste into Notepad
+
+Example:
+
+API KEY: 225af36405b8b0eea0ee5bb66e191958
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+===================================
+STEP 4 — Find Current Weather API URL
+===================================
+
+Go to:
+https://openweathermap.org/current  
+
+Find:
+By city name
+
+API format:
+https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+
+Your Example:
+https://api.openweathermap.org/data/2.5/weather?q=Rajkot&appid=225af36405b8b0eea0ee5bb66e191958
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==================================
+STEP 5 — Create Django Project Folder
+==================================
+
+Open CMD:
+
+mkdir weatherMapAPI cd weatherMapAPI
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=================================
+STEP 6 — Create Virtual Environment
+==================================
+
+python -m venv env
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=============================
+STEP 7 — Activate Environment
+==============================
+
+Windows:
+env
+
+You will see:
+(env)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+STEP 8 — Install Django
+=========================
+
+pip install django
+
+Check version:
+
+python -m django –version
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=============================
+STEP 9 — Create Django Project
+=============================
+
+django-admin startproject weatherMapAPI .
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+STEP 10 — Open Project in Antigravity IDE
+======================================
+
+antigravity-ide .
+
+OR
+
+code .
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+===============================================
+Step 12 - WRITE THIS PROMPT IN ANTIGRAVITY AGENT 
+===============================================
+
+PROMPT : 
+
+create a Django app for display weather data in responsive structures where user can enter only city name  and get all related data from open weather api. design this app using tailwind CSS with orange and black gradient background. you can use use this api key for this  app integration api key : 225af36405b8b0eea0ee5bb66e191958 and configure this api with city parameter. 
+for example : https://api.openweathermap.org/data/2.5/weather?q=Rajkot&appid=225af36405b8b0eea0ee5bb66e191958
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=======================================
+Step 13 - IN NEW TERMINAL  
+=======================================
+
+run this command :
+
+python manage.py runserver 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+Step 14 - google developer console 
+==============================
+
+now search library and show 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+Interview Question
+=========================
+
+1. What is API?
+
+API stands for:
+
+Application Programming Interface
+
+It allows communication between two applications.
+
+Example: Django app ↔ Weather server
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+Interview Question
+=========================
+
+2. What is REST API?
+
+REST API is used to:
+•	Send data
+•	Receive data
+•	Communicate between applications
+
+Methods:
+•	GET → Fetch data
+•	POST → Insert data
+•	PUT → Update data
+•	DELETE → Delete data
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=================================
+IMPORTANT INTERVIEW QUESTIONS
+=================================
+
+Why use virtual environment?
+•	Separates project packages
+•	Avoids conflicts
+•	Keeps dependencies organized
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+===========================
+What is JSON?
+============================
+
+JSON = JavaScript Object Notation
+
+Used for:
+•	API data transfer
+•	Lightweight data exchange
+
+Example:
+{ “city”: “Rajkot”, “temp”: 32 }
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+============================
+PROJECT FOLDER STRUCTURE
+=============================
+
+weatherMapAPI/ │ ├── env/ ├── manage.py ├── weatherMapAPI/ │ ├── weatherapp/ │ ├── templates/ │ │ └── home.html │ ├── views.py │ ├── urls.py │ └── db.sqlite3
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=========================
+COMMON ERRORS & FIXES
+=========================
+1. ModuleNotFoundError Solution: Activate env
+env
+
+2. requests not found Solution:
+pip install requests
+
+3. TemplateDoesNotExist Solution: Check templates folder
+
+4. API not working Solution: Check API key
+
+5.	Invalid city Solution: Check spelling
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+EXTRA PROFESSIONAL TIP
+==========================
+
+Use .env file later for security.
+
+Example:
+API_KEY=your_key
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+NEXT LEVEL FEATURES
+========================
+•	Weather animations
+•	Dark mode
+•	GPS location weather
+•	Voice search
+•	Login/Register
+•	Weather history
+•	Deployment on PythonAnywhere
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+END OF PROJECT
+========================
+
+
+add https://antigravity.google/ same like this type background animation in every pages.
+put antigravity link and same like this write.

@@ -1,0 +1,186 @@
+===========================================
+💳 Django Razorpay Payment Integration Project
+===========================================
+
+========================
+ Payment Gateway Names
+=========================
+Razorpay Official Website → https://razorpay.com
+
+Stripe Official Website → https://stripe.com/in
+
+PhonePe Payment Gateway → https://www.phonepe.com/business-solutions/payment-gateway/
+
+PayU Official Website → https://payu.in
+
+======================
+Search in Google 
+======================
+
+in google search razorpay login
+
+Open:
+
+https://dashboard.razorpay.com/signin
+
+--------------------------------------------------------------------------------------------------------
+
+===================
+Make account 
+====================
+now click on signup
+
+Create your account.
+
+Fill:
+
+Name
+Email
+Mobile Number
+Password
+
+Then verify email and mobile number.
+
+--------------------------------------------------------------------------------------------------------
+
+=================
+Now LOGIN 
+=================
+
+login with mail id or mobile number.
+
+Now in Razorpay go to settings and on the test mode and after that go to generate key and copy that key anywhere.
+
+Test API Key and Secret Key:
+
+RAZORPAY_KEY_ID = "your_key"
+
+RAZORPAY_KEY_SECRET = "your_secret_key"
+
+--------------------------------------------------------------------------------------------------------
+
+=========================================
+Step 1  Create Virtual Environment OR Activate 
+==========================================
+
+python -m venv env
+
+Activate environment:
+
+Windows
+
+env\Scripts\activate
+
+----------------------------------------------------------------------------------------------
+
+==========================
+Step 2 Create Django Project
+==========================
+
+django-admin startproject paymentapp
+
+---------------------------------------------------------------------------------------------
+
+=====================
+Step 3 Go Inside Project
+=====================
+
+cd paymentapp
+
+--------------------------------------------------------------------------------------------------------
+
+==============================
+Step 4 Open Project in Antigravity
+==============================
+
+antigravity_ide .
+
+--------------------------------------------------------------------------------------------------------------
+
+=============================================
+STEP 6 WRITE THIS PROMPT IN ANTIGRAVITY AGENT 
+==============================================
+
+create an app for payment integration using razorpay api.
+design simple Django web app where user can payment.
+here i'm providing API key = " " and secret key = " "
+
+--------------------------------------------------------------------------------------------------------
+
+================================
+Step 7 RUNSERVER 
+================================
+
+in terminal run command : python manage.py runserver 
+
+and check the payment web app and also check payment has been done or not.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+Interview Questions
+========================
+
+1. What is Payment Gateway?
+
+Payment gateway is a service that processes online payments securely between customer and merchant.
+
+2. What is Razorpay?
+
+Razorpay is an Indian online payment gateway company used for accepting online payments.
+
+3. Which package is used for Razorpay integration in Django?
+
+pip install razorpay
+
+4. What is API Key?
+
+API key is a public key used to identify application.
+
+Example:
+
+rzp_test_xxxxx
+
+5. What is Secret Key?
+
+Secret key is a private authentication key used for secure communication.
+
+6. Why amount is multiplied by 100?
+
+Because Razorpay accepts amount in paise.
+
+Example:
+
+500 * 100 = 50000
+
+--------------------------------------------------------------------------------------------------------
+
+=======================
+Important Files Summary
+=======================
+File Name		Work
+settings.py		Add app
+views.py		Payment logic
+urls.py			URL routing
+home.html		Amount form
+payment.html	Razorpay checkout
+
+--------------------------------------------------------------------------------------------------------
+
+===========================
+Future Advanced Features
+===========================
+You can also add:
+
+Payment Success Page
+Payment Failure Page
+Database Store Payment Details
+User Login/Register
+Email Invoice
+PDF Receipt
+Stripe Integration
+PhonePe Integration
+PayU Integration
+Tailwind CSS UI
+Dark Mode
+Payment History

@@ -1,0 +1,528 @@
+======================================================
+🌦️ Django Weather API Project using OpenWeatherMap API
+======================================================
+
+
+📌 Project Name
+
+weatherMapAPI
+
+This project will:
+
+Take city name from user
+Fetch weather data from OpenWeatherMap API
+Display:
+Temperature
+Humidity
+Weather condition
+Wind speed
+Country
+Icon
+Use responsive Tailwind CSS UI
+Orange + Black gradient theme
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=====================================
+STEP 1 — Search OpenWeatherMap API
+=====================================
+
+Search in Google:
+OpenWeatherMap API
+Website: https://openweathermap.org/api
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+STEP 2 — Create Account
+========================
+
+•	Open website
+•	Click Sign Up
+•	Create free account
+•	Verify email
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=========================
+STEP 3 — Generate API Key
+=========================
+After login:
+•	Click profile
+•	Select My API Keys
+•	Click Generate
+•	Give name:
+
+tos demo
+•	Copy API key
+•	Paste into Notepad
+
+Example:
+
+API KEY: d71a2ab2132c649c7d0d0a703a391a81
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+===================================
+STEP 4 — Find Current Weather API URL
+===================================
+
+Go to:
+https://openweathermap.org/current  
+
+Find:
+By city name
+
+API format:
+https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+
+Your Example:
+https://api.openweathermap.org/data/2.5/weather?q=Rajkot&appid=d71a2ab2132c649c7d0d0a703a391a81
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+Interview Question
+=========================
+
+1. What is API?
+
+API stands for:
+
+Application Programming Interface
+
+It allows communication between two applications.
+
+Example: Django app ↔ Weather server
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+Interview Question
+=========================
+
+2. What is REST API?
+
+REST API is used to:
+•	Send data
+•	Receive data
+•	Communicate between applications
+
+Methods:
+•	GET → Fetch data
+•	POST → Insert data
+•	PUT → Update data
+•	DELETE → Delete data
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==================================
+STEP 5 — Create Django Project Folder
+==================================
+
+Open CMD:
+
+mkdir weatherMapAPI cd weatherMapAPI
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=================================
+STEP 6 — Create Virtual Environment
+==================================
+
+python -m venv env
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=============================
+STEP 7 — Activate Environment
+==============================
+
+Windows:
+env
+
+You will see:
+(env)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+STEP 8 — Install Django
+=========================
+
+pip install django
+
+Check version:
+
+python -m django –version
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=============================
+STEP 9 — Create Django Project
+=============================
+
+django-admin startproject weatherMapAPI .
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+STEP 10 — Open Project in Antigravity IDE
+======================================
+
+antigravity-ide .
+
+OR
+
+code .
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+============================
+STEP 11 — Create Django App
+=============================
+
+python manage.py startapp weatherapp
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+STEP 12 — Register App
+=========================
+
+FILE: weatherMapAPI/settings.py
+
+Find:
+
+INSTALLED_APPS = [
+
+Add:
+
+‘weatherapp’,
+
+Example:
+
+INSTALLED_APPS = [ ‘django.contrib.admin’, ‘django.contrib.auth’, ‘django.contrib.contenttypes’, ‘django.contrib.sessions’, ‘django.contrib.messages’, ‘django.contrib.staticfiles’, ‘weatherapp’,]
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+================================
+STEP 13 — Install Requests Library
+=================================
+
+We use requests for API calling.
+
+pip install requests
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+STEP 14 — Create URLs File
+=========================
+
+Create File:
+
+weatherapp/urls.py
+
+Add:
+
+from django.urls import path from . import views
+urlpatterns = [ path(’‘, views.home, name=’home’),]
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==========================
+STEP 15 — Connect App URLs
+==========================
+
+FILE: weatherMapAPI/urls.py
+
+Replace code with:
+
+from django.contrib import admin from django.urls import path, include
+urlpatterns = [ path(‘admin/’, admin.site.urls), path(’‘, include(’weatherapp.urls’)),]
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+===============================
+STEP 16 — Create Templates Folder
+===============================
+
+Create folders:
+
+weatherapp/ templates/ home.html
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+STEP 17 — Create View
+=========================
+
+FILE: weatherapp/views.py
+
+Replace all code:
+
+from django.shortcuts import render import requests
+
+def home(request):
+weather_data = None
+
+if request.method == "POST":
+
+    city = request.POST['city']
+
+    api_key = "d71a2ab2132c649c7d0d0a703a391a81"
+
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
+
+    response = requests.get(url)
+
+    data = response.json()
+
+    if data.get("cod") != "404":
+
+        weather_data = {
+            'city': city,
+            'temperature': data['main']['temp'],
+            'humidity': data['main']['humidity'],
+            'description': data['weather'][0]['description'],
+            'country': data['sys']['country'],
+            'wind': data['wind']['speed'],
+            'icon': data['weather'][0]['icon'],
+        }
+
+return render(request, 'home.html', {'weather_data': weather_data})
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+Interview Question
+========================
+
+Why use requests library?
+requests library is used to:
+•	Call APIs
+•	Send HTTP requests
+•	Receive JSON data
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=============================
+STEP 18 — Add Tailwind CSS CDN
+==============================
+
+FILE: weatherapp/templates/home.html
+
+Replace all code:
+
+<!DOCTYPE html>
+Weather App
+<div class="bg-white/10 backdrop-blur-lg p-8 rounded-2xl shadow-2xl w-[90%] md:w-[500px] text-white">
+
+    <h1 class="text-4xl font-bold text-center mb-6">
+        🌦 Weather App
+    </h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="city"
+            placeholder="Enter City Name"
+            class="w-full p-3 rounded-lg text-black mb-4"
+            required
+        >
+
+        <button
+            type="submit"
+            class="w-full bg-orange-500 hover:bg-orange-600 transition-all p-3 rounded-lg font-bold"
+        >
+            Get Weather
+        </button>
+    </form>
+
+    {% if weather_data %}
+
+    <div class="mt-6 text-center">
+
+        <h2 class="text-3xl font-bold">
+            {{ weather_data.city }}
+        </h2>
+
+        <p class="text-lg">
+            {{ weather_data.country }}
+        </p>
+
+        <img
+            src="http://openweathermap.org/img/w/{{ weather_data.icon }}.png"
+            class="mx-auto"
+        >
+
+        <h3 class="text-5xl font-bold">
+            {{ weather_data.temperature }}°C
+        </h3>
+
+        <p class="capitalize text-xl mt-2">
+            {{ weather_data.description }}
+        </p>
+
+        <div class="grid grid-cols-2 gap-4 mt-6">
+
+            <div class="bg-black/30 p-4 rounded-xl">
+                <h4 class="font-bold">Humidity</h4>
+                <p>{{ weather_data.humidity }}%</p>
+            </div>
+
+            <div class="bg-black/30 p-4 rounded-xl">
+                <h4 class="font-bold">Wind</h4>
+                <p>{{ weather_data.wind }} km/h</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+STEP 19 — Run Migrations
+=========================
+
+python manage.py migrate
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+STEP 20 — Run Server
+========================
+python manage.py runserver
+
+Open browser:
+http://127.0.0.1:8000
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+FINAL OUTPUT
+========================
+✔ Responsive weather app ✔ Tailwind CSS design ✔ Live weather data ✔ API integration ✔ Modern UI
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+======================================
+YOUR ORIGINAL PROMPT (UNCHANGED)
+======================================
+
+create a Django app for display weather data in responsive structures where user can enter only city name and get all related data from open weather api. design this app using tailwind CSS with orange and black gradient background. you can use use this api key for this app integration api key : and configure this api with city parameter.
+for example : https://api.openweathermap.org/data/2.5/weather?q={Rajkot}&appid={d71a2ab2132c649c7d0d0a703a391a81}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+BONUS FEATURES YOU CAN ADD
+==============================
+1.	Error Handling
+If city not found:
+error_message = “City not found”
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+2.	Add Search History
+=========================
+Store searched cities in database.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+3.	Add 5-Day Forecast API
+========================
+
+Use: /forecast API
+Docs: https://openweathermap.org/forecast5
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=================================
+IMPORTANT INTERVIEW QUESTIONS
+=================================
+
+Why use virtual environment?
+•	Separates project packages
+•	Avoids conflicts
+•	Keeps dependencies organized
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+===========================
+What is JSON?
+============================
+
+JSON = JavaScript Object Notation
+
+Used for:
+•	API data transfer
+•	Lightweight data exchange
+
+Example:
+{ “city”: “Rajkot”, “temp”: 32 }
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+============================
+PROJECT FOLDER STRUCTURE
+=============================
+
+weatherMapAPI/ │ ├── env/ ├── manage.py ├── weatherMapAPI/ │ ├── weatherapp/ │ ├── templates/ │ │ └── home.html │ ├── views.py │ ├── urls.py │ └── db.sqlite3
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=========================
+COMMON ERRORS & FIXES
+=========================
+1. ModuleNotFoundError Solution: Activate env
+env
+
+2. requests not found Solution:
+pip install requests
+
+3. TemplateDoesNotExist Solution: Check templates folder
+
+4. API not working Solution: Check API key
+
+5.	Invalid city Solution: Check spelling
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+EXTRA PROFESSIONAL TIP
+==========================
+
+Use .env file later for security.
+
+Example:
+API_KEY=your_key
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+NEXT LEVEL FEATURES
+========================
+•	Weather animations
+•	Dark mode
+•	GPS location weather
+•	Voice search
+•	Login/Register
+•	Weather history
+•	Deployment on PythonAnywhere
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================
+END OF PROJECT
+========================

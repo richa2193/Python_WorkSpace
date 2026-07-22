@@ -1,0 +1,1113 @@
+====================================================
+REST API + DJANGO REST FRAMEWORK COMPLETE NOTES
+WITH FILE LOCATIONS + EXPLANATION
+====================================================
+
+=========================================================
+WHAT IS REST?
+=========================================================
+
+REST = Representational State Transfer
+
+REST is an architecture style used for communication
+between applications using APIs.
+
+API = Application Programming Interface
+
+Using REST API, one database can manage multiple apps:
+
+- Website
+- Android App
+- iOS App
+- Desktop App
+
+Example:
+
+One Database
+     |
+---------------------------------------------------
+|           			   |             		  |
+Website      Android App     iOS App
+
+
+=========================================================
+REST API MOSTLY RETURNS DATA IN:
+=========================================================
+
+1. JSON
+2. XML
+
+Mostly JSON is used.
+
+Example JSON:
+
+{
+    "name":"Richa",
+    "city":"Ahmedabad"
+}
+
+
+=========================================================
+WHY REST API IS USED?
+=========================================================
+
+- Fast communication
+- Used in mobile apps
+- Data sharing between applications
+- Centralized database management
+- Secure and scalable
+- Used in modern development
+
+
+=========================================================
+WHAT IS SERIALIZATION?
+=========================================================
+
+Serialization means:
+
+Converting Python object data into JSON format.
+
+Example:
+
+Python Object → JSON
+
+
+=========================================================
+WHAT IS DESERIALIZATION?
+=========================================================
+
+Deserialization means:
+
+Converting JSON data into Python object.
+
+Example:
+
+JSON → Python Object
+
+
+=========================================================
+DJANGO REST API PROJECT
+=========================================================
+
+Project Name: storeapi
+
+
+=========================================================
+STEP 1 : CREATE PROJECT FOLDER
+=========================================================
+
+Open CMD
+
+Write:
+
+mkdir djangoapi
+
+WHY USED?
+
+mkdir = Create new folder
+
+Now move inside folder:
+
+cd djangoapi
+
+WHY USED?
+
+cd = Change directory
+
+
+=========================================================
+STEP 2 : CREATE VIRTUAL ENVIRONMENT
+=========================================================
+
+Write:
+
+python -m venv myenv
+
+WHY USED?
+
+- Creates isolated Python environment
+- Avoids package conflicts
+- Stores project libraries separately
+
+myenv = Environment name
+
+
+=========================================================
+STEP 3 : ACTIVATE ENVIRONMENT
+=========================================================
+
+Windows:
+
+myenv\Scripts\activate
+
+After activation you will see:
+
+(myenv)
+
+WHY USED?
+
+Activates virtual environment.
+
+
+=========================================================
+STEP 4 : INSTALL DJANGO
+=========================================================
+
+Write:
+
+pip install django
+
+WHY USED?
+
+Installs Django framework.
+
+
+=========================================================
+STEP 5 : CREATE DJANGO PROJECT
+=========================================================
+
+Write:
+
+django-admin startproject storeapi
+
+WHY USED?
+
+Creates Django project.
+
+storeapi = Project name
+
+
+=========================================================
+STEP 6 : OPEN PROJECT IN VS CODE
+=========================================================
+
+Move inside project:
+
+cd storeapi
+
+Open VS Code:
+
+code .
+
+WHY USED?
+
+code . = Opens current folder in VS Code
+
+
+=========================================================
+STEP 7 : RUN MIGRATION
+=========================================================
+
+Open VS Code Terminal
+
+Write:
+
+python manage.py migrate
+
+WHY USED?
+
+Creates default database tables.
+
+
+=========================================================
+STEP 8 : CREATE APP
+=========================================================
+
+Write:
+
+python manage.py startapp mainapp
+
+WHY USED?
+
+Creates Django application.
+
+mainapp = App name
+
+
+=========================================================
+STEP 9 : REGISTER APP
+=========================================================
+
+OPEN FILE FROM LOCATION:
+
+storeapi/storeapi/settings.py
+
+Find:
+
+INSTALLED_APPS = [
+
+]
+
+Paste:
+
+'mainapp',
+
+FINAL CODE:
+
+INSTALLED_APPS = [
+
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'mainapp',
+
+]
+
+WHY USED?
+
+Registers app in Django project.
+
+
+=========================================================
+STEP 10 : CREATE TEMPLATES FOLDER
+=========================================================
+
+OPEN PROJECT STRUCTURE
+
+Create folder:
+
+templates
+
+Location:
+
+storeapi/templates/
+
+Inside templates create:
+
+index.html
+
+FINAL STRUCTURE:
+
+storeapi/
+│
+├── templates/
+│      └── index.html
+
+
+WHY USED?
+
+Templates folder stores HTML files.
+
+
+=========================================================
+STEP 11 : WRITE HTML CODE
+=========================================================
+
+OPEN FILE:
+
+storeapi/templates/index.html
+
+Paste Code:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>REST API Project</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <h1 class="text-center mb-4">API Data</h1>
+
+    <table class="table table-bordered table-striped">
+
+        <tr>
+
+            <th>ID</th>
+            <th>Title</th>
+
+        </tr>
+
+        {% for i in data %}
+
+        <tr>
+
+            <td>{{i.id}}</td>
+            <td>{{i.title}}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+</html>
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+<!DOCTYPE html>
+
+Defines HTML5 document.
+
+<html>
+
+Starting HTML tag.
+
+<head>
+
+Contains page information.
+
+<title>
+
+Browser tab title.
+
+Bootstrap CDN
+
+Used for styling.
+
+<div class="container">
+
+Bootstrap container.
+
+{% for i in data %}
+
+Django template loop.
+
+{{i.id}}
+
+Displays ID.
+
+{{i.title}}
+
+Displays title.
+
+
+=========================================================
+STEP 12 : CREATE VIEW
+=========================================================
+
+OPEN FILE:
+
+storeapi/mainapp/views.py
+
+Paste Code:
+
+from django.shortcuts import render
+
+import requests
+
+def home(request):
+
+    url = "https://jsonplaceholder.typicode.com/posts"
+
+    req = requests.get(url)
+
+    data = req.json()
+
+    context = {
+
+        'data': data
+
+    }
+
+    return render(request,'index.html',context)
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+from django.shortcuts import render
+
+Used to render HTML page.
+
+import requests
+
+Used to fetch API data.
+
+def home(request):
+
+Creates view function.
+
+url
+
+Stores API URL.
+
+requests.get(url)
+
+Fetches API data.
+
+req.json()
+
+Converts response into Python data.
+
+context
+
+Sends data to HTML.
+
+render()
+
+Loads HTML page.
+
+
+=========================================================
+STEP 13 : INSTALL REQUESTS PACKAGE
+=========================================================
+
+Write:
+
+pip install requests
+
+WHY USED?
+
+Requests library fetches API data.
+
+
+=========================================================
+STEP 14 : CREATE URL FILE
+=========================================================
+
+OPEN LOCATION:
+
+storeapi/mainapp/
+
+Create file:
+
+urls.py
+
+FINAL LOCATION:
+
+storeapi/mainapp/urls.py
+
+
+Paste Code:
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+
+    path('', views.home),
+
+]
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+path()
+
+Creates URL.
+
+''
+
+Home page URL.
+
+views.home
+
+Calls home function.
+
+
+=========================================================
+STEP 15 : CONNECT APP URL
+=========================================================
+
+OPEN FILE:
+
+storeapi/storeapi/urls.py
+
+Paste Code:
+
+from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+
+    path('',include('mainapp.urls')),
+
+]
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+include()
+
+Connects app URLs.
+
+admin/
+
+Admin panel URL.
+
+mainapp.urls
+
+Loads app URLs.
+
+
+=========================================================
+STEP 16 : RUN SERVER
+=========================================================
+
+Write:
+
+python manage.py runserver
+
+WHY USED?
+
+Starts Django server.
+
+
+=========================================================
+OPEN BROWSER
+=========================================================
+
+http://127.0.0.1:8000
+
+Now API data will display.
+
+
+=========================================================
+DJANGO REST FRAMEWORK PROJECT
+=========================================================
+
+Project Name: APIProject
+
+
+=========================================================
+STEP 1 : ACTIVATE ENVIRONMENT
+=========================================================
+
+myenv\Scripts\activate
+
+
+=========================================================
+STEP 2 : CREATE PROJECT
+=========================================================
+
+django-admin startproject APIProject
+
+
+=========================================================
+STEP 3 : OPEN PROJECT
+=========================================================
+
+cd APIProject
+
+code .
+
+
+=========================================================
+STEP 4 : RUN MIGRATION
+=========================================================
+
+python manage.py migrate
+
+
+=========================================================
+STEP 5 : CREATE APPLICATION
+=========================================================
+
+python manage.py startapp apiapp
+
+
+=========================================================
+STEP 6 : REGISTER APP
+=========================================================
+
+OPEN FILE:
+
+APIProject/APIProject/settings.py
+
+Find:
+
+INSTALLED_APPS = [
+
+]
+
+Paste:
+
+'apiapp',
+
+
+=========================================================
+STEP 7 : CREATE MODEL
+=========================================================
+
+OPEN FILE:
+
+APIProject/apiapp/models.py
+
+Paste Code:
+
+from django.db import models
+
+class Studinfo(models.Model):
+
+    name = models.CharField(max_length=100)
+
+    email = models.EmailField()
+
+    dob = models.DateField()
+
+    city = models.CharField(max_length=100)
+
+    def __str__(self):
+
+        return self.name
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+models.Model
+
+Base model class.
+
+CharField
+
+Stores text.
+
+EmailField
+
+Stores email.
+
+DateField
+
+Stores date.
+
+
+=========================================================
+STEP 8 : MAKE MIGRATION
+=========================================================
+
+python manage.py makemigrations
+
+WHY USED?
+
+Creates migration file.
+
+
+=========================================================
+STEP 9 : MIGRATE
+=========================================================
+
+python manage.py migrate
+
+WHY USED?
+
+Creates database table.
+
+
+=========================================================
+STEP 10 : REGISTER MODEL IN ADMIN
+=========================================================
+
+OPEN FILE:
+
+APIProject/apiapp/admin.py
+
+Paste Code:
+
+from django.contrib import admin
+from .models import *
+
+admin.site.register(Studinfo)
+
+WHY USED?
+
+Shows model in admin panel.
+
+
+=========================================================
+STEP 11 : CREATE SUPERUSER
+=========================================================
+
+Write:
+
+python manage.py createsuperuser
+
+Enter:
+
+- username
+- email
+- password
+
+WHY USED?
+
+Creates admin login.
+
+
+=========================================================
+STEP 12 : RUN SERVER
+=========================================================
+
+python manage.py runserver
+
+
+=========================================================
+STEP 13 : OPEN ADMIN PANEL
+=========================================================
+
+http://127.0.0.1:8000/admin
+
+Now add records.
+
+
+=========================================================
+START DJANGO REST FRAMEWORK
+=========================================================
+
+STEP 14 : INSTALL REST FRAMEWORK
+=========================================================
+
+Write:
+
+pip install djangorestframework
+
+WHY USED?
+
+Installs Django REST Framework.
+
+
+=========================================================
+STEP 15 : REGISTER REST FRAMEWORK
+=========================================================
+
+OPEN FILE:
+
+APIProject/APIProject/settings.py
+
+Find:
+
+INSTALLED_APPS = [
+
+]
+
+Paste:
+
+'rest_framework',
+'apiapp',
+
+
+=========================================================
+STEP 16 : CREATE SERIALIZER FILE
+=========================================================
+
+OPEN LOCATION:
+
+APIProject/apiapp/
+
+Create file:
+
+serializers.py
+
+
+=========================================================
+STEP 17 : WRITE SERIALIZER CODE
+=========================================================
+
+OPEN FILE:
+
+APIProject/apiapp/serializers.py
+
+Paste Code:
+
+from rest_framework import serializers
+from .models import *
+
+class StudSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = Studinfo
+
+        fields = '__all__'
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+serializers.ModelSerializer
+
+Converts model data into JSON.
+
+fields = '__all__'
+
+Selects all fields.
+
+
+=========================================================
+STEP 18 : WRITE API VIEW
+=========================================================
+
+OPEN FILE:
+
+APIProject/apiapp/views.py
+
+Paste Code:
+
+from django.shortcuts import render
+
+from .models import *
+from .serializers import *
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+@api_view(['GET'])
+
+def getall(request):
+
+    data = Studinfo.objects.all()
+
+    serial = StudSerializer(data,many=True)
+
+    return Response(serial.data)
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+@api_view(['GET'])
+
+Allows GET request.
+
+Studinfo.objects.all()
+
+Fetches all data.
+
+StudSerializer()
+
+Serializes data.
+
+many=True
+
+Multiple records.
+
+Response()
+
+Returns JSON response.
+
+
+=========================================================
+STEP 19 : CREATE APP URL
+=========================================================
+
+OPEN LOCATION:
+
+APIProject/apiapp/
+
+Create:
+
+urls.py
+
+OPEN FILE:
+
+APIProject/apiapp/urls.py
+
+Paste Code:
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+
+    path('getall/',views.getall),
+
+]
+
+
+=========================================================
+STEP 20 : CONNECT URL
+=========================================================
+
+OPEN FILE:
+
+APIProject/APIProject/urls.py
+
+Paste Code:
+
+from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+
+    path('',include('apiapp.urls')),
+
+]
+
+
+=========================================================
+STEP 21 : RUN SERVER
+=========================================================
+
+python manage.py runserver
+
+
+=========================================================
+STEP 22 : OPEN API URL
+=========================================================
+
+http://127.0.0.1:8000/getall/
+
+Now JSON data will display.
+
+
+=========================================================
+EXAMPLE OUTPUT
+=========================================================
+
+[
+    {
+        "id":1,
+        "name":"Richa",
+        "email":"richa@gmail.com",
+        "dob":"2004-05-20",
+        "city":"Ahmedabad"
+    }
+]
+
+
+=========================================================
+HTTP METHODS
+=========================================================
+
+GET    = Fetch Data
+
+POST   = Insert Data
+
+PUT    = Update Data
+
+DELETE = Delete Data
+
+
+=========================================================
+IMPORTANT INTERVIEW QUESTIONS
+=========================================================
+
+1. What is REST API?
+
+REST API is architecture used for communication between applications.
+
+
+2. What is API?
+
+API allows communication between two applications.
+
+
+3. What is JSON?
+
+JSON is lightweight data format.
+
+
+4. What is Serialization?
+
+Object → JSON
+
+
+5. What is Deserialization?
+
+JSON → Object
+
+
+6. What is Django REST Framework?
+
+Toolkit used to build APIs in Django.
+
+
+7. What is Serializer?
+
+Converts model data into JSON.
+
+
+=========================================================
+IMPORTANT COMMANDS
+=========================================================
+
+Create Project
+
+django-admin startproject projectname
+
+
+Create App
+
+python manage.py startapp appname
+
+
+Run Server
+
+python manage.py runserver
+
+
+Migration
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+
+Create Superuser
+
+python manage.py createsuperuser
+
+
+Install REST Framework
+
+pip install djangorestframework
+
+
+Install Requests
+
+pip install requests
+
+
+=========================================================
+FINAL FLOW OF REST API
+=========================================================
+
+1. Create Project
+
+2. Create App
+
+3. Register App
+
+4. Create Model
+
+5. Migration
+
+6. Add Data
+
+7. Install DRF
+
+8. Create Serializer
+
+9. Create API View
+
+10. Create URL
+
+11. Run Server
+
+12. Access API URL
+
+13. JSON Data Display
+
+
+=========================================================
+END
+=========================================================

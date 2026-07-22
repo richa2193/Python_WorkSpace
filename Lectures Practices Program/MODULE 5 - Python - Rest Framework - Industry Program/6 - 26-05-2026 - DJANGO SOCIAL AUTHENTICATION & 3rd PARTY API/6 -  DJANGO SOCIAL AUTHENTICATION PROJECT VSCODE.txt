@@ -1,0 +1,591 @@
+=======================================
+DJANGO SOCIAL AUTHENTICATION PROJECT
+=======================================
+
+Login With Google + GitHub
+Project Name : socialAuthProject
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+===============================
+WHAT IS SOCIAL AUTHENTICATION?
+===============================
+
+Social Authentication means user can login using third-party services like:
+	Google
+	GitHub
+	Facebook
+	Twitter
+Instead of creating separate username and password.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=======================
+INTERVIEW QUESTIONS
+=======================
+
+1. What is Social Authentication?
+Social Authentication allows users to login using third-party providers like Google and GitHub.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2. Which package is used for Social Authentication in Django?
+Package:
+pip install django-allauth
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. What is OAuth?
+OAuth is an authorization protocol used for secure login using third-party providers.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4. What is Client ID?
+Client ID identifies your application to Google or GitHub.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5. What is Secret Key?
+Secret Key is a private security key used during authentication.
+Never share Secret Key publicly.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6. What is Third Party API?
+Third Party API means external services provided by another company.
+Examples:
+	Google API
+	GitHub API
+	Facebook API
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+================================
+STEP 1 : CREATE DJANGO PROJECT
+=================================
+
+Open CMD:
+django-admin startproject socialAuthProject
+cd socialAuthProject
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+======================
+STEP 2 : OPEN IN VS CODE
+======================
+code .
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=============================
+STEP 3 : OPEN IN ANTIGRAVITY
+=============================
+Command:
+antigravity-ide .
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+====================
+STEP 4 : CREATE APP
+====================
+python manage.py startapp socialapp
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=================================
+STEP 5 : INSTALL REQUIRED PACKAGES
+==================================
+pip install django-allauth
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 6 : ADD APPS IN settings.py
+==============================
+File:
+socialAuthProject/settings.py
+Add:
+INSTALLED_APPS = [
+'django.contrib.admin',
+'django.contrib.auth',
+'django.contrib.contenttypes',
+'django.contrib.sessions',
+'django.contrib.messages',
+'django.contrib.staticfiles',
+
+'django.contrib.sites',
+
+'allauth',
+'allauth.account',
+'allauth.socialaccount',
+
+'allauth.socialaccount.providers.google',
+'allauth.socialaccount.providers.github',
+
+'socialapp',
+]
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==================
+STEP 7 : ADD SITE ID
+==================
+
+In settings.py
+SITE_ID = 1
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+====================================
+STEP 8 : ADD AUTHENTICATION BACKENDS
+====================================
+In settings.py
+AUTHENTICATION_BACKENDS = (
+'django.contrib.auth.backends.ModelBackend',
+
+'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 9 : LOGIN REDIRECT URL
+==============================
+In settings.py
+LOGIN_REDIRECT_URL = ‘/dashboard/’
+LOGOUT_REDIRECT_URL = ‘/’
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 10 : TEMPLATES DIR
+==============================
+In settings.py
+import os
+Inside TEMPLATES:
+‘DIRS’: [os.path.join(BASE_DIR, ‘templates’)],
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 11 : MAIN URLS
+==============================
+File:
+socialAuthProject/urls.py
+Code:
+from django.contrib import admin from django.urls import path, include from socialapp import views
+urlpatterns = [
+path('admin/', admin.site.urls),
+
+path('accounts/', include('allauth.urls')),
+
+path('', views.loginpage),
+
+path('dashboard/', views.dashboard),
+]
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 12 : CREATE VIEWS
+==============================
+File:
+socialapp/views.py
+Code:
+from django.shortcuts import render
+def loginpage(request):
+return render(request, 'login.html')
+def dashboard(request):
+return render(request, 'dashboard.html')
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 13 : CREATE TEMPLATE FOLDER
+===============================
+Inside main project create:
+templates
+Inside templates create:
+1.	login.html
+2.	dashboard.html
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 14 : LOGIN PAGE DESIGN
+===============================
+File:
+templates/login.html
+Code:
+{% load socialaccount %}
+<!DOCTYPE html>
+<title>Social Login</title>
+
+<style>
+
+    body{
+        font-family:Arial;
+        background:#f4f4f4;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+    }
+
+    .box{
+        background:white;
+        padding:40px;
+        border-radius:10px;
+        box-shadow:0px 0px 10px gray;
+        text-align:center;
+        width:350px;
+    }
+
+    h1{
+        margin-bottom:30px;
+    }
+
+    a{
+        display:block;
+        text-decoration:none;
+        padding:12px;
+        margin-top:15px;
+        border-radius:5px;
+        color:white;
+        font-weight:bold;
+    }
+
+    .google{
+        background:#db4437;
+    }
+
+    .github{
+        background:#24292e;
+    }
+
+</style>
+<div class="box">
+
+    <h1>Social Authentication</h1>
+
+    <a class="google"
+       href="{% provider_login_url 'google' %}">
+       Login With Google
+    </a>
+
+    <a class="github"
+       href="{% provider_login_url 'github' %}">
+       Login With GitHub
+    </a>
+
+</div>
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 15 : DASHBOARD PAGE
+==============================
+File:
+templates/dashboard.html
+Code:
+<!DOCTYPE html>
+<title>Dashboard</title>
+
+<style>
+
+    body{
+        font-family:Arial;
+        background:#f4f4f4;
+        text-align:center;
+        padding-top:100px;
+    }
+
+    h1{
+        color:green;
+    }
+
+</style>
+<h1>Welcome To Dashboard</h1>
+
+<h2>Login Successful</h2>
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 16 : RUN MIGRATIONS
+==============================
+python manage.py makemigrations
+python manage.py migrate
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 17 : CREATE SUPERUSER
+===============================
+python manage.py createsuperuser
+Enter:
+•	Username
+•	Email
+•	Password
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 18 : RUN SERVER
+==============================
+python manage.py runserver
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+========================================
+STEP 19 : OPEN GOOGLE DEVELOPER CONSOLE
+========================================
+Open:
+url Google Cloud Console - https://console.cloud.google.com/
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 20 : CREATE GOOGLE PROJECT
+==============================
+1.	Click Select Project
+2.	New Project
+3.	Project Name: socialapp
+4.	Create
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 21 : ENABLE GOOGLE AUTH
+==============================
+Inside sidebar:
+APIs & Services
+→ Credentials
+→ Create Credentials
+→ OAuth Client ID
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+===================================
+STEP 22 : CONFIGURE CONSENT SCREEN
+====================================
+1.	Click Configure Consent Screen
+2.	Select:
+External
+3.	Add App Name:
+socialauth
+4.	Add Email
+5.	Continue
+6.	Agree
+7.	Finish
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 23 : CREATE OAUTH CLIENT ID
+==============================
+Click:
+Create OAuth Client ID
+Application Type:
+Web Application
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 24 : ADD AUTHORIZED URLS
+===============================
+Authorized JavaScript Origins:
+http://127.0.0.1:8000
+Authorized Redirect URI:
+http://127.0.0.1:8000/accounts/google/login/callback/
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+================================
+STEP 25 : COPY GOOGLE KEYS
+================================
+You will get:
+•	Client ID - 923347283521-ci18o5br50sg81l1kum7g7fg2c5m9k7b.apps.googleusercontent.com
+•	Client Secret Key - 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
+Copy both.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 26 : OPEN DJANGO ADMIN
+===============================
+Open:
+http://127.0.0.1:8000/admin
+Login using superuser username and password.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=================================
+STEP 27 : OPEN SOCIAL APPLICATIONS
+=================================
+Inside admin panel:
+Social Applications
+Click Add.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=================================
+STEP 28 : ADD GOOGLE APPLICATION
+==================================
+Provider:
+Google
+Name:
+Google Login
+Client ID:
+Paste Google Client ID
+Secret Key:
+Paste Google Secret Key
+Sites:
+Select example.com and move to chosen side.
+Save.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+===================================
+STEP 29 : GITHUB DEVELOPER SETTINGS
+====================================
+Open:
+url GitHub Developer Settings https://github.com/settings/developers
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==================================
+STEP 30 : CREATE GITHUB OAUTH APP
+===================================
+Click:
+OAuth Apps
+→ New OAuth App
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 31 : ADD GITHUB DETAILS
+==============================
+Application Name:
+SocialAuthDjango
+Homepage URL:
+http://127.0.0.1:8000
+Authorization Callback URL:
+http://127.0.0.1:8000/accounts/github/login/callback/
+Click:
+Register Application
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 32 : GENERATE SECRET KEY
+==============================
+After registration:
+1.	Copy Client ID - Ov23liu5MuUgT9RJ1jCY
+2.	Click Generate New Client Secret - 60232f431d24c296876d448e64b8e547ab4928f9
+3.	Copy Secret Key
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+====================================
+STEP 33 : ADD GITHUB IN DJANGO ADMIN
+=====================================
+Open Admin Panel.
+Social Applications
+Add:
+Provider:
+GitHub
+Name:
+GitHub Login
+Client ID:
+Paste GitHub Client ID
+Secret Key:
+Paste GitHub Secret Key
+Sites:
+Add example.com
+Save.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 34 : LOGIN BUTTONS
+===============================
+Google Login Button:
+href=“{% provider_login_url ‘google’ %}”
+GitHub Login Button:
+href=“{% provider_login_url ‘github’ %}”
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 35 : RESTART SERVER
+===============================
+python manage.py runserver
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 36 : TEST GOOGLE LOGIN
+==============================
+Open:
+http://127.0.0.1:8000
+Click:
+Login With Google
+Login successful.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 37 : TEST GITHUB LOGIN
+===============================
+Click:
+Login With GitHub
+Login successful.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+STEP 38 : CHECK STORED DATA
+===============================
+Open Admin Panel.
+Inside:
+Social Accounts
+You can see:
+•	Google User Data
+•	GitHub User Data
+Stored successfully.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+IMPORTANT NOTES
+===============================
+1.	Never share Secret Keys publicly.
+2.	Client ID is public identifier.
+3.	Secret Key is private.
+4.	OAuth handles secure authentication.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+==============================
+ANTIGRAVITY PROMPT
+================================
+Prompt:
+Create a Django app for social authentication where users can login using Google and GitHub authentication. Design responsive and beautiful HTML pages with proper CSS styling and dashboard page after login.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+===============================================
+FINAL OUTPUT
+===============================================
+This project includes:
+•	Google Login
+•	GitHub Login
+•	OAuth Authentication
+•	Django Allauth
+•	Responsive UI
+•	Dashboard Page
+•	Admin Integration
+•	Social Account Storage
+•	Interview Questions
+•	Real Industry Authentication System

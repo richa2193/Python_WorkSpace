@@ -1,0 +1,143 @@
+what is Rest?
+
+it is a library. 
+
+web api - application programming interface. 
+
+using single database manage 3 application.
+
+centralize one single database.
+
+api return two  
+
+json 
+xml 
+
+convert object data into json format.
+
+
+----------------------------------------------------------------
+
+1. make new project using cmd 
+2. project name storeapi 
+3. open in vs code 
+4. migrate in terminal 
+5. startapp name 
+6. register it
+7. templates folder inside make index.html 
+8. write basic code in index.html.
+9. make view for index
+10. make url and import
+11. runserver 
+12. now in views.py
+import request 
+13. pip install request 
+14.  url="yoururl"
+15. make object of url
+req=request.get(url)
+data=req.json()
+print(data)
+16. runserver 
+17. pass data un context 
+('data') and also in templates {{data}}
+18. in cdn link from boststrep 
+
+19. now take table from that 
+20.  
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+what is serialization ?
+converting object data into json format.
+
+deserialization  - json into object data.
+
+rest frame work 
+
+step 1
+activate myenv 
+
+step 2 
+makenew project aPIProject 
+
+step 3 
+open in vscode 
+
+step 4 
+run command migrate 
+
+step 5 make application in terminal apiapp
+
+Step 6 register app
+
+7 in models.py make one class studinfo 
+	
+class studinfo(models.Model):	
+	name
+	email
+	dob
+	city 
+
+8. run make migration 
+
+9. migrate 
+
+10. in admin.py 
+from . models import * 
+
+admin.site.register(studiinfo)
+
+11 createsuperuser 
+
+12. runserver 
+
+13. /admin 
+
+14.  add 3 4 record 
+
+15. start rest framework 
+
+16. run command : pip install djangorestframework 
+  
+17. in settings.py register rest_framework app name niche 
+
+18. in apiapp make serialization.py 
+
+19. from rest_framework import seriliza
+
+20.  from . models import * 
+
+21. make class studserial (stud)
+
+22. in views.py 
+
+make one function getall 
+
+from . models import * 
+from .serialize imort * 
+from restframewok.decorator import api_view 
+from rest .response import Response
+
+def getall(request):
+data=studinfoobjects.all()
+serail= studserial(data, many=true)
+return Respinse(serial.data)
+
+23.   in urls.py 
+
+from import views 
+
+path('getall/', views.getall)
+
+24. in views.py 
+
+decorator - dependency method 
+
+before def @api_view(['GET'])
+
+25. now runerver 
+all data will be displayed 
+
+rss feed 
+
+

@@ -1,0 +1,145 @@
+1 open project folder in path and open cmd
+
+2. activate env
+
+3 make new project RestApiproject 
+
+4 open in vs code 
+
+5 in terminal migrate 
+
+6 make super user using command  
+
+7 make app named as apiapp 
+
+8 in settings.py register app
+api returns response.
+
+9 in models.py make one class with field 
+
+class studinfo(models.Model):
+	name
+	email
+	mobile
+	city 
+
+10 in terminal make migration
+
+11 run migrate command 
+
+12 in admin .py write code for register 
+
+from . models import * 
+admin.site.......
+
+13 runserver 
+
+14 in /admin insert record 
+
+15 in terminal install rest framework 
+pip install djangorestframework 
+
+16 in settings.py register rest framework 
+
+17 in appname serializer.py make this file 
+
+18 in that file from restframework import rest framework 
+from .models import * 
+
+convert object data into json 
+class studserial(serilizatior.Modelser):
+	class meta:
+model=studinfo
+fields='__all__'
+
+19 from .models import * 
+from .serializaer import  *
+from restframework.decorator import api view 
+from rest_framwwork.response import Response 
+from ret_framework import status 
+
+jetla operation etla view 
+20 create view 
+@api_view(['GET'])  
+def getdata(request):
+stdata=studinfo.object.all()
+serial=studserial(stdata,many=true)
+return Response (data=serial.data)
+
+
+request type 
+get - select/fetch
+post - insert/save
+put - update 
+delete - delete 
+
+21 in app make urls.py 
+
+22 in main url.py file include 
+and set path
+
+23 copy that code in app urls.py 
+from apiapp import views 
+
+path('getdata/', '') 
+
+24 runserver 
+and check /getdata 
+
+25 
+second operation 
+search 
+
+in views.py 
+@apiview([get])
+def searchdata(request.id):
+
+try:
+	stid=studinfo.object.get(id=id)
+	
+except studinfo.doesnotexist
+return Response(status=status.http404notfound)
+
+copy that twoline 
+
+serial =studserial(stid)
+return response(data=serial.std)
+
+26 in urls.py 
+
+path (''serachdata/<int:id>',views.search.data),
+
+27 delete operation 
+in views.py
+
+@apiview(delete) 
+def deletedata(request,id):
+copy try except 
+
+studinfo.delete(stid)
+return response(status=status.202accepetd )
+
+27 in url.py make path for delete 
+
+28 
+in views.py for delete use 2 request delete, get
+
+after except write serial
+if request.method==''get
+		serial=stud
+return 
+
+if          method == delete 
+
+29 runserver and check 
+
+
+
+
+
+
+
+
+
+
+

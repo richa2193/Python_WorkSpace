@@ -1,0 +1,923 @@
+=========================================================
+DJANGO REST FRAMEWORK COMPLETE CRUD API NOTES
+WITH FILE LOCATION + CODE EXPLANATION
+=========================================================
+
+Project Name : RestApiProject
+
+=========================================================
+STEP 1 : OPEN PROJECT FOLDER PATH
+=========================================================
+
+Open project folder path manually.
+
+Example:
+
+D:\DjangoProjects
+
+Now click on path bar and type:
+
+cmd
+
+Press Enter.
+
+WHY USED?
+
+Opens command prompt directly inside project folder.
+
+
+=========================================================
+STEP 2 : ACTIVATE VIRTUAL ENVIRONMENT
+=========================================================
+
+Write:
+
+myenv\Scripts\activate
+
+After activation:
+
+(myenv)
+
+WHY USED?
+
+Activates virtual environment.
+
+Virtual environment stores project packages separately.
+
+
+=========================================================
+STEP 3 : CREATE NEW PROJECT
+=========================================================
+
+Write:
+
+django-admin startproject RestApiProject
+
+WHY USED?
+
+Creates new Django project.
+
+RestApiProject = Project name
+
+
+=========================================================
+STEP 4 : OPEN PROJECT IN VS CODE
+=========================================================
+
+Move inside project:
+
+cd RestApiProject
+
+Open VS Code:
+
+code .
+
+WHY USED?
+
+Opens current project folder in VS Code.
+
+
+=========================================================
+STEP 5 : RUN MIGRATION
+=========================================================
+
+Open terminal in VS Code.
+
+Write:
+
+python manage.py migrate
+
+WHY USED?
+
+Creates default Django database tables.
+
+
+=========================================================
+STEP 6 : CREATE SUPERUSER
+=========================================================
+
+Write:
+
+python manage.py createsuperuser
+
+Enter:
+
+- Username
+- Email
+- Password
+
+WHY USED?
+
+Creates admin login account.
+
+
+=========================================================
+STEP 7 : CREATE APP
+=========================================================
+
+Write:
+
+python manage.py startapp apiapp
+
+
+WHY USED?
+
+Creates application named apiapp.
+
+
+=========================================================
+STEP 8 : REGISTER APP
+=========================================================
+
+OPEN FILE FROM LOCATION:
+
+RestApiProject/RestApiProject/settings.py
+
+Find:
+
+INSTALLED_APPS = [
+
+]
+
+Paste:
+
+'apiapp',
+
+FINAL CODE:
+
+INSTALLED_APPS = [
+
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'apiapp',
+
+]
+
+WHY USED?
+
+Registers app in Django project.
+
+IMPORTANT:
+
+API returns response data from this app.
+
+
+=========================================================
+STEP 9 : CREATE MODEL
+=========================================================
+
+OPEN FILE:
+
+RestApiProject/apiapp/models.py
+
+Paste Code:
+
+from django.db import models
+
+class Studinfo(models.Model):
+
+    name = models.CharField(max_length=100)
+
+    email = models.EmailField()
+
+    mobile = models.CharField(max_length=10)
+
+    city = models.CharField(max_length=100)
+
+    def __str__(self):
+
+        return self.name
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+models.Model
+
+Base model class.
+
+CharField
+
+Stores text data.
+
+EmailField
+
+Stores email data.
+
+mobile
+
+Stores mobile number.
+
+__str__()
+
+Displays object name in admin panel.
+
+
+=========================================================
+STEP 10 : MAKE MIGRATION
+=========================================================
+
+Write:
+
+python manage.py makemigrations
+
+WHY USED?
+
+Creates migration file for model.
+
+
+=========================================================
+STEP 11 : RUN MIGRATE COMMAND
+=========================================================
+
+Write:
+
+python manage.py migrate
+
+WHY USED?
+
+Creates database table.
+
+
+=========================================================
+STEP 12 : REGISTER MODEL IN ADMIN
+=========================================================
+
+OPEN FILE:
+
+RestApiProject/apiapp/admin.py
+
+Paste Code:
+
+from django.contrib import admin
+
+from .models import *
+
+admin.site.register(Studinfo)
+
+WHY USED?
+
+Registers model in admin panel.
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+from .models import *
+
+Imports all models.
+
+admin.site.register()
+
+Shows model in admin panel.
+
+
+=========================================================
+STEP 13 : RUN SERVER
+=========================================================
+
+Write:
+
+python manage.py runserver
+
+WHY USED?
+
+Starts Django server.
+
+
+=========================================================
+STEP 14 : OPEN ADMIN PANEL
+=========================================================
+
+Open browser:
+
+http://127.0.0.1:8000/admin
+
+Login using superuser details.
+
+Insert records manually.
+
+
+=========================================================
+STEP 15 : INSTALL REST FRAMEWORK
+=========================================================
+
+Open terminal.
+
+Write:
+
+pip install djangorestframework
+
+WHY USED?
+
+Installs Django REST Framework.
+
+
+=========================================================
+STEP 16 : REGISTER REST FRAMEWORK
+=========================================================
+
+OPEN FILE:
+
+RestApiProject/RestApiProject/settings.py
+
+Find:
+
+INSTALLED_APPS = [
+
+]
+
+Paste:
+
+'rest_framework',
+'apiapp',
+
+FINAL CODE:
+
+INSTALLED_APPS = [
+
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'rest_framework',
+
+    'apiapp',
+
+]
+
+WHY USED?
+
+Registers REST Framework.
+
+
+=========================================================
+STEP 17 : CREATE SERIALIZER FILE
+=========================================================
+
+OPEN LOCATION:
+
+RestApiProject/apiapp/
+
+Create file:
+
+serializers.py
+
+FINAL LOCATION:
+
+RestApiProject/apiapp/serializers.py
+
+
+=========================================================
+STEP 18 : WRITE SERIALIZER CODE
+=========================================================
+
+OPEN FILE:
+
+RestApiProject/apiapp/serializers.py
+
+Paste Code:
+
+from rest_framework import serializers
+
+from .models import *
+
+class StudSerial(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = Studinfo
+
+        fields = '__all__'
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+from rest_framework import serializers
+
+Imports serializer module.
+
+serializers.ModelSerializer
+
+Converts model object data into JSON.
+
+class Meta
+
+Inner configuration class.
+
+model = Studinfo
+
+Connects serializer with model.
+
+fields = '__all__'
+
+Selects all fields.
+
+
+=========================================================
+STEP 19 : IMPORT REQUIRED MODULES
+=========================================================
+
+OPEN FILE:
+
+RestApiProject/apiapp/views.py
+
+Paste Code:
+
+from .models import *
+
+from .serializers import *
+
+from rest_framework.decorators import api_view
+
+from rest_framework.response import Response
+
+from rest_framework import status
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+from .models import *
+
+Imports model.
+
+from .serializers import *
+
+Imports serializer.
+
+api_view
+
+Used for request methods.
+
+Response
+
+Returns API response.
+
+status
+
+Returns HTTP status code.
+
+
+=========================================================
+REQUEST TYPES
+=========================================================
+
+GET    = Fetch Data
+
+POST   = Insert Data
+
+PUT    = Update Data
+
+DELETE = Delete Data
+
+
+=========================================================
+STEP 20 : CREATE GET VIEW
+=========================================================
+
+OPEN FILE:
+
+RestApiProject/apiapp/views.py
+
+Paste Code:
+
+@api_view(['GET'])
+
+def getdata(request):
+
+    stdata = Studinfo.objects.all()
+
+    serial = StudSerial(stdata, many=True)
+
+    return Response(data=serial.data)
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+@api_view(['GET'])
+
+Allows GET request only.
+
+Studinfo.objects.all()
+
+Fetches all records.
+
+StudSerial()
+
+Converts object data into JSON.
+
+many=True
+
+Multiple records exist.
+
+Response()
+
+Returns JSON response.
+
+
+=========================================================
+STEP 21 : CREATE URL FILE
+=========================================================
+
+OPEN LOCATION:
+
+RestApiProject/apiapp/
+
+Create file:
+
+urls.py
+
+
+=========================================================
+STEP 22 : CONNECT MAIN URL
+=========================================================
+
+OPEN FILE:
+
+RestApiProject/RestApiProject/urls.py
+
+Paste Code:
+
+from django.contrib import admin
+
+from django.urls import path, include
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+
+    path('', include('apiapp.urls')),
+
+]
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+include()
+
+Connects app URLs.
+
+admin/
+
+Admin panel URL.
+
+apiapp.urls
+
+Loads app URL file.
+
+
+=========================================================
+STEP 23 : WRITE APP URL
+=========================================================
+
+OPEN FILE:
+
+RestApiProject/apiapp/urls.py
+
+Paste Code:
+
+from django.urls import path
+
+from apiapp import views
+
+urlpatterns = [
+
+    path('getdata/', views.getdata),
+
+]
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+path()
+
+Creates URL.
+
+'getdata/'
+
+API URL path.
+
+views.getdata
+
+Calls getdata function.
+
+
+=========================================================
+STEP 24 : RUN SERVER
+=========================================================
+
+Write:
+
+python manage.py runserver
+
+Open browser:
+
+http://127.0.0.1:8000/getdata/
+
+Now JSON data will display.
+
+
+=========================================================
+SECOND OPERATION : SEARCH DATA
+=========================================================
+
+STEP 25 : SEARCH VIEW
+=========================================================
+
+OPEN FILE:
+
+RestApiProject/apiapp/views.py
+
+Paste Code:
+
+@api_view(['GET'])
+
+def searchdata(request, id):
+
+    try:
+
+        stid = Studinfo.objects.get(id=id)
+
+    except Studinfo.DoesNotExist:
+
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serial = StudSerial(stid)
+
+    return Response(data=serial.data)
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+objects.get(id=id)
+
+Fetches single record.
+
+try
+
+Checks error possibility.
+
+except
+
+Runs when record not found.
+
+HTTP_404_NOT_FOUND
+
+404 error response.
+
+StudSerial(stid)
+
+Converts single object into JSON.
+
+
+=========================================================
+STEP 26 : CREATE SEARCH URL
+=========================================================
+
+OPEN FILE:
+
+RestApiProject/apiapp/urls.py
+
+Paste Code:
+
+path('searchdata/<int:id>/', views.searchdata),
+
+FINAL CODE:
+
+from django.urls import path
+
+from apiapp import views
+
+urlpatterns = [
+
+    path('getdata/', views.getdata),
+
+    path('searchdata/<int:id>/', views.searchdata),
+
+]
+
+
+=========================================================
+URL EXPLANATION
+=========================================================
+
+<int:id>
+
+Accepts integer ID from URL.
+
+Example:
+
+http://127.0.0.1:8000/searchdata/1/
+
+
+=========================================================
+STEP 27 : DELETE OPERATION
+=========================================================
+
+OPEN FILE:
+
+RestApiProject/apiapp/views.py
+
+Paste Code:
+
+@api_view(['DELETE'])
+
+def deletedata(request, id):
+
+    try:
+
+        stid = Studinfo.objects.get(id=id)
+
+    except Studinfo.DoesNotExist:
+
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    stid.delete()
+
+    return Response(status=status.HTTP_202_ACCEPTED)
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+@api_view(['DELETE'])
+
+Allows delete request.
+
+stid.delete()
+
+Deletes record.
+
+HTTP_202_ACCEPTED
+
+Successful delete response.
+
+
+=========================================================
+STEP 28 : GET + DELETE IN SAME VIEW
+=========================================================
+
+OPEN FILE:
+
+RestApiProject/apiapp/views.py
+
+Paste Code:
+
+@api_view(['GET', 'DELETE'])
+
+def deletedata(request, id):
+
+    try:
+
+        stid = Studinfo.objects.get(id=id)
+
+    except Studinfo.DoesNotExist:
+
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+
+        serial = StudSerial(stid)
+
+        return Response(data=serial.data)
+
+    if request.method == 'DELETE':
+
+        stid.delete()
+
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+
+=========================================================
+CODE EXPLANATION
+=========================================================
+
+request.method
+
+Checks request type.
+
+GET
+
+Fetches single record.
+
+DELETE
+
+Deletes record.
+
+
+=========================================================
+STEP 29 : CREATE DELETE URL
+=========================================================
+
+OPEN FILE:
+
+RestApiProject/apiapp/urls.py
+
+Paste Code:
+
+path('deletedata/<int:id>/', views.deletedata),
+
+FINAL CODE:
+
+from django.urls import path
+
+from apiapp import views
+
+urlpatterns = [
+
+    path('getdata/', views.getdata),
+
+    path('searchdata/<int:id>/', views.searchdata),
+
+    path('deletedata/<int:id>/', views.deletedata),
+
+]
+
+
+=========================================================
+STEP 30 : RUN SERVER
+=========================================================
+
+Write:
+
+python manage.py runserver
+
+
+=========================================================
+CHECK URLS
+=========================================================
+
+GET ALL DATA
+
+http://127.0.0.1:8000/getdata/
+
+
+SEARCH DATA
+
+http://127.0.0.1:8000/searchdata/1/
+
+
+DELETE DATA
+
+http://127.0.0.1:8000/deletedata/1/
+
+
+=========================================================
+FINAL PROJECT FLOW
+=========================================================
+
+1. Create Project
+
+2. Create App
+
+3. Register App
+
+4. Create Model
+
+5. Make Migration
+
+6. Migrate Database
+
+7. Register Model
+
+8. Add Records
+
+9. Install DRF
+
+10. Create Serializer
+
+11. Create Views
+
+12. Create URLs
+
+13. Run Server
+
+14. Access API URLs
+
+
+=========================================================
+END
+=========================================================

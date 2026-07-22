@@ -1,0 +1,357 @@
+========================================
+DJANGO REST API CRUD OPERATION PROJECT
+========================================
+
+Project Name : restapiproject
+App Name : apiapp
+
+===========================================
+WHAT IS REST API?
+===========================================
+
+REST API is used for communication between applications.
+
+GET     = Fetch Data
+POST    = Insert Data
+PUT     = Update Data
+DELETE  = Delete Data
+
+===========================================
+STEP 1 : OPEN PROJECT IN VS CODE
+===========================================
+
+cd restapiproject
+
+code .
+
+===========================================
+STEP 2 : CREATE SAVE DATA API
+===========================================
+
+Open apiapp/views.py
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+
+from .models import *
+from .serializers import *
+
+@api_view(['POST'])
+
+def savedata(request):
+
+    serial = StudSerializer(data=request.data)
+
+    if serial.is_valid():
+
+        serial.save()
+
+        return Response(
+            {
+                'msg':'Data Inserted Successfully'
+            },
+            status=status.HTTP_201_CREATED
+        )
+
+    else:
+
+        return Response(
+            serial.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+===========================================
+STEP 3 : CREATE URL
+===========================================
+
+Open apiapp/urls.py
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+
+    path('savedata/',views.savedata),
+
+]
+
+===========================================
+STEP 4 : RUN SERVER
+===========================================
+
+python manage.py runserver
+
+===========================================
+STEP 5 : TEST API
+===========================================
+
+POST METHOD JSON:
+
+{
+    "name":"Richa",
+    "email":"richa@gmail.com",
+    "mobile":"9999999999",
+    "city":"Ahmedabad"
+}
+
+===========================================
+STEP 6 : UPDATE DATA API
+===========================================
+
+@api_view(['PUT','GET'])
+
+def updatedata(request,id):
+
+    stid = Studinfo.objects.get(id=id)
+
+    serial = StudSerializer(stid,data=request.data)
+
+    if serial.is_valid():
+
+        serial.save()
+
+        return Response(
+            {
+                'msg':'Data Updated Successfully'
+            }
+        )
+
+    return Response(serial.errors)
+
+===========================================
+STEP 7 : UPDATE URL
+===========================================
+
+path('updatedata/<int:id>/',views.updatedata),
+
+===========================================
+STEP 8 : DELETE API
+===========================================
+
+@api_view(['DELETE'])
+
+def deletedata(request,id):
+
+    stid = Studinfo.objects.get(id=id)
+
+    stid.delete()
+
+    return Response(
+        {
+            'msg':'Data Deleted Successfully'
+        }
+    )
+
+===========================================
+STEP 9 : DELETE URL
+===========================================
+
+path('deletedata/<int:id>/',views.deletedata),
+
+===========================================
+STEP 10 : SEARCH DATA API
+===========================================
+
+@api_view(['GET'])
+
+def searchdata(request,id):
+
+    data = Studinfo.objects.get(id=id)
+
+    serial = StudSerializer(data)
+
+    return Response(serial.data)
+
+===========================================
+STEP 11 : SEARCH URL
+===========================================
+
+path('searchdata/<int:id>/',views.searchdata),
+
+===========================================
+STEP 12 : GET ALL DATA
+===========================================
+
+@api_view(['GET'])
+
+def getdata(request):
+
+    data = Studinfo.objects.all()
+
+    serial = StudSerializer(data,many=True)
+
+    return Response(serial.data)
+
+===========================================
+STEP 13 : GET URL
+===========================================
+
+path('getdata/',views.getdata),
+
+===========================================
+FINAL urls.py
+===========================================
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+
+    path('getdata/',views.getdata),
+
+    path('searchdata/<int:id>/',views.searchdata),
+
+    path('savedata/',views.savedata),
+
+    path('updatedata/<int:id>/',views.updatedata),
+
+    path('deletedata/<int:id>/',views.deletedata),
+
+]
+
+===========================================
+API DOCUMENTATION
+===========================================
+
+Sr.No | URL | Method | Parameter | Remarks
+
+1 | /getdata/ | GET | None | Fetch All Data
+
+2 | /searchdata/4/ | GET | id | Fetch Specific Data
+
+3 | /savedata/ | POST | JSON Data | Insert New Data
+
+4 | /updatedata/4/ | PUT | id | Update Specific Data
+
+5 | /deletedata/4/ | DELETE | id | Delete Specific Data
+
+===========================================
+STEP 14 : CREATE TEMPLATE
+===========================================
+
+Create:
+
+templates/index.html
+
+===========================================
+STEP 15 : HTML CODE
+===========================================
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>REST API DATA</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-black text-white">
+
+<div class="container mx-auto p-10">
+
+<h1 class="text-4xl font-bold mb-5">
+REST API DATA
+</h1>
+
+<table class="w-full border border-white">
+
+<tr class="bg-gray-800">
+
+<th class="p-3 border">ID</th>
+<th class="p-3 border">Name</th>
+<th class="p-3 border">Email</th>
+<th class="p-3 border">Mobile</th>
+<th class="p-3 border">City</th>
+
+</tr>
+
+{% for i in data %}
+
+<tr class="text-center">
+
+<td class="p-3 border">{{i.id}}</td>
+<td class="p-3 border">{{i.name}}</td>
+<td class="p-3 border">{{i.email}}</td>
+<td class="p-3 border">{{i.mobile}}</td>
+<td class="p-3 border">{{i.city}}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>
+
+===========================================
+STEP 16 : DISPLAY API DATA IN HTML
+===========================================
+
+import requests
+
+def index(request):
+
+    url = "http://127.0.0.1:8000/getdata/"
+
+    req = requests.get(url)
+
+    data = req.json()
+
+    print(data)
+
+    return render(
+        request,
+        'index.html',
+        {
+            'data':data
+        }
+    )
+
+===========================================
+STEP 17 : HTML URL
+===========================================
+
+path('',views.index),
+
+===========================================
+STEP 18 : RUN SERVER
+===========================================
+
+python manage.py runserver
+
+===========================================
+IMPORTANT INTERVIEW QUESTIONS
+===========================================
+
+1. What is REST API?
+
+REST API is used for communication between applications.
+
+2. What is Serializer?
+
+Serializer converts Python object into JSON format.
+
+3. What is GET?
+
+GET fetches data.
+
+4. What is POST?
+
+POST inserts data.
+
+5. What is PUT?
+
+PUT updates existing data.
+
+6. What is DELETE?
+
+DELETE removes data.
+
+===========================================
+PROJECT COMPLETE
+===========================================

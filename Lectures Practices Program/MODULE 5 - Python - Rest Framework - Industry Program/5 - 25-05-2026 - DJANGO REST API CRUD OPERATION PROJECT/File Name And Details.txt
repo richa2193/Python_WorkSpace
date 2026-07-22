@@ -1,0 +1,89 @@
+open project in vs code named as restapiproject 
+
+1. in views.py 
+api biew post 
+
+create new method savedata 
+	if request.method==post 
+	serial=studserial(data = request.data)
+	if serial.isvalid():
+		serial.save()
+			return Response(status=status.)
+		else:
+
+
+2. urls.py create url  
+
+3. runserver 
+
+4. search savesata 
+
+5. add data 
+
+6. now check add data display or not 
+
+7. for update 
+
+in views.py create method put 
+
+a[piview (put , get)
+
+def updatedata
+
+same like deletedata 
+
+if 
+
+8. create url in urls.py 
+
+how to make documentation 
+
+9. open excel 
+
+sr.no URL method 	parameter remarks 
+
+10. design little bit 
+
+11. 1 getdata link get na fetch all the data 
+2 searchdata link get Id=4 fetch specific data using id parame
+3. savedata link POST  add data insert a new data 
+4. updatedata link put ,get same data update specific data using id param
+5. deletedata link delete get id4 delete specific data using id param.
+
+
+11. in apiapp create template 
+
+index.html
+
+design body 
+
+table 
+tr 
+td id 
+name 
+email
+mobile no 
+city 
+
+next tr
+
+12 now in views.py make def 
+
+def index 
+
+url=""
+ and import request
+
+req=request.get(url)
+data=req.json()
+print(data)
+
+13 add url in urls.py 
+
+14. runserver 
+
+15 take for loop in index.html 
+
+16 
+
+i want to copy and paste this all steps in notpad which you give me so give me all above steps like this and where i am write half code or half step you complete this step with code and tell me where to do changes and where i write theory give me answer which is useful for interview also and other things you can tell by which me and all easily understand.
