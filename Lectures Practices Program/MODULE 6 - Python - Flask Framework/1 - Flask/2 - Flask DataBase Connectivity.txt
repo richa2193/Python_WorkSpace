@@ -1,0 +1,250 @@
+=============================
+FLASK DATABASE CONNECTIVITY 
+=============================
+
+
+=========================
+STEP 1 - CREATE ONE FOLDER 
+=========================
+
+- Create One folder named as : DBAPP
+
+- open DBAPP in cmd 
+
+- run command : code . 
+
+
+===================
+STEP 2 - MAKE AAP.PY 
+===================
+
+- Create app.py in vscode
+
+
+========================
+STEP 3 - TEMPLATE FOLDER 
+========================
+
+- Make new folder templates 
+
+ - inside this create index.html
+
+templates 
+	- index.html 
+
+
+==============================
+STEP 4 - IN APP.PY MAKE 3 THINGS
+==============================
+
+- import flask 
+- app = 
+- app.run(debug=True)
+
+
+============================
+STEP 5 - MAKE ROUTE & VIEW 
+============================
+
+- Make view for index and create route 
+
+@app.route('/')
+def index():
+	return render_template('index.html')
+
+
+========================
+STEP 6 - DB CONNECTIVITY
+========================
+
+- Install packages in terminal
+
+- pip install flask_sqlalchemy
+
+
+=============================
+STEP 7 - IMPORT FLASK ALCHEMY 
+=============================
+
+- from flask_sqlalchemy import SQLAlchemy 
+
+
+==========================
+STEP 8 - DB CONFIGURATION
+==========================
+
+- After app=flask(__name__)
+
+- Add DB Configuration 
+
+- Search in google for DB Configuration
+
+- flask - official website 
+- flask db config 
+- now show that 2 config 
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tops.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Saves memory/resources
+
+- add this above config
+
+- If MySQL then you have to provide all information related database.
+
+
+==============================
+STEP 9 - WRITE YOUR DB NAME 
+===============================
+
+- Change sqlite//tops.db
+
+- write your own database name.
+
+
+========================
+STEP 10 - MAKE DB OBJECT
+========================
+
+- db = sqlalchemy(app)
+
+
+=====================
+STEP 11 - MAKE MODEL 
+=====================
+
+- class studinfo(db.Model):
+
+
+======================
+STEP 12 - CREATE COLUMN
+=======================
+
+- id=db.Column(Integer, primary_key=True)
+- name=db.Column(db.string(20))
+- city=db.Column(db.string(20))
+
+
+================================
+STEP 13 - FUNCTION FOR EXECUTE DB
+================================
+
+-  do not need to call separately, call when or where program execute
+
+with app.app_context():
+	db.create_all()
+
+
+==========================
+STEP 14 - RUNSERVER 
+==========================
+
+- You see db in instance.
+
+
+======================================
+STEP 15 - IN INDEX.HTML WRITE BELOW CODE
+======================================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+</head>
+<body style="background-color: aliceblue;">
+    <h1 style="text-align: center;color: brown;">Welcome to DBApp</h1>
+    <hr>
+
+    <form method="post">
+        <input type="text" placeholder="Name" name="name"> <br><br>
+        <input type="text" placeholder="City" name="city"> <br><br>
+        <input type="submit">
+    </form>
+</body>
+</html>
+
+
+====================
+STEP 16 - RUNSERVER
+====================
+
+- runserver to see the form
+
+
+==============================
+STEP 17 - ADD POST, GET IN ROUTE 
+==============================
+
+- @app.route('/' ,methods=['GET', 'POST'] ) 
+
+- GET : used to retrieve data
+- POST : used to send data to the server
+
+
+============================
+STEP 18 - ADD / IMPORT REQUEST
+============================
+
+- from flask import Flask, render_templates, request
+
+def index():
+	if request.method=="POST":	# This check whether the request coming from the browser is a POST Request. 
+		name=request.form.get("name")	#request.form containes all form data submitted by the user.
+		city=request.form.get("city")		# same like name
+		stdata=studinfo(name=name, city=city)		# create a new object of the studinfo model
+		db.session.add(stdata)		# for adding record in db
+		db.session.commit()		# save all pending changes in the session of the db
+	return render_template('index.html')	# display the html page
+
+
+==================================
+STEP 19 - IN TEMPLATES MAKE NEW FILE
+==================================
+
+- Create new file named as : showdata.html
+
+- In this copy the code of index file
+
+
+==============================
+STEP 20 - MAKE NEW ROUTE & VIEW
+==============================
+
+@app.route('/showdata', methods=['GET'])		# To retrieve data
+def showdata():
+	stdata = studinfo.query.all()		# Retrieve all records from the studinfo
+	return render_template('showdata.html', stdata=stdata)	# send the Retrieve data to the HTML page.
+
+
+
+==============================
+STEP 21 - IN SHOWDATA.HTML
+===============================
+
+- Add this table 
+
+    <!-- {{stdata}} -->
+     <table border="2" align="center">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>City</td>
+        </tr>
+        {% for i in stdata %} - to take all data one by one from the database table 
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.city}}</td>
+        </tr>
+        {% endfor %}
+     </table>
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+COMPLETED 
+       
+
+
+
+	

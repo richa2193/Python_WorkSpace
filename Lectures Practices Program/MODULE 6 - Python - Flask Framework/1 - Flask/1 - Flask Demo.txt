@@ -1,0 +1,354 @@
+------------------------
+Flask 
+-------------------------
+
+- Microframework 
+- Used for API most
+- Web Development - small
+- Single File Distributor 
+
+
+===========================
+SIMPLE APP IN FLASK - STEPS 
+===========================
+
+
+======================
+STEP 1 - Make one folder 
+======================
+
+Make one folder and open it in cmd. 
+
+
+===============================
+STEP 2 - CREATE NEW VENV 
+===============================
+
+in cmd create new virtual environment 
+
+- cmd : pip install virtualenv
+- cmd : pip -m venv myenv (env name)
+
+
+===================================
+STEP 3 - ACTIVATE ENV 
+===================================
+
+cmd : myenv\scritpt\activate 
+
+
+=====================================
+STEP 4 - INSTALL FLASK 
+====================================
+
+CMD : pip install flask 
+
+
+======================================
+STEP 5 - MAKE  FOLDER 
+=======================================
+
+make one folder manually named as - Demoproject 
+where env is created.
+
+
+====================================
+STEP 6 - OPEN IN VS CODE 
+====================================
+
+open that demoproject folder in where env is created.
+
+
+========================
+STEP 7 -  CREATE FILE 
+========================
+
+now, in vs code create one file named as app.py 
+
+
+=======================
+STEP 8 - IMPORT FLASK 
+======================
+
+In app.py write 
+
+from flask import flask 
+
+
+========================
+STEP 9 - CREATE OBJECT 
+========================
+
+create one object 
+
+app = flask(__name__)		#app initialization 
+
+
+============================
+STEP 10 - FOR RUN SERVER
+============================
+
+app.run() - app running in stable mode.
+
+FLASK SERVER RUN ON PORT NUMBER - 5000
+
+
+===============================
+STEP 11 - URL 
+===============================
+
+Routing = url in flask 
+
+@app.route('/')
+
+
+===========================
+STEP 12 - MAKE VIEW 
+==========================
+
+def index():
+	return "Hello Flask!"
+
+
+==========================
+STEP 13 - DEBUG TRUE 
+===========================
+
+app.run(debug=True)
+
+CHANGE LOAD AUTOMATICALLY 
+
+
+=============================
+STEP 14 - RUN FILE 
+==============================
+
+Now run file or Debug mode on 
+
+
+===================================
+STEP 15 -  MAKE ONE PAGE
+===================================
+
+@app.route('/about')
+def about():
+	return "This is about Page."
+
+CHECK THIS OUTPUT BY RUNSERVER 
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+==================================
+STEP 16 - MAKE NEW FOLDER 
+==================================
+
+Create new folder for New Project named as - TemplateProj
+
+
+======================================
+STEP 17 - OPEN IN VS CODE 
+======================================
+
+Open Project in cmd then 
+
+cmd : code . 	- for open in vs code.
+
+Make app.py file 
+
+
+======================================
+STEP 17 - IMPORT FLASK 
+=====================================
+
+from flask import flask 
+
+app = flask(__name__)
+
+app.run(debug=True, port = 3000)
+
+@app.route('/')
+def index()
+	return 
+
+
+=============================================
+STEP 18 - INSIDE THIS PROJECT MAKE NEW FOLDER 
+=============================================
+
+Make new folder named as in current project - Templates 
+
+
+================================
+STEP 19 - MAKE HTML FILES 
+================================
+
+templates 
+
+	index.html
+	about.html
+	contact.html
+
+Add related html code from chatgpt for all of these files. 
+
+
+====================================
+STEP 20 - IN MAIN FILE WRITE THIS 
+===================================
+
+import render_template
+now 
+
+return render_template('index.html')
+
+@app.route('/about')
+def about():
+	return render_template('/about.html')
+
+
+=======================================
+STEP 21 - MAKE VIEW & ROUTE FOR CONTACT
+=======================================
+
+@app.route('/contact')
+def contact():
+	return render_template('/contact.html')
+
+
+=======================================
+STEP 21 - IN INDEX.HTML 
+======================================
+
+<a="/about"> About </a>
+<a="/contact"> Contact </a>
+
+
+=====================================
+STEP 22 - IN ABOUT.HTML 
+====================================
+
+<a="/"> Index </a>
+<a="/contact"> Contact </a>
+
+
+=================================
+STEP 23 - IN CONTACT.HTML 
+==================================
+
+<a="/"> Index </a>
+<a="/about"> About </a>
+
+
+=====================================
+STEP 24 - DOWNLOAD TEMPLATE
+=====================================
+
+Now search in google html codex and 
+
+download one template 
+
+
+=======================================
+STEP 25 - DELETE FILE FROM THAT TEMPLATE
+=======================================
+
+Delete unwanted file like Readme and all other.
+
+
+==============================================
+STEP 26 - MAKE NEW FOLDER FOR THE NEW PROJECT
+=============================================
+
+Make new folder named as - StoreApp
+
+open this in cmd and code . 
+
+
+=========================
+STEP 27 - CREATE FILES 
+=========================
+
+create app.py and template folder.
+
+
+=====================
+STEP 28 - HTML FILES 
+=====================
+
+put html file in templates folder from the download template.
+
+
+=======================================
+STEP 29 - NEW FOLDER STATIC
+=======================================
+
+- Make new folders named as static and inside this make 3 folder  
+
+- Static 
+	- css
+	- js
+	- img
+
+- Now from the downloaded templates find css, js and images 
+
+- Put these all files related to their folders. 
+
+
+===================================================
+STEP 30 - MAKE FILE APP.PY, IF ALREADY EXISTS THEN WRITE 
+===================================================
+
+- in app.py import flask
+
+- initialization the app
+
+
+====================
+STEP 31 - RUN SERVER
+====================
+
+- WRITE BELOW CODE 
+
+app.run()
+
+
+=======================
+STEP 32 - IMPORT RENDER
+=======================
+
+- import render_templates
+
+
+=========================
+STEP 33 - CREATE ROUTE
+=========================
+
+- Create route & def for each 
+
+@app.route('/')
+def index():
+	return render_templates('index.html')
+
+
+========================
+STEP 34 - ADD STATIC PATH
+========================
+
+- app = flask(__name__, static __url__  path='/static')
+
+
+=====================================
+STEP 35 - NOW ADD THIS PATH IN ALL FILES 
+====================================
+
+- Find static in html, css, js and images's code and replace or add updated static path.
+
+- PATH : "/static/lib" 
+
+- Add this static path in all file - css, js and img.
+
+- Use ctrl + F & find img & replace with /static/img/
+

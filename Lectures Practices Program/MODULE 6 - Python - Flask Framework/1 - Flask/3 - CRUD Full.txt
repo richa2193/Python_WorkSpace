@@ -1,0 +1,328 @@
+=======================
+CRUD FULL 
+=======================
+
+
+======================
+STEP 1 - CREATE FOLDER
+======================
+
+- Manually Create folder named as : FullCRUDApp
+
+- Open this folder in cmd 
+
+- Activate env 
+
+- Open this folder in code . (vscode)
+
+
+==============================
+STEP 2 - MAKE TEMPLATES FOLDER
+===============================
+
+- Create templates folder 
+
+- Inside this create 2 files named as 
+
+templates 
+	- index.html
+	- showdata.html
+
+- Take code from the bootstrap
+
+- Change h1 - Welcome to DB App
+
+- Copy code of index.html in showdata.html 
+
+
+========================
+STEP 3 - IMPORT LIBRARIES
+========================
+
+- Create app.py in vscode 
+
+- Import this both
+
+- from flask import Flask,render_template,request,redirect 
+
+- from flask_sqlalchemy import SQLAlchemy
+
+
+==========================
+STEP 4 - RUNSERVER
+==========================
+
+- Write this line for run server. 
+
+- app.run(debug=True)
+
+
+==========================
+STEP 5 - MAKE OBJECT OF APP
+==========================
+
+app = Flask(__name__)
+
+
+========================
+STEP 6 - DB CONFIG 
+========================
+
+- copy that 2 line
+
+#DB Config
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tops.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+
+===========================
+STEP 7 - CREATE DB OBJECT
+===========================
+
+- db = sqlalchemy(app)
+
+
+=======================
+STEP 8 - MAKE MODEL
+=======================
+
+ class studinfo(db.Model):
+	id=db.column(db.Integer, primary_key=True)
+	name=db.column(db.string(20))
+	email=db.column(db.string(20))
+	city=db.column(db.string(20))
+
+
+==================================
+STEP 9 - CREATE APP CONTEXT IN FLASK
+==================================
+
+with app=app.context()
+
+
+==========================
+STEP 10 - RUNSERVER 
+==========================
+
+- Check the all functions. 
+
+
+==========================
+STEP 11 - MAKE VIEW & ROUTE 
+==========================
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+	return render_templates('index.html')
+
+
+===============================
+STEP 12 - IN INDEX.HTML
+===============================
+
+- In index.html take one form and add your field 
+
+- form method should be post
+
+
+=============================
+STEP 13 - ADD FORM REQ IN VIEW
+=============================
+
+- def index():
+    if request.method=='POST':		# check if the form has been submitted using the POST method.
+        nm=request.form['name']	# gets the value entered in name field & stores in variable nm
+        em=request.form['email']	# gets the value entered in email field & stores in variable em
+        ct=request.form['city']		# same like name & email field
+
+        stdata=Studinfo(name=nm,email=em,city=ct)	# create a new studinfo object with entered name, email & city
+        db.session.add(stdata)	# adds the new project to the db session
+        db.session.commit()		# save the record per. in db
+    return render_template('index.html')	#display the html page to user
+
+
+==============================
+STEP 14 - IN SHOWTABLE.HTML
+==============================
+
+- in showdata.html take table format & add field
+
+- copy this code and change field according to name.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+</head>
+<body style="background-color: aliceblue;">
+    <h1 style="text-align: center;color: brown;">Showdata</h1>
+    <hr>
+    <!-- {{stdata}} -->
+     <table border="2" align="center">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>City</td>
+        </tr>
+        {% for i in stdata %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.city}}</td>
+        </tr>
+        {% endfor %}
+     </table>
+  
+</body>
+</html>
+
+
+===============================
+STEP 15 - MAKE VIEW OF SHOWDATA
+===============================
+
+- WRITE THIS 
+
+@api.route('/showdata', method=['GET'])
+def showdata():
+	stdata=Studinfo.query.all()	# get all data from the db
+	return render_templates('showdata.html', stdata=stdata)	# open html page
+
+
+===========================
+STEP 16 - IN INDEX.HTML
+===========================
+
+- In index.html create link for showdata
+
+<a href="/showdata">Showdata</a>
+
+
+==========================
+STEP 17 - IN SHOWDATA.HTML
+==========================
+
+- Add update & Delete Button
+
+- <th>Action</th>
+
+- <td><a class="btn btn-warning" href="/updatedata/{{i.id}}">Update</a> &nbsp; 
+
+- <a class="btn btn-danger" href="/deletedata/{{i.id}}">Delete</a></td>
+
+
+============================
+STEP 18 - MAKE VIEW FOR DELETE
+============================
+
+@app.route('/deletedata/<int:id>')
+def deletedata(id):
+	stid=Studinfo.query.get(id)
+	db.session.delete(stid)
+	db.session.commit()
+	return redirect('/showdata')
+
+
+===========================
+STEP 19 - IN SHOWDATA.HTML
+===========================
+
+- Write code for delete button, if already written then skip 
+
+<a class="btn btn-danger" href="/deletedata/{{i.id}}">Delete</a></td>
+
+
+===========================================
+STEP 20 - MAKE NEW FILE IN TEMPLATES FOLDER
+===========================================
+
+- Make new file named as : updatedata.html
+
+- copy index code 
+
+- change title & heading
+
+- form as it is
+
+
+============================================
+STEP 21 - CREATE ROUTE & VIEW FOR UPDATEDATA
+============================================
+
+- pass id in route
+
+@app.route('/updatedata/<int:id>', method=['GET', 'POST'])
+def 	updatedata(id):
+	stid=studinfo.query.get(id)
+
+	if request.method=='POST':
+        	stid.name=request.form['name']
+       		stid.email=request.form['email']
+        	stid.city=request.form['city']
+        	db.session.commit()
+        	print("Record Updated!")
+       		return redirect('/showdata')
+
+    return render_template('updatedata.html', stid=stid)
+
+
+============================
+STEP 22 - IN UPDATEDATA.HTML 
+============================
+
+- In this file Add value field in form 
+
+value = "{{stid.name}}"
+
+- Paste this code in updatedata.html file
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updatedata</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</head>
+
+<body style="background-color: antiquewhite;">
+    <h1 style="text-align: center;color: brown;border-radius: 10;border-style: dashed;">Updatedata</h1>
+
+    <div class="container my-5">
+         <form method="post">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Name</label>
+            <input type="text" value="{{stid.name}}" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="email" value="{{stid.email}}" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">City</label>
+            <input type="text" value="{{stid.city}}" class="form-control" name="city" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <button type="submit" class="btn btn-dark">Update</button>
+    </form>
+    <hr>
+    <a href="/showdata">Showdata</a>
+    </div>
+   
+</body>
+
+</html>
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+COMPLETED 
+
